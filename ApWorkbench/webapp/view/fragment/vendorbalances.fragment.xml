@@ -1,0 +1,48 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="Vendor Balances" class="sapUiSizeCompact" contentWidth="60%" contentHeight="auto" showHeader="false">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Title text="Vendor Balances"/>
+				</contentLeft>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="fncloseVendorBlc"/>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<!--<VBox items ="{vendorBalanceModel>/vendorBalance}">-->
+			<Table class="sapUiSizeCompact" items="{ path : 'vendorBalanceModel>/vendorBalance' , templateShareable : true}">
+				<columns>
+					<Column hAlign="Center" minScreenWidth="Small" demandPopin="true">
+						<Label text="Currency" design="Bold"/>
+					</Column>
+					<Column hAlign="Center" minScreenWidth="Small" demandPopin="true">
+						<Label text="Debit/Credit" design="Bold"/>
+					</Column>
+					<Column hAlign="Center" minScreenWidth="Small" demandPopin="true">
+						<Label text="Currency Balance" design="Bold"/>
+					</Column>
+					<Column hAlign="Center" minScreenWidth="Small" demandPopin="true">
+						<Label text="Local Currency" design="Bold"/>
+					</Column>
+					<Column hAlign="Center" minScreenWidth="Small" demandPopin="true">
+						<Label text="Local Currency Balance" design="Bold"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text class="sapUiTinyMarginEnd" text="{vendorBalanceModel>Currency}"/>
+							<Text class="sapUiTinyMarginEnd" text="{vendorBalanceModel>DbCrInd}"/>
+							<Text class="sapUiTinyMarginEnd" text="{vendorBalanceModel>TCurrBal}"/>
+							<Text class="sapUiTinyMarginEnd" text="{vendorBalanceModel>LocCurrcy}"/>
+							<Text class="sapUiTinyMarginEnd" text="{vendorBalanceModel>LcBal}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<!--</VBox>-->
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

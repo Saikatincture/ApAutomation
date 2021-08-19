@@ -1,0 +1,161 @@
+ID: mta_ZTaskApp
+_schema-version: '2.1'
+parameters:
+  deploy_mode: html5-repo
+version: 0.0.1
+modules:
+  - name: mta-ztaskapp-approuter
+    type: approuter.nodejs
+    path: mta-ztaskapp-approuter
+    parameters:
+      disk-quota: 256M
+      memory: 100M
+    requires:
+      - name: dest_mta_ZTaskApp
+      - name: mta_ZTaskApp_html5_repo_runtime
+      - name: uaa_mta_ZTaskApp
+    properties:
+      SEND_XFRAMEOPTIONS: false
+  - name: mta_ZTaskApp_ui_deployer
+    type: com.sap.html5.application-content
+    path: mta_ZTaskApp_ui_deployer
+    requires:
+      - name: mta_ZTaskApp_html5_repo_host
+    build-parameters:
+      requires:
+        - name: ZTaskApp
+          artifacts:
+            - './*'
+          target-path: resources/ZTaskApp
+        - name: ConfigCockpit
+          artifacts:
+            - './*'
+          target-path: resources/ConfigCockpit
+        - name: ApWorkbench
+          artifacts:
+            - './*'
+          target-path: resources/ApWorkbench
+        - name: SearchPurchaseOrder
+          artifacts:
+            - './*'
+          target-path: resources/SearchPurchaseOrder
+        - name: ManageTemplate
+          artifacts:
+            - './*'
+          target-path: resources/ManageTemplate
+        - name: CreateEInvoice
+          artifacts:
+            - './*'
+          target-path: resources/CreateEInvoice
+        - name: videopoc
+          artifacts:
+            - './*'
+          target-path: resources/videopoc
+        - name: homeApp
+          artifacts:
+            - './*'
+          target-path: resources/homeApp
+  - name: ZTaskApp
+    type: html5
+    path: ZTaskApp
+    build-parameters:
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+      supported-platforms: []
+      build-result: dist
+  - name: ConfigCockpit
+    type: html5
+    path: ConfigCockpit
+    build-parameters:
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+      supported-platforms: []
+      build-result: dist
+  - name: ApWorkbench
+    type: html5
+    path: ApWorkbench
+    build-parameters:
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+      supported-platforms: []
+      build-result: dist
+  - name: SearchPurchaseOrder
+    type: html5
+    path: SearchPurchaseOrder
+    build-parameters:
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+      supported-platforms: []
+      build-result: dist
+  - name: ManageTemplate
+    type: html5
+    path: ManageTemplate
+    build-parameters:
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+      supported-platforms: []
+      build-result: dist
+  - name: CreateEInvoice
+    type: html5
+    path: CreateEInvoice
+    build-parameters:
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+      supported-platforms: []
+      build-result: dist
+  - name: videopoc
+    type: html5
+    path: videopoc
+    build-parameters:
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+      supported-platforms: []
+      build-result: dist
+  - name: homeApp
+    type: html5
+    path: homeApp
+    build-parameters:
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+      supported-platforms: []
+      build-result: dist
+resources:
+  - name: mta_ZTaskApp_html5_repo_runtime
+    parameters:
+      service-plan: app-runtime
+      service: html5-apps-repo
+    type: org.cloudfoundry.managed-service
+  - name: mta_ZTaskApp_html5_repo_host
+    parameters:
+      service-plan: app-host
+      service: html5-apps-repo
+    type: org.cloudfoundry.managed-service
+  - name: uaa_mta_ZTaskApp
+    parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+    type: org.cloudfoundry.managed-service
+  - name: dest_mta_ZTaskApp
+    parameters:
+      service-plan: lite
+      service: destination
+    type: org.cloudfoundry.managed-service
+    properties:
+      SEND_XFRAMEOPTIONS: false

@@ -1,0 +1,41 @@
+<mvc:View controllerName="incture.com.videopoc.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:demo="incture.com.videopoc.control" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
+	<App id="app">
+		<pages>
+			<Page id="page" title="{i18n>title}">
+				<content>
+					<l:Grid defaultSpan="XL3 L3 M6 S12" class="sapUiSizeCompact box" width="100%">
+						<!--	<VBox class="sapUiTinyMargin">
+							<core:HTML
+								content='&lt;video width=&quot;320&quot; height=&quot;250&quot; controls muted&gt; &lt;source src=&quot;./video/novo3v.mp4&quot; type=&quot;video/mp4&quot; /&gt; &lt;/video&gt;'></core:HTML>
+						</VBox>
+						<VBox class="sapUiTinyMargin">
+							<core:HTML
+								content='&lt;video width=&quot;320&quot; height=&quot;250&quot; controls muted&gt; &lt;source src=&quot;./video/novo4v.mp4&quot; type=&quot;video/mp4&quot; /&gt; &lt;/video&gt;'></core:HTML>
+						</VBox>
+						<VBox class="sapUiTinyMargin">
+							<core:HTML
+								content='&lt;video width=&quot;320&quot; height=&quot;250&quot; controls muted&gt; &lt;source src=&quot;./video/novo3v.mp4&quot; type=&quot;video/mp4&quot; /&gt; &lt;/video&gt;'></core:HTML>
+						</VBox>
+						<VBox class="sapUiTinyMargin">
+							<core:HTML
+								content='&lt;video width=&quot;320&quot; height=&quot;250&quot; controls muted&gt; &lt;source src=&quot;./video/novo2v.mp4&quot; type=&quot;video/mp4&quot; /&gt; &lt;/video&gt;'></core:HTML>
+						</VBox>-->
+						<VBox class="sapUiTinyMargin">
+							<demo:AudioVideoPlayer src="./video/novonordisk.mp4"/>
+						</VBox>
+						<VBox class="sapUiTinyMargin">
+							<demo:AudioVideoPlayer src="./video/novonordisk.mp4"/>
+						</VBox>
+						<VBox class="sapUiTinyMargin">
+							<demo:AudioVideoPlayer src="./video/novonordisk.mp4"/>
+						</VBox>
+						<VBox class="sapUiTinyMargin">
+							<demo:AudioVideoPlayer src="./video/novonordisk.mp4"/>
+						</VBox>
+					</l:Grid>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

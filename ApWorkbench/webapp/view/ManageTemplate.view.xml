@@ -1,0 +1,64 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.inc.ApWorkbench.controller.ManageTemplate"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App id="manage">
+		<pages>
+			<Page title="Title">
+				<customHeader>
+					<OverflowToolbar class="incturePrimaryClass">
+						<content>
+							<Button icon="sap-icon://nav-back" tooltip="{i18n>navBackPO}" class="inctureIconClass" press="onNavBack"/>
+							<Label text="{i18n>templateManage}" design="Bold"></Label>
+						</content>
+					</OverflowToolbar>
+				</customHeader>
+				<content>
+					<Table id="viewTemplate" noDataText="No Template Found" growing="true" growingThreshold="10" items="{templateModel>/aNonPoTemplate}">
+						<headerToolbar>
+							<Toolbar>
+								<Button text="{i18n>createTemp}" type="Emphasized" class="sapUiSizeCompact dynamicCls selectTemplateBtn" press="onCreateTemp" tooltip="Create New Template" ></Button>
+								<Button text="{i18n>importExcel}" type="Emphasized" class="sapUiSizeCompact dynamicCls selectTemplateBtn" press="openFileExplorer" tooltip="Import template from Excel"></Button>
+								<ToolbarSpacer></ToolbarSpacer>
+								<SearchField class="margintopinFld" width="20%" placeholder="Search by Template name" liveChange="handleTemplateSearch"></SearchField>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Label text="Template Id" class="selectTemp"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Label text="Template Name" class="selectTemp"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Label text="Account Number" class="selectTemp"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Label text="Created By" class="selectTemp"/>
+							</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+								<Label text="Updated By" class="selectTemp"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Label text="Action" class="selectTemp" ></Label>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Link text="{templateModel>templateId}" press="onTemplate" class="selectTemp"/>
+									<Text text="{templateModel>templateName}" class="selectTemp"/>
+									<Text text="{templateModel>accountNumber}" class="selectTemp"/>
+									<Text text="{templateModel>createdBy}" class="selectTemp"/>
+									<Text text="{templateModel>updatedBy}" class="selectTemp"/>
+									<Toolbar>
+										<Button icon="sap-icon://edit" class="selectTemp" press="onUpdateTemp"></Button>
+										<Button icon="sap-icon://delete" press="onDeleteTemp" class="selectTemp binIcon"></Button>
+									</Toolbar>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

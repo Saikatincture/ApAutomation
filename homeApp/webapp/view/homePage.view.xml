@@ -1,0 +1,90 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.inc.homeApp.controller.homePage"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Page showHeader="false" showNavButton="false">
+		<Page showHeader="false" showNavButton="{device>/isPhone}" navButtonPress="onNavBack">
+			<l:Splitter>
+				<VBox>
+					<l:Grid defaultSpan="L12 M12 S12" class="sapUiSizeCompact sapUiTinyMarginTop">
+						<l:Grid defaultSpan="L6 M6 S12" class="sapUiSizeCompact homepageGridCss">
+							<VBox class="sapUiSmallMarginTop">
+								<Label text="{i18n>SystemStatus}" design="Bold"/>
+								<core:Icon src="sap-icon://sys-enter-2" class="homePagesystemStatus sapUiMediumMarginBegin"/>
+								<Link text="{i18n>clickmore}"/>
+							</VBox>
+							<VBox class="sapUiSmallMarginTop">
+								<Label text="{i18n>downtime}" design="Bold" class="sapUiLargeMarginBegin"/>
+								<Text text="{i18n>scheduledDowntime}"/>
+							</VBox>
+						</l:Grid>
+						<Carousel class="sapUiContentPadding" loop="true">
+							<Image src="./images/pict1.png"/>
+							<Image src="./images/pict2.png"/>
+						</Carousel>
+						<OverflowToolbar class="homePageOTLBR">
+							<html:marquee direction="right" scrollamount="10">
+								<Title level="H1" text="{i18n>URGENTNOTICES}" class="sapUiSmallMarginBegin homepageTitle"/>
+							</html:marquee>
+						</OverflowToolbar>
+						<VBox items="{poHeaderSet>/notices}" class="homePageVbox">
+							<l:Grid defaultSpan="L6 M6 S12" class="sapUiSizeCompact">
+								<Label text="{poHeaderSet>headline} : " design="Bold" class="homepageLvl"/>
+								<Text text="{poHeaderSet>description}"/>
+							</l:Grid>
+						</VBox>
+						<OverflowToolbar class="homePageOTLBR sapUiSmallMarginTop">
+							<Title level="H1" text="{i18n>NOVOSupplierPortal}" class="sapUiSmallMarginBegin"/>
+						</OverflowToolbar>
+						<VBox items="{poHeaderSet>/CumminsSupplierPortal}" class="homePageVbox">
+							<l:Grid defaultSpan="L12 M12 S12" class="sapUiSizeCompact">
+								<Text text="{poHeaderSet>desc}"/>
+							</l:Grid>
+						</VBox>
+						<OverflowToolbar class="homePageOTLBR sapUiSmallMarginTop">
+							<Title level="H1" text="{i18n>News}" class="sapUiSmallMarginBegin"/>
+						</OverflowToolbar>
+						<VBox items="{poHeaderSet>/news}" class="homePageVbox">
+							<l:Grid defaultSpan="L12 M12 S12" class="sapUiSizeCompact">
+								<Label text="{poHeaderSet>headline}" design="Bold"/>
+								<Text text="{poHeaderSet>details}"/>
+							</l:Grid>
+						</VBox>
+					</l:Grid>
+					<layoutData>
+						<l:SplitterLayoutData size="75%" resizable="false"/>
+					</layoutData>
+				</VBox>
+				<VBox>
+					<l:Grid defaultSpan="L12 M12 S12" class="sapUiSizeCompact sapUiTinyMarginTop">
+						<Title level="H1" text="{i18n>quickLinks}"/>
+						<VBox>
+							<HBox class="sapUiTinyMarginTop">
+								<core:Icon src="sap-icon://pdf-attachment" press="fnOpenQuickGuide" class="homePageIconcolor sapUiTinyMarginEnd"/>
+								<Link text="{i18n>quickguide}" press="fnOpenQuickGuide"/>
+							</HBox>
+							<HBox class="sapUiTinyMarginTop">
+								<core:Icon src="sap-icon://supplier" press="fnSupplierPress" class="homePageIconcolor sapUiTinyMarginEnd"/>
+								<Link text="{i18n>supplierOverview}"/>
+							</HBox>
+							<HBox class="sapUiTinyMarginTop">
+								<core:Icon src="sap-icon://building" press="fnPurchasingorg" class="homePageIconcolor sapUiTinyMarginEnd"/>
+								<Link text="{i18n>PurchasingOrganization}"/>
+							</HBox>
+							<HBox class="sapUiTinyMarginTop">
+								<core:Icon src="sap-icon://video" press="fnPurchasingorg" class="homePageIconcolor sapUiTinyMarginEnd"/>
+								<Link text="{i18n>NovoSupplier}"/>
+							</HBox>
+							<HBox class="sapUiTinyMarginTop">
+								<core:Icon src="sap-icon://pdf-attachment" press="fnPurchasingorg" class="homePageIconcolor sapUiTinyMarginEnd"/>
+								<Link text="{i18n>aboutnovo}"/>
+							</HBox>
+						</VBox>
+					</l:Grid>
+					<layoutData>
+						<l:SplitterLayoutData size="auto"/>
+					</layoutData>
+				</VBox>
+			</l:Splitter>
+		</Page>
+	</Page>
+</mvc:View>

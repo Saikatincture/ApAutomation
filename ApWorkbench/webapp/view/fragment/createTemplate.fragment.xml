@@ -1,0 +1,87 @@
+<core:FragmentDefinition xmlns="sap.m" class="sapUiSizeCompact" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout">
+	<Dialog title="{i18n>createTemp}">
+		<VBox>
+			<layout:Grid id="grid" defaultSpan="L3 M6 S12" class="inctureGridClass sapUiSizeCompact sapUiSmallMarginTop" width="100%">
+				<layout:content>
+					<VBox class="inboxHeaderCls">
+						<Label text="{i18n>tempName}" design="Bold" required="true" class="sapUiTinyMargin"></Label>
+						<Input id="saveInput" value="{templateModel>/sCreatetempid}" class="margintopinFld"></Input>
+					</VBox>
+					<VBox class="inboxHeaderCls">
+						<Label text="{i18n>createdBy}" design="Bold" required="true" class="sapUiTinyMargin"></Label>
+						<Input editable="false" value="{oUserModel>/email}" class="margintopinFld"></Input>
+					</VBox>
+				</layout:content>
+			</layout:Grid>
+			<layout:Grid id="tableGrid" defaultSpan="L12 M12 S12" class="inctureGridClass sapUiSizeCompact" width="100%">
+				<layout:content>
+					<Table items="{ path: 'postDataModel>/listNonPoItem'}">
+						<headerToolbar>
+							<Toolbar>
+								<content>
+									<ToolbarSpacer></ToolbarSpacer>
+									<Button icon="sap-icon://add" press="addItem"></Button>
+								</content>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+								<Label text="{i18n>accountNum}" design="Bold" required="true"/>
+							</Column>
+							<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+								<Label text="{i18n>GLAccount}" design="Bold" required="true"/>
+							</Column>
+							<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+								<Label text="{i18n>Description}" design="Bold"/>
+							</Column>
+							<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+								<Label text="{i18n>CostCentre}" design="Bold" required="true"/>
+							</Column>
+							<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+								<Label text="{i18n>percentageAllocation}" design="Bold" required="true"/>
+							</Column>
+							<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+								<Label text="{i18n>Text}" design="Bold" required="true"/>
+							</Column>
+							<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+								<Label text="{i18n>action}" design="Bold"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem >
+								<cells>
+									<Input class="tbCellBorder glaccount margintopinFld" value="{postDataModel>accNumber}" change="onChangeAccNum" valueState="{postDataModel>accNumberError}"></Input>
+									<Input class="tbCellBorder glaccount margintopinFld" value="{postDataModel>glAccount}" filterSuggests="false"
+										suggestionItems="{path:'glAccountModel>/d/results', templateShareable : true }" tooltip="{postDataModel>glCode}"
+										suggestionItemSelected="glDescription" showSuggestion="true" suggest="glAccountSuggest" change="getGLaccountValue"
+										valueState="{postDataModel>glError}">
+										<suggestionItems>
+											<core:ListItem text="{path:'glAccountModel>GLAccounts',formatter:'com.inc.ApWorkbench.util.formatter.removeZero'}"
+												additionalText="{glAccountModel>GLAccDesc}"/>
+										</suggestionItems>
+									</Input>
+									<Text class=" margintopinFld tbCellBorder costcenterstate sapUiTinyMarginEnd" text="{postDataModel>materialDescription}"/>
+									<Input class=" margintopinFld tbCellBorder costcenterstate sapUiTinyMarginEnd" value="{postDataModel>costCenter}"
+										tooltip="{postDataModel>costCenter}" suggestionItems="{ path:'costCenterModel>/d/results', templateShareable : true}" filterSuggests="false"
+										showSuggestion="true" suggest="costCenterSuggest" liveChange="handlecostCentreInput" change="onChangeCostCenter"
+										valueState="{postDataModel>costCenterError}">
+										<suggestionItems>
+											<core:ListItem text="{costCenterModel>CostCenters}" additionalText="{costCenterModel>CostCenterDesc}"/>
+										</suggestionItems>
+									</Input>
+									<Input class=" margintopinFld tbCellBorder costcenterstate sapUiTinyMarginEnd" value="{postDataModel>allPer}" change="onChangeAllPer" valueState="{postDataModel>allPerError}"></Input>
+									<Input class=" margintopinFld tbCellBorder costcenterstate sapUiTinyMarginEnd" value="{postDataModel>itemText}" change="onChangeText" valueState="{postDataModel>itemTextError}"></Input>
+									<Button icon="sap-icon://delete" press="deleteNonPoData" class="binIcon"></Button>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</layout:content>
+			</layout:Grid>
+		</VBox>
+		<buttons>
+			<Button text="{i18n>SaveTemplate}" type="Emphasized" enabled="{postDataModel>/saveTempBtn}" press="onSaveTemplate"/>
+			<Button text="{i18n>Cancel}" type="Reject" press="onCancelTemplate"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

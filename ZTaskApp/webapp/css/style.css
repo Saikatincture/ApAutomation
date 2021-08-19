@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+:root {
+    --primary-color: 0, 84, 167;
+    --Primary-color-hs: 210, 100%;
+    --Primary-color-l: 65%;
+    --error-color: #F05B5B;
+    --Error-color-hs: 0, 83%;
+    --Error-color-l: 65%;
+    --warning-color: #E09D00;
+    --Warning-color-hs: 42, 100%;
+    --Warning-color-l: 44%;
+    --info-color: #0092D1;
+    --Info-color-hs: 198, 100%;
+    --Info-color-l: 41%;
+    --default-color: #647987;
+    --success-color: #00A834;
+    --inputFill-color: white;
+    --gray-0: white;
+    --gray-1: #FAFAF9;
+    --gray-2: #F3F2F2;
+    --gray-3: #ECEBEA;
+    --gray-4: #DDDBDA;
+    --gray-5: #868686;
+    --gray-6: #676767;
+    --gray-7: #555555;
+    --gray-8: #2E2E2E;
+    --gray-9: #1C1C1C;
+    --font-family: 'Roboto', sans-serif;
+    --ui-color-1: #880000;
+    --ui-color-2: #bb0000;
+    --ui-color-3: #E78C07;
+    --ui-color-4: #2B7C2B;
+    --ui-color-5: #427CAC;
+    --ui-color-6: #925ace;
+    --ui-color-7: #ab21Be;
+    --ui-color-8: #1a9898;
+}
+
+.Tasktable .sapMTableTH {
+    background: hsl(var(--Primary-color-hs), calc(var(--Primary-color-l)*1.49));
+}
+
+
+/*.RDSMtable .sapMListTblAlternateRowColors>:nth-child(even) {
+    
+}*/
+
+.Tasktable .sapMListTblRow:hover {
+    background: hsl(var(--Primary-color-hs), calc(var(--Primary-color-l)*1.52)) !important;
+}
+
+.Tasktable .sapMListTblRow {
+    background: var(--inputFill-color) !important;
+}
+
+.Tasktable .sapMColumnHeader {
+    justify-content: flex-start!important;
+}
+
+.Tasktable .sapMLIBSelected {
+    background: hsl(var(--Primary-color-hs), calc(var(--Primary-color-l)*1.52)) !important;
+}
+/*uncomment it for rolling back
+/*.Tasktable .sapMListTbl {*/
+/*    border-radius: 0.3rem !important;*/
+/*    padding: 0.2rem 0.1rem 0rem 0.1rem;*/
+/*    border: .0625rem solid #ddd;*/
+/*}*/
+
+.Tasktable .sapMListShowSeparatorsAll .sapMListTblSubRow:last-child>td:not(.sapMListTblDummyCell),
+.sapMListShowSeparatorsAll .sapMLIBShowSeparator:last-child>td:not(.sapMListTblDummyCell) {
+    border-bottom: none !important;
+}
+
+.Tasktable .sapMTBStandard {
+    border-bottom: none !important;
+}
+
+.Tasktable .sapMListTblCell>.sapMText {
+    color: var( --gray-8) !important;
+    font-family: var(--font-family);
+    font-weight: normal !important;
+    font-size: 0.875rem !important;
+}
+
+.Tasktable .sapMColumnHeader>.sapMLabel {
+    font-family: var(--font-family) !important;
+    font-size: 0.875rem !important;
+}
+
+.RDSsubmitButton .sapMBtnInner {
+    border-radius: 2px;
+    border: none;
+    background: var(--inputFill-color) !important;
+    color: rgba(var(--info-color), 1) !important;
+    text-shadow: none !important
+}
+
+.RDSsubmitButton .sapMBtnIcon {
+    color: rgba(var(--primary-color), 1) !important;
+}
+
+.TaskPage .sapMPageFooter .sapMFooter-CTX {
+    background: rgba(var(--primary-color), 1) !important;
+    
+}
+
+.TaskPage .sapFDynamicPageContent .sapFDynamicPageContentFitContainer {
+    padding: 0rem 0rem 0rem 0rem;
+    
+}
+
+/*.TaskTabBar .sapMITB.sapUiResponsiveContentPadding > .sapMITBContainerContent > .sapMITBContent {*/
+/*    padding: 0rem 0rem;*/
+/*}*/
+
+/*uncomment to rollback ux
+/*.sapMITB.sapUiResponsiveContentPadding .sapMITBContainerContent .sapMITBContent {*/
+/*    padding: 0rem 0rem;*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+.gridButtonCSS {
+	width: 400%;
+	justify-content: flex-end;
+}
+
+.inctureAmountGridClass {
+    box-shadow: 0 0 2px rgba(0, 0, 0, .12), 0 2px 4px rgba(0, 0, 0, .5);
+    /*border-radius: 5px;*/
+    background: #fff;
+    margin: 0.2rem 0rem;
+}
+.incturePanelContainerClass {
+    margin-right: 0rem;
+}
+
+.borderBtnCls .sapMBtnInner {
+    border: 1px solid #1111ee;
+}
+
+.filterSerachButton {
+    width: 5rem;
+    padding-top: 1rem;
+    padding-left: 0.5rem;
+}
+
+.inboxCls.sapUiRespGrid.sapUiRespGridVSpace1>div {
+    margin-bottom: 0;
+    width: fit-content;
+}
+
+.inboxCls.sapUiRespGrid.sapUiRespGridHSpace1 {
+    padding: 0;
+}
+.filterValueStyle {
+    width: 11.5rem !important;
+}
+
+.inputPopCls.sapMPopover {
+    width: 25rem !important;
+}
+
+.TaskPage.sapFDynamicPage-Std-Desktop .sapFDynamicPageHeader.sapFDynamicPageHeaderWithContent {
+    padding: 0.5rem 0rem 0rem 0rem;
+    background-color: #0053A7;
+}
+
+
+.sapMPanelContent {
+    background-color: #fff;
+    padding: 1rem 0rem 0rem 0rem;
+}
+
+.BtnCls .sapMBtnInner {
+	background-color: #0053A7!important;
+	color: #fff!important;
+}
+
+.BtnCls .sapMBtnIcon {
+	color: #fff!important;
+}
+
+.BtnCls2 .sapMBtnInner{
+	background-color: #fff!important;
+	color: #0053A7!important;
+	border-color: #0053A7!important;
+}
+
+.TaskPage.sapMPage .sapMPageHeader {
+	background-color: #0053A7!important;
+}
+
+.TaskPage .sapMIBar-CTX .sapMTitle {
+	color: #fff;
+	font-size: larger;
+}
+
+.msgText{
+	padding: 10px 20px;
+}
+
+.PopClass {
+    width: 16rem !important;
+    margin: 10px!important;
+    padding: 1rem !important;
+}
+.fragmentPadding{
+	padding:10px;
+}
+
+.sapMBar.barCls {
+	border-top: solid 1.5px #dddbda;
+}
+
+/*----------------------------------------------*/
+
+.sapMPage>.sapMPageHeader+section {
+	background-color: #F0F2F4;
+    opacity: 1;
+}
+
+.panelBoxCls.sapMPanel {
+    min-height: auto;
+    margin: 1rem;
+    background-color: #fff;
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    
+}
+
+.sapMPanelWrappingDivTb {
+    border-bottom: none;
+}
+
+.sapMPanelContent:not(.sapMPanelBGTransparent) {
+    border-bottom: none;
+}
+
+.searchGrid.sapUiRespGrid.sapUiRespGridHSpace1 {
+    padding: 0 0rem;
+}
+
+.sapMInputBaseContentWrapper {
+    border: 1px solid #C2C7CB;
+    background: #fff;
+    border-radius: 2px;
+}
+.sapMITH {
+	margin: 1rem 1rem 0 1rem;
+}
+
+.sapMITBContent {
+	margin: 0 1rem;
+	background-color: #fff;
+	padding: 0 1rem;
+}
+
+.onHoverVisible {
+	opacity:0;
+}
+
+.rowHover:hover .onHoverVisible {
+	opacity:1;
+}

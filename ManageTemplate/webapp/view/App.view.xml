@@ -1,0 +1,20 @@
+<mvc:View controllerName="com.inc.ManageTemp.ManageTemplate.controller.App" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+xmlns="sap.m">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<customHeader>
+						<OverflowToolbar class="incturePrimaryClass">
+							<content>
+							<Button icon="sap-icon://nav-back" tooltip="{i18n>navback}" class="inctureIconClass" press="onNavBack"/>
+							</content>
+						</OverflowToolbar>
+					</customHeader>
+					<content>
+						
+						
+					</content>
+				</Page>
+			</pages>
+		</App>
+</mvc:View>

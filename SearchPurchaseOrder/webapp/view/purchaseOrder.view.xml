@@ -1,0 +1,146 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:f="sap.f" xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" controllerName="com.inc.SearchPurchaseOrder.controller.purchaseOrder" height="100%">
+	<App id="app">
+		<pages>
+			<Page id="purchaseOrderId" showHeader="true" title="{i18n>SearchPurchaseOrders}" navButtonPress="onNavBack" showNavButton="false"
+				class="sapUiSizeCompact RDSPage RDSTitle" enableScrolling="true">
+				<content>
+					<OverflowToolbar>
+						<Label text="{i18n>Search}" design="Bold"></Label>
+						<ToolbarSpacer/>
+						<Button text="{i18n>SaveVariant}" class="RDSgoButton" press="onSaveVariant"/>
+						<Button text="{i18n>SelectVariant}" class="RDSgoButton" press="onSelectVariant"/>
+						<Button text="{i18n>CollapseSearch}" class="RDSgoButton" tooltip="{i18n>CollapseSearch}" press="onPressCollapse"
+							visible="{baseModel>/CollapseVisiblity}"/>
+						<Button text="{i18n>ExpandSearch}" class="RDSgoButton" tooltip="{i18n>ExpandSearch}" press="onPressOpen"
+							visible="{baseModel>/openVisiblity}"/>
+					</OverflowToolbar>
+					<VBox class="filterBox sapUiTinyMargin sapUiSizeCompact" visible="{baseModel>/SearchVisiblity}">
+						<l:Grid defaultSpan="XL3 L3 M6 S12" class="sapUiSizeCompact sapUiSmallMarginBeginEnd sapUiTinyMarginTop">
+							<VBox>
+								<Label text="{i18n>CompanyCode}" class="sapUiSizeCompact RDSLabel sapUiTinyMarginBegin"/>
+								<ComboBox placeholder="{i18n>SelectCompany}" items="{mCompanyModel>/results}" selectedKey="{mHeaderDetails>/selectedCompanyCode}"
+									showSecondaryValues="false" filterSecondaryValues="true" change="onCompanycodeChange" class="sapUiTinyMarginBegin" width="80%">
+									<items>
+										<core:ListItem key="{mCompanyModel>companyCode}" text="{mCompanyModel>companyCode}-{mCompanyModel>companyName}"
+											additionalText="{mCompanyModel>companyCode}" class="sapUiTinyMarginBegin"/>
+									</items>
+								</ComboBox>
+							</VBox>
+							<VBox>
+								<Label text="{i18n>Vendor}" class="sapUiSizeCompact RDSLabel sapUiTinyMarginBegin"/>
+								<Input value="{mHeaderDetails>/VendorID}{mHeaderDetails>/dashVendor}{mHeaderDetails>/SelectedVendorName}" showSuggestion="true"
+									placeholder="{i18n>EnterVendorId}" suggest="fnVendorIdSuggest" suggestionItemSelected="searchVendorAddr" change="onChangeVendor"
+									class="sapUiTinyMarginBegin RDSinputV1" suggestionItems="{path:'searchVendorModel>/d/results', templateShareable:false}" width="80%"
+									editable="false">
+									<suggestionItems class="sapUiSizeCompact">
+										<core:ListItem text="{searchVendorModel>Vendor}" class="sapUiSizeCompact" additionalText="{searchVendorModel>Name1}"/>
+									</suggestionItems>
+								</Input>
+							</VBox>
+							<VBox>
+								<Label text="{i18n>PONum}" class="RDSLabel"/>
+								<Input value="{MasterListHeaderSet>/PONo}" class="RDSinputV1" placeholder="{i18n>EnterPONumber}" width="80%"></Input>
+							</VBox>
+							<VBox>
+								<Label text="{i18n>Status}" class="RDSLabel"/>
+								<ComboBox id="SelectStatusId" selectedKey="{MasterListHeaderSet>/Status}" width="80%">
+									<core:Item text="" key=""></core:Item>
+									<core:Item text="{i18n>OPEN}" key="RL"></core:Item>
+									<core:Item text="{i18n>BLOCKED}" key="BL"></core:Item>
+									<core:Item text="{i18n>REQUIRESCONFIRMATION}" key="AR"></core:Item>
+									<core:Item text="{i18n>RECEIVEDPARTIAL}" key="PR"></core:Item>
+									<core:Item text="{i18n>RECEIVEDFULL}" key="FR"></core:Item>
+									<core:Item text="{i18n>INVOICEDPARTIAL}" key="PI"></core:Item>
+									<core:Item text="{i18n>INVOICEDFULL}" key="FI"></core:Item>
+								</ComboBox>
+							</VBox>
+							<VBox>
+								<Label text="{i18n>DateRangeSelection}" class="sapUiTinyMarginBegin"/>
+								<DateRangeSelection id="DRS2" change="handleChange" width="80%" dateValue="{mHeaderDetails>/dateValue}" class="sapUiTinyMarginBegin"
+									secondDateValue="{mHeaderDetails>/secondDateValue}" displayFormatType="Gregorian" maxDate="{mHeaderDetails>/maxDate}"/>
+							</VBox>
+							<VBox></VBox>
+							<VBox></VBox>
+							<VBox>
+								<Label/>
+								<HBox>
+									<Button text="{i18n>Reset}" icon="sap-icon://reset" press="onPressResetProcessPO" class="RDSgoButton sapUiSmallMarginEnd" width="6rem"></Button>
+									<Button text="{i18n>Search}" icon="sap-icon://search" press="onPressSerachProcessPO" class="RDSgoButton" width="6rem"></Button>
+								</HBox>
+							</VBox>
+						</l:Grid>
+					</VBox>
+					<Toolbar>
+						<Label text="{i18n>ListOfPurchaseOrders} - ({poHeaderSet>/count}) " design="Bold"/>
+						<ToolbarSpacer/>
+						<Button text="{i18n>CreatePO}" class="RDSgoButton" tooltip="{i18n>CreateEInvoice}" press="onPressCreatePO"/>
+						<SearchField liveChange="onSearch" width="20%"/>
+						<Button icon="sap-icon://action-settings" press="onPressPersonalization"/>
+					</Toolbar>
+					<Table id="ID_TBL_PI_INVOICE111" items="{poHeaderSet>/results}" inset="false" mode="SingleSelectLeft" sticky="ColumnHeaders" growing="true"
+						growingThreshold="6" class="sapUiSizeCompact RDSMtable" selectionChange="onSelectPO">
+						<columns>
+							<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/0/status}" demandPopin="true" minScreenWidth="Small"
+								popinDisplay="Inline">
+								<Label text="{i18n>PONo}" design="Bold" class="RDSLabel"/>
+							</Column>
+							<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/1/status}" demandPopin="true" minScreenWidth="Small"
+								popinDisplay="Inline">
+								<Label text="{i18n>Vendor}" design="Bold" class="RDSLabel"/>
+							</Column>
+							<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/2/status}" demandPopin="true" minScreenWidth="Small"
+								popinDisplay="Inline">
+								<Label text="{i18n>Company}" design="Bold" class="RDSLabel"/>
+							</Column>
+							<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/3/status}" demandPopin="true" minScreenWidth="Small"
+								popinDisplay="Inline">
+								<Label text="{i18n>PODate}" design="Bold" class="RDSLabel"/>
+							</Column>
+							<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/4/status}" demandPopin="true" minScreenWidth="Small"
+								popinDisplay="Inline">
+								<Label text="{i18n>CreatedBy}" design="Bold" class="RDSLabel"/>
+							</Column>
+							<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/5/status}" demandPopin="true" minScreenWidth="Small"
+								popinDisplay="Inline">
+								<Label text="{i18n>POStatus}" design="Bold" class="RDSLabel"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Small" popinDisplay="Inline">
+								<Label text="{i18n>PONetPrice}" design="Bold" class="RDSLabel"/>
+							</Column>
+							<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/6/status}" demandPopin="true" minScreenWidth="Small"
+								popinDisplay="Inline" hAlign="Center" vAlign="Middle">
+								<Label text="{i18n>Action}" design="Bold" class="RDSLabel"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<Text text="{poHeaderSet>Purch_Ord}"></Text>
+								<Text text="{poHeaderSet>Vendor}-{poHeaderSet>VendorName}"></Text>
+								<Text text="{poHeaderSet>Company_Code}-{poHeaderSet>CompanyName}"></Text>
+								<Text text="{poHeaderSet>Date}"></Text>
+								<Text text="{poHeaderSet>Created_By}"></Text>
+								<!--<Text text="{poHeaderSet>StatusDescription}"></Text>-->
+								<ObjectStatus text="{path : 'poHeaderSet>StatusDescription'}" inverted="true" state="{poHeaderSet>StatusState}" class="POObjectStatus"/>
+								<Text
+									text="{path:'poHeaderSet>Currency',formatter:'com.inc.SearchPurchaseOrder.util.Formatter.currencySymbolWithValue'} {poHeaderSet>NetPrice}"></Text>
+								<Toolbar>
+									<!--<Button icon="sap-icon://download" tooltip="Download" press="onDownloadPdf" class="sapUiSizeCompact" type="Emphasized"/>-->
+									<Button icon="sap-icon://display" tooltip="Display Details" press="onPressDisplay" class="sapUiSizeCompact" type="Emphasized"/>
+									<Button icon="sap-icon://activity-2" tooltip="PO Flow" press="onOpenActivityLog" class="sapUiSizeCompact" type="Emphasized"/>
+									<!--<Button type="Emphasized" text="PO Flow" tooltip="PO Flow" class="sapUiSmallMarginBegin" press="onOpenActivityLog"/>-->
+								</Toolbar>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+				<footer>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<Button text="{i18n>CreateInvoice}" press="onPressNextProcessInvoice" class="RDSsubmitButton" enabled="{baseModel>/createEinvoicebtn}"/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

@@ -1,0 +1,796 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<VBox class="incturePanelContainerClass">
+		<Toolbar>
+			<content>
+				<ToolbarSpacer></ToolbarSpacer>
+				<Button type="Emphasized" press="onpressVendorBalance" text="Vendor Balances" tooltip="Vendor Balances"></Button>
+				<Button icon="sap-icon://activity-2" tooltip="Activity Log" class="sapUiSmallMarginBegin" press="onOpenActivityLog"/>
+				<Button type="Emphasized" icon="sap-icon://message-popup" press="onOpenMessage" tooltip="Messages" class="dynamicCls"
+					enabled="{oInvoiceModel>/posted}">
+					<customData>
+						<BadgeCustomData key="badge" value="{oInvoiceModel>/messageCount}" visible="true"/>
+					</customData>
+				</Button>
+				<Button type="Emphasized" press="onDemandPDF" id="idOpenPDFBtn" text="{i18n>pdf}" enabled="{oPropertyModel>/bPdfBtn}"
+					tooltip="{i18n>OpenPDF}"></Button>
+			</content>
+			<layoutData>
+				<l:GridData span="L12 M12 S12"/>
+			</layoutData>
+		</Toolbar>
+		<!--	<HBox>-->
+		<IconTabBar expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding" select="onSelectIconTabBar" id="headerPanelId">
+			<items>
+				<IconTabFilter text="Invoice Header Details" key="invoicehdr">
+					<l:Grid defaultSpan="L3 M6 S12" id="idHeaderGridPartTwo" class="inctureGridClass">
+						<l:content>
+							<VBox class="inboxHeaderCls">
+								<Label text="{i18n>docType}" width="9rem" class="sapUiTinyMarginTop"></Label>
+								<Select forceSelection="false" width="16rem" selectedKey="{oInvoiceModel>/oInvoiceHeaderDetails/invoiceType}"
+									enabled="{oInvoiceModel>/posted}">
+									<items>
+										<core:Item key="INVOICE" text="INVOICE"/>
+										<core:Item key="Credit Memo" text="Credit Memo"/>
+										<core:Item key="Debit Memo" text="Debit Memo"/>
+										<core:Item key="Subsequent Credit/Debit" text="Subsequent Credit/Debit"/>
+									</items>
+								</Select>
+							</VBox>
+							<VBox class="inboxHeaderCls">
+								<Label text="{i18n>vendor}" width="9rem" class="sapUiTinyMarginTop" required="true"></Label>
+								<!--Vendor Running Search Integration :: START-->
+								<Input showSuggestion="true" suggest="fnVendorSuggestion" showTableSuggestionValueHelp="false" class="inputPopCls"
+									value="{oInvoiceModel>/oInvoiceHeaderDetails/vendorId}-{oInvoiceModel>/oInvoiceHeaderDetails/vendorName}" editable="{oInvoiceModel>/posted}"
+									suggestionRows="{suggestionModel>/d/results}" change="chkSelectedVendor" suggestionItemSelected="fnVendorSelected" width="16rem"
+									maxSuggestionWidth="50rem" filterSuggests="false" enableSuggestionsHighlighting="true">
+									<suggestionColumns>
+										<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+											<Label text="{i18n>vendorId}"/>
+										</Column>
+										<Column hAlign="Center" popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet">
+											<Label text="{i18n>nameOne}"/>
+										</Column>
+									</suggestionColumns>
+									<suggestionRows>
+										<ColumnListItem>
+											<cells>
+												<Text text="{path:'suggestionModel>Vendor', formatter:'com.inc.ApWorkbench.util.Formatter.removeZero'}" wrapping="true"/>
+												<Text text="{suggestionModel>Name1}" wrapping="true"/>
+											</cells>
+										</ColumnListItem>
+									</suggestionRows>
+								</Input>
+							</VBox>
+							<VBox class="inboxHeaderCls">
+								<Label text="{i18n>CCode}" width="9rem" class="sapUiTinyMarginTop"></Label>
+								<Input width="16rem" value="{oInvoiceModel>/oInvoiceHeaderDetails/compCode}" editable="{oInvoiceModel>/posted}"></Input>
+							</VBox>
+							<VBox class="inboxHeaderCls">
+								<Label text="{i18n>currency}" width="9rem" class="sapUiTinyMarginTop"></Label>
+								<Input enabled="{oPropertyModel>/bNonEditableField}" editable="{oInvoiceModel>/posted}" width="10rem"
+									value="{oInvoiceModel>/oInvoiceHeaderDetails/currency}" class="inputInnerCss"></Input>
+								<layoutData>
+									<l:GridData visibleXL="{oPropertyModel>/oInvHeaderFieldsConfig/bShowCurrency}"
+										visibleL="{oPropertyModel>/oInvHeaderFieldsConfig/bShowCurrency}" visibleM="{oPropertyModel>/oInvHeaderFieldsConfig/bShowCurrency}"></l:GridData>
+								</layoutData>
+							</VBox>
+							<VBox class="inboxHeaderCls">
+								<Label text="{i18n>invoiceRef}" width="9rem" class="sapUiTinyMarginTop" required="true"></Label>
+								<Input width="16rem" editable="{oInvoiceModel>/posted}" value="{oInvoiceModel>/oInvoiceHeaderDetails/extInvNum}"></Input>
+								<layoutData>
+									<l:GridData visibleXL="{oPropertyModel>/oInvHeaderFieldsConfig/bShowInvRef}" visibleL="{oPropertyModel>/oInvHeaderFieldsConfig/bShowInvRef}"
+										visibleM="{oPropertyModel>/oInvHeaderFieldsConfig/bShowInvRef}"></l:GridData>
+								</layoutData>
+							</VBox>
+							<VBox class="inboxHeaderCls">
+								<Label text="{i18n>docDate}" width="9rem" class="sapUiTinyMarginTop" required="true"></Label>
+								<DatePicker editable="{oInvoiceModel>/posted}" displayFormat="yyyy-MM-dd" width="16rem"
+									value="{oInvoiceModel>/oInvoiceHeaderDetails/invoiceDate}" class="disablekb"></DatePicker>
+								<layoutData>
+									<l:GridData visibleXL="{oPropertyModel>/oInvHeaderFieldsConfig/bShowDocDate}"
+										visibleL="{oPropertyModel>/oInvHeaderFieldsConfig/bShowDocDate}" visibleM="{oPropertyModel>/oInvHeaderFieldsConfig/bShowDocDate}"></l:GridData>
+								</layoutData>
+							</VBox>
+							<VBox class="inboxHeaderCls">
+								<Label text="{i18n>BaselineDate}" width="9rem" class="sapUiTinyMarginTop"></Label>
+								<DatePicker editable="{oInvoiceModel>/posted}" displayFormat="yyyy-MM-dd" width="16rem"
+									value="{oInvoiceModel>/oInvoiceHeaderDetails/oBaselineDate}" class="disablekb"></DatePicker>
+								<layoutData>
+									<l:GridData visibleXL="{oPropertyModel>/oInvHeaderFieldsConfig/bShowBaselineDate}"
+										visibleL="{oPropertyModel>/oInvHeaderFieldsConfig/bShowBaselineDate}" visibleM="{oPropertyModel>/oInvHeaderFieldsConfig/bShowBaselineDate}"></l:GridData>
+								</layoutData>
+							</VBox>
+							<VBox class="inboxHeaderCls">
+								<Label text="{i18n>duedate}" width="9rem" class="sapUiTinyMarginTop"></Label>
+								<DatePicker editable="{oInvoiceModel>/posted}" displayFormat="yyyy-MM-dd" valueFormat="yyyy-MM-dd" width="16rem"
+									value="{oInvoiceModel>/oInvoiceHeaderDetails/dueDate}" class="disablekb"></DatePicker>
+								<layoutData>
+									<l:GridData visibleXL="{oPropertyModel>/oInvHeaderFieldsConfig/bShowBaselineDate}"
+										visibleL="{oPropertyModel>/oInvHeaderFieldsConfig/bShowBaselineDate}" visibleM="{oPropertyModel>/oInvHeaderFieldsConfig/bShowBaselineDate}"></l:GridData>
+								</layoutData>
+							</VBox>
+							<VBox class="inboxHeaderCls">
+								<Label text="{i18n>postingDate}" width="9rem" class="sapUiTinyMarginTop" required="true"></Label>
+								<DatePicker editable="{oInvoiceModel>/posted}" width="16rem" change="onPostingDateChange"
+									value="{path:'oInvoiceModel>/oInvoiceHeaderDetails/postingDate', formatter: 'com.inc.ApWorkbench.util.Formatter.getDate'}"
+									displayFormat="yyyy-MM-dd" class="disablekb"></DatePicker>
+							</VBox>
+							<VBox class="inboxHeaderCls">
+								<Label text="{i18n>paymentTerms}" width="9rem" class="sapUiTinyMarginTop"></Label>
+								<Select enabled="{oInvoiceModel>/posted}" width="16rem" forceSelection="false" items="{oAutomationSerModel>/paymentTerm}">
+									<items>
+										<core:ListItem text="{oAutomationSerModel>PaymentTerms}" additionalText="{oAutomationSerModel>PaymentTermsDesc}"></core:ListItem>
+									</items>
+								</Select>
+							</VBox>
+							<VBox class="inboxHeaderCls">
+								<Label text="{i18n>paymentMethod}" width="9rem" class="sapUiTinyMarginTop"></Label>
+								<Select enabled="{oInvoiceModel>/posted}" width="16rem" forceSelection="false" items="{oAutomationSerModel>/paymentMethod}">
+									<items>
+										<core:ListItem text="{oAutomationSerModel>PaymentMethDesc}" additionalText="{oAutomationSerModel>PaymentMeth}"></core:ListItem>
+									</items>
+								</Select>
+							</VBox>
+							<VBox class="inboxHeaderCls">
+								<Label text="{i18n>paymentBlock}" width="9rem" class="sapUiTinyMarginTop"></Label>
+								<Select enabled="{oInvoiceModel>/posted}" width="16rem" forceSelection="false" items="{oAutomationSerModel>/paymentBlock}">
+									<items>
+										<core:ListItem text="{oAutomationSerModel>PaymentBlockDesc}" additionalText="{oAutomationSerModel>PaymentBlock}"></core:ListItem>
+									</items>
+								</Select>
+							</VBox>
+						</l:content>
+					</l:Grid>
+				</IconTabFilter>
+				<IconTabFilter text="Item Details" key="itemdetails">
+					<VBox class="incturePanelContainerClass" id="invTabId">
+						<IconTabBar expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding" select="onSelectIconTabBar" id="apIconTabId">
+							<items>
+								<IconTabFilter text="Invoice" key="Invoice">
+									<l:Grid defaultSpan="L12 M12 S12" class="inctureRemovePadClass">
+										<l:content>
+											<HBox>
+													<Select forceSelection="false" width="9rem">
+														<core:Item key="Goods/Service Items" text="Goods/Service Items"/>
+														<core:Item key="Goods/Services + Planned Cost" text="Goods/Services + Planned Cost"/>
+														<core:Item key="Planned Cost(Delivery/Admin)" text="Planned Cost(Delivery/Admin)"/>
+													</Select>
+													<!--<Button tooltip="Undo" type="Emphasized" text="{i18n>Undo}" icon="sap-icon://undo" press="fnUndoTable" enabled="{oInvoiceModel>/posted}"
+														class="sapUiSizeCompact dynamicCls"/>
+													<Button tooltip="{oDynamicPropertyModel>/bDynBtnTooltip}" type="Emphasized" icon="{oDynamicPropertyModel>/bDynBtnIcon}"
+														press="fnOpenDynamicColumns" enabled="{oInvoiceModel>/posted}" class="sapUiSizeCompact sapUiTinyMarginBegin dynamicCls"/>-->
+													<Button tooltip="3 way Match" enabled="{oInvoiceModel>/posted}" text="{i18n>threeWayMatching}" type="Emphasized"
+														visible="{oInvoiceModel>/oInvItemsFieldsConfig/bThreeMatchingVis}" class="dynamicCls sapUiTinyMarginBegin" press="onThreeWayMatching"></Button>
+													<Button text="{i18n>manualMatching}" class="dynamicCls sapUiTinyMarginBegin" type="Emphasized" enabled="{oInvoiceModel>/posted}"
+														visible="{oInvoiceModel>/oInvItemsFieldsConfig/bManualMatchingVis}" press="onPressManualMatching" tooltip="Manual Match"></Button>
+													<Button text="{i18n>taxDetails}" class="dynamicCls sapUiTinyMarginBegin" tooltip="Tax Details" type="Emphasized"
+														enabled="{oInvoiceModel>/posted}" visible="{oInvoiceModel>/oInvItemsFieldsConfig/bTaxDetailsVis}"></Button>
+													<Switch state="true" change="togglePO" customTextOn="INV" customTextOff="PO" class="toggleCls sapUiTinyMarginBegin" id="idIncPoSwitch"></Switch>
+												</HBox>	
+											<Table items="{oInvoiceModel>/oInvoiceHeaderDetails/invoiceItems}" class="invoiceTable" sticky="ColumnHeaders" id="idInvoiceTable">
+												<!--<headerToolbar width="100%">
+													<OverflowToolbar>
+													<HBox>
+													<Select forceSelection="false" width="9rem">
+														<core:Item key="Goods/Service Items" text="Goods/Service Items"/>
+														<core:Item key="Goods/Services + Planned Cost" text="Goods/Services + Planned Cost"/>
+														<core:Item key="Planned Cost(Delivery/Admin)" text="Planned Cost(Delivery/Admin)"/>
+													</Select>
+													<Button tooltip="3 way Match" enabled="{oInvoiceModel>/posted}" text="{i18n>threeWayMatching}" type="Emphasized"
+														visible="{oInvoiceModel>/oInvItemsFieldsConfig/bThreeMatchingVis}" class="dynamicCls sapUiTinyMarginBegin" press="onThreeWayMatching"></Button>
+													<Button text="{i18n>manualMatching}" class="dynamicCls sapUiTinyMarginBegin" type="Emphasized" enabled="{oInvoiceModel>/posted}"
+														visible="{oInvoiceModel>/oInvItemsFieldsConfig/bManualMatchingVis}" press="onPressManualMatching" tooltip="Manual Match"></Button>
+													<Button text="{i18n>taxDetails}" class="dynamicCls sapUiTinyMarginBegin" tooltip="Tax Details" type="Emphasized"
+														enabled="{oInvoiceModel>/posted}" visible="{oInvoiceModel>/oInvItemsFieldsConfig/bTaxDetailsVis}"></Button>
+													<Switch state="true" change="togglePO" customTextOn="INV" customTextOff="PO" class="toggleCls sapUiTinyMarginBegin" id="idIncPoSwitch"></Switch>
+												</HBox>
+													</OverflowToolbar>
+												</headerToolbar>-->
+												<columns>
+													<Column width="2em" hAlign="Center">
+														<Button class="tableBtnAlignMent smallPadding tableSelectionChkBox tableChkBox tableDeleteBtn" press="openDeletionList"
+															icon="sap-icon://delete" enabled="{oInvoiceModel>/posted}"/>
+													</Column>
+													<Column width="1.5em" hAlign="Center">
+														<Label text="" design="Bold"/>
+													</Column>
+													<Column hAlign="Center" width="2em">
+														<CheckBox enabled="{oInvoiceModel>/posted}" select="toggleAllLineSelect" id="invTabAllSelectionId"/>
+													</Column>
+													<Column width="18em" hAlign="Center" visible="{oInvoiceModel>/nullVis}">
+														<Label text="{i18n>Description}" design="Bold"/>
+													</Column>
+													<Column width="10em" hAlign="Center" visible="{oInvoiceModel>/invoiceFldVis}">
+														<Label text="{i18n>Quantity}" design="Bold"/>
+													</Column>
+													<Column width="6.5em" mergeDuplicates="true" hAlign="Center" visible="{oInvoiceModel>/invoiceFldVis}">
+														<Label text="{i18n>UOM}" design="Bold"/>
+													</Column>
+													<Column width="7em" hAlign="Center" visible="{oInvoiceModel>/invoiceFldVis}">
+														<Label text="{i18n>UnitPrice}" design="Bold"/>
+													</Column>
+													<Column width="10em" hAlign="Center"
+														visible="{ parts:[ {path:'oInvoiceModel>/invoiceFldVis'}, {path:'oDynamicPropertyModel>/bDiscVisible'} ], formatter: 'com.inc.ApWorkbench.util.Formatter.discountVisible' }">
+														<Label text="{i18n>Discount} %" design="Bold"/>
+													</Column>
+													<Column width="10em" hAlign="Center"
+														visible="{ parts:[ {path:'oInvoiceModel>/invoiceFldVis'}, {path:'oDynamicPropertyModel>/bDiscVisible'} ], formatter: 'com.inc.ApWorkbench.util.Formatter.discountVisible' }">
+														<Label text="{i18n>Discount}" design="Bold"/>
+													</Column>
+													<Column width="5em" hAlign="Center"
+														visible="{ parts:[ {path:'oInvoiceModel>/invoiceFldVis'}, {path:'oDynamicPropertyModel>/bDiscVisible'} ], formatter: 'com.inc.ApWorkbench.util.Formatter.discountVisible' }">
+														<Label text="{i18n>Deposit}" design="Bold"/>
+													</Column>
+													<Column width="8em" hAlign="Center" visible="{oInvoiceModel>/invoiceFldVis}">
+														<Label text="{i18n>NetPrice}" design="Bold"/>
+													</Column>
+													<Column width="8em" mergeDuplicates="true" hAlign="Center" visible="{oInvoiceModel>/invoiceFldVis}">
+														<Label text="{i18n>Avl.Qty(UoM)}" design="Bold"/>
+													</Column>
+													<Column width="8em" hAlign="Center" visible="{oInvoiceModel>/invoiceFldVis}">
+														<Label text="{i18n>UnitPrice(UOM)}" design="Bold" class="poData "/>
+													</Column>
+													<Column width="7em" hAlign="Center" visible="{oInvoiceModel>/purchaseOrderFldVis}">
+														<HBox>
+															<Label text="{i18n>PONumber}" design="Bold"/>
+															<core:Icon size="1rem" src="sap-icon://sort"/>
+														</HBox>
+													</Column>
+													<Column width="6em" hAlign="Center" visible="{oInvoiceModel>/purchaseOrderFldVis}">
+														<HBox>
+															<Label text="{i18n>ItemId}" design="Bold" class="poData"/>
+															<core:Icon size="1rem" src="sap-icon://sort"/>
+														</HBox>
+													</Column>
+													<Column width="7em" hAlign="Center" visible="{oInvoiceModel>/purchaseOrderFldVis}">
+														<Label text="{i18n>Material}" class="poData " design="Bold"/>
+													</Column>
+													<Column width="7em" hAlign="Center" visible="{oInvoiceModel>/purchaseOrderFldVis}">
+														<Label text="{i18n>VenMat}" class="poData " design="Bold"/>
+													</Column>
+													<Column width="6em" hAlign="Center" visible="{oInvoiceModel>/purchaseOrderFldVis}">
+														<Label text="{i18n>UPC}" design="Bold" class="poData "/>
+													</Column>
+													<Column width="6em" visible="{oInvoiceModel>/purchaseOrderFldVis}" hAlign="Center">
+														<Label text="{i18n>Quantity}" design="Bold" class="poData "/>
+													</Column>
+													<Column width="6em" hAlign="Center" visible="{oInvoiceModel>/purchaseOrderFldVis}">
+														<Label text="{i18n>UOM}" design="Bold" class="poData "/>
+													</Column>
+													<Column width="12em" hAlign="Center" visible="{oInvoiceModel>/invoiceFldVis}">
+														<Label text="{i18n>TaxCode}" design="Bold"/>
+													</Column>
+													<Column width="6em" hAlign="Center" visible="{oInvoiceModel>/purchaseOrderFldVis}">
+														<Label text="{i18n>NetPrice}" design="Bold" class="poData "/>
+													</Column>
+													<Column width="5.125em" hAlign="Center">
+														<Label text="AAssgt" design="Bold"/>
+													</Column>
+												</columns>
+												<items>
+													<ColumnListItem>
+														<cells>
+															<ToggleButton width="32px" id="toggleBtn" class="toggleBtnCssClass tableSelectionChkBox smallPadding marginleft" tooltip="Delete"
+																type="Transparent" press="deleteBtnPressAtLineItem" icon="sap-icon://delete" enabled="{oInvoiceModel>/posted}"/>
+															<Button class="tableBtnAlignMent smallPadding tableSelectionChkBox marginleft erroricon" press="threeWayMatchingErrorMsg"
+																icon="sap-icon://message-popup" enabled="{oInvoiceModel>/posted}"
+																visible="{path:'oInvoiceModel>excpetionMessage', formatter:'com.inc.ApWorkbench.util.Formatter.msgPopVisible'}"/>
+															<CheckBox enabled="{oInvoiceModel>/posted}" class="tableChkBox" selected="{oInvoiceModel>isSelected}" select="partialPostingSelect"
+																visible="{oInvoiceModel>isTwowayMatched}"/>
+															<Input id="invMatDesc" class="fontSizeReduce" editable="{oInvoiceModel>/posted}" value="{oInvoiceModel>itemText}"
+																tooltip="{oInvoiceModel>itemText}" change="coloringInInvoice" maxLength="50"
+																visible="{path:'oInvoiceModel>isTwowayMatched', formatter:'com.inc.ApWorkbench.util.Formatter.colorCode'}"/>
+															<HBox>
+																<Input editable="{oInvoiceModel>/posted}" tooltip="{oInvoiceModel>quantityOld}" id="invQuantity" class="tableItemRightAlign margintopinFld"
+																	value="{oInvoiceModel>invQty}" change="calculateInvoiceAmt" maxLength="13"
+																	valueState="{path:'oInvoiceModel>excpetionMessage', formatter:'com.inc.ApWorkbench.util.Formatter.QtyColor'}"/>
+																<Button class="tableBtnAlignMent smallPadding tableBtnIcon" type="Emphasized" icon="sap-icon://notes" press="fnQuantLIPress"
+																	tooltip="Quantity in different units"></Button>
+															</HBox>
+															<Input value="{oInvoiceModel>qtyUom}" editable="false"></Input>
+															<Input editable="{oInvoiceModel>/posted}" value="{path:'oInvoiceModel>price'}" id="invUnitPrice" class="tableItemRightAlign margintopinFld"
+																tooltip="{oInvoiceModel>unitPriceOld}" change="calculateInvoiceAmt" maxLength="9"
+																valueState="{path:'oInvoiceModel>excpetionMessage', formatter:'com.inc.ApWorkbench.util.Formatter.priceColor'}"/>
+															<Input editable="{oInvoiceModel>/posted}" class="tableItemRightAlign margintopinFld" value="{path:'oInvoiceModel>disPer'}"
+																change="calculateInvoiceAmt"/>
+															<Input editable="{oInvoiceModel>/posted}" class="tableItemRightAlign margintopinFld" value="{path:'oInvoiceModel>disAmt'}"
+																change="calculateInvoiceAmt"/>
+															<Input editable="{oInvoiceModel>/posted}" class="tableItemRightAlign margintopinFld" value="{path:'oInvoiceModel>deposit'}"
+																change="calculateInvoiceAmt"/>
+															<Input editable="{oInvoiceModel>/posted}" id="netPriceAmt" class="tableItemRightAlign margintopinFld" tooltip="{oInvoiceModel>netPriceOld}"
+																value="{path:'oInvoiceModel>netWorth', type: 'sap.ui.model.type.Float'}" change="calculateLineItemAmount" maxLength="13"/>
+															<HBox>
+																<InputBase value="{oInvoiceModel>poAvlQtyOU}" class="incturePoColumnClass nomargin margintopinFld tableItemRightAlign" textAlign="End"
+																	editable="false"/>
+																<Button class="tableBtnAlignMent smallPadding tableBtnIcon" type="Emphasized" icon="sap-icon://notes" press="fnPoQuantLIPress"
+																	tooltip="PO Quantity in different units"></Button>
+															</HBox>
+															<Input editable="false" class="incturePoColumnClass nomargin margintopinFld" value="{path:'oInvoiceModel>unitPriceOPU'}"></Input>
+														<!--	<Input editable="false" class="incturePoColumnClass nomargin margintopinFld" value="{path:'oInvoiceModel>matchDocNum'}"></Input>-->
+															<Input class="incturePoColumnClass nomargin margintopinFld" editable="false" value="{path : 'oInvoiceModel>matchDocItem'}"></Input>
+															<InputBase editable="false" value="{path:'oInvoiceModel>poMaterialNum'}" class="incturePoColumnClass margintopinFld" textAlign="Center"/>
+															<InputBase editable="false" value="{path:'oInvoiceModel>poVendMat'}" class="incturePoColumnClass margintopinFld" textAlign="Center"/>
+															<InputBase editable="false" value="{oInvoiceModel>poUPC}" class="incturePoColumnClass margintopinFld" textAlign="Center"/>
+															<InputBase editable="false" class="incturePoColumnClass margintopinFld" value="{oInvoiceModel>poQty}" textAlign="Center"/>
+															<InputBase editable="false" class="incturePoColumnClass margintopinFld" value="{oInvoiceModel>poUom}" textAlign="Center"/>
+															<InputBase editable="false" class="incturePoColumnClass margintopinFld" value="{oInvoiceModel>poAvlQtyOU}" textAlign="Center"/>
+															<!--	<HBox>
+																<InputBase editable="false" class="poInpDsataCss margintopinFld" textAlign="End" value="{path:'oInvoiceModel>unitPriceOPU'}" width="6em"/>
+																<Button class="tableBtnAlignMent smallPadding tableBtnIcon" type="Emphasized" icon="sap-icon://notes" press="fnPoUnitPriceLIPress"
+																	tooltip="PO Unit Price in different units"></Button>
+															</HBox>-->
+															<!--	<InputBase editable="false" class="margintopinFld" value="{oInvoiceModel>amountDifference}" textAlign="Right"/>-->
+															<InputBase editable="false" class="incturePoColumnClass margintopinFld tableItemRightAlign" textAlign="Center"/>
+															<InputBase editable="false" value="{oInvoiceModel>poNetPrice}" textAlign="End" class="incturePoColumnClass margintopinFld"/>
+															<Button class="tableBtnAlignMent smallPadding tableBtnIcon" width="48px" type="Emphasized" press="fnRowActionAccAss" icon="sap-icon://edit"
+																id="accountAssignmentCodingLine" enabled="{oInvoiceModel>/posted}"/>
+														</cells>
+													</ColumnListItem>
+												</items>
+											</Table>
+											<l:Grid id="invoiceHeaderResponsiveGrid" defaultSpan="L3 M6 S12" class="inctureGridClass">
+												<l:content>
+													<!--<VBox class="vboxSTCls">-->
+													<HBox>
+														<Label text="{i18n>subTotal}" design="Bold" class="sapUiTinyMarginTop"></Label>
+														<Input width="9.5rem" enabled="{oPropertyModel>/bNonEditableField}" editable="{oInvoiceModel>/posted}"
+															value="{oInvoiceModel>/oInvoiceHeaderDetails/subTotal}" class="sapUiTinyMarginBegin"></Input>
+													</HBox>
+													<HBox>
+														<Label text="{i18n>Tax}" design="Bold" class="sapUiTinyMarginTop"></Label>
+														<Input width="4rem" value="{oInvoiceModel>/oInvoiceHeaderDetails/taxAmount}" change="fnBalanceCalculation" class="sapUiTinyMarginBegin"
+															editable="{oInvoiceModel>/posted}"></Input>
+														<Text text="/{taxModel>/netTaxValue}" class="sapUiTinyMarginTop sapUiTinyMarginBegin"></Text>
+														<Button class="tableBtnIcon" press="openTaxDetails" type="Emphasized" icon="sap-icon://notes" tooltip="Tax Details"></Button>
+													</HBox>
+													<HBox>
+														<Label text="{i18n>Discount}:" design="Bold" class="sapUiTinyMarginTop"></Label>
+														<Input width="8rem" class="sapUiTinyMarginBegin" value="{oInvoiceModel>/oInvoiceHeaderDetails/disAmt}" change="fnBalanceCalculation"
+															editable="{oInvoiceModel>/posted}"></Input>
+													</HBox>
+													<HBox>
+														<Label text="{i18n>Deposit}:" design="Bold" class="sapUiTinyMarginTop"></Label>
+														<Input width="8rem" class="sapUiTinyMarginBegin" value="{oInvoiceModel>/oInvoiceHeaderDetails/deposit}" change="fnBalanceCalculation"
+															editable="{oInvoiceModel>/posted}"></Input>
+													</HBox>
+													<HBox>
+														<Label text="{i18n>TotalAmount}:" design="Bold" class="sapUiTinyMarginTop"></Label>
+														<Input width="8rem" enabled="{oPropertyModel>/bNonEditableField}" value="{oInvoiceModel>/oInvoiceHeaderDetails/grossAmount}"
+															class="sapUiTinyMarginBegin" editable="{oInvoiceModel>/posted}"></Input>
+													</HBox>
+													<!--</VBox>-->
+												</l:content>
+											</l:Grid>
+										</l:content>
+									</l:Grid>
+								</IconTabFilter>
+								<IconTabFilter text="{i18n>PurchaseOrder}" key="po">
+									<VBox>
+										<OverflowToolbar>
+											<ToolbarSpacer/>
+											<Button class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="Add" icon="sap-icon://add" press="fnAddPoOpenFrag" type="Transparent"
+												tooltip="Add PO"/>
+										</OverflowToolbar>
+										<!--	<HBox>
+											<Label text="{i18n>PurchaseOrder}: " design="Bold" class="sapUiTinyMarginTop sapUiMediumMarginBegin"/>
+											<Input placeholder="{i18n>EnterPO}" showSuggestion="true" suggest="fnPoSuggestion" value="{oInvoiceModel>/poNumber}"
+												suggestionItems="{oPoSuggestionModel>/oPoData}" id="addPoId" suggestionItemSelected="fnSelected"
+												class="sapUiTinyMarginTop sapUiTinyMarginBegin">
+												<suggestionItems>
+													<core:Item text="{oPoSuggestionModel>Ebeln}"></core:Item>
+												</suggestionItems>
+												<layoutData>
+													<OverflowToolbarLayoutData priority="NeverOverflow"/>
+												</layoutData>
+											</Input>
+											<Button class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="Add" icon="sap-icon://add" press="fnPoSelected" width="6.37rem"
+												tooltip="Add PO"/>
+										</HBox>-->
+										<VBox class="incturePanelContainerClass" id="poTabId" items="{oPoSuggestionModel>/POHeaderDetails}">
+											<Panel class="incturepanelCSS" expandable="true" expanded="true">
+												<headerToolbar>
+													<Toolbar height="2rem">
+														<Label text="{i18n>PurchaseOrder} : " class="sapUiSmallMarginBegin"/>
+														<Label text="{oPoSuggestionModel>documentNumber}" design="Bold"/>
+														<ToolbarSpacer/>
+														<Button type="Emphasized" icon="sap-icon://delete" class="deleteBtnCSS" tooltip="Delete" press="fnDeletePO"/>
+													</Toolbar>
+												</headerToolbar>
+												<content>
+													<l:Grid vSpacing="1" hSpacing="0" defaultSpan="L3 M6 S12" class="noBottomMargin">
+														<l:content>
+															<HBox class="dbaCls">
+																<VBox>
+																	<VBox>
+																		<Label text="{i18n>VendorId}: " design="Bold"></Label>
+																		<Text text=" {oPoSuggestionModel>vendor}"/>
+																	</VBox>
+																	<VBox class="sapUiTinyMarginTop">
+																		<Label text="{i18n>Company}: " design="Bold"/>
+																		<Text text=" {oPoSuggestionModel>companyCode}"/>
+																	</VBox>
+																</VBox>
+															</HBox>
+															<HBox>
+																<VBox>
+																	<VBox>
+																		<Label text="{i18n>ExchangeRate}: " design="Bold"></Label>
+																		<Text text="{oPoSuggestionModel>exchangeRate}"/>
+																	</VBox>
+																</VBox>
+															</HBox>
+															<HBox>
+																<VBox>
+																	<VBox>
+																		<Label text="{i18n>Currency}:" design="Bold"></Label>
+																		<Text text="{oPoSuggestionModel>currency}"/>
+																	</VBox>
+																</VBox>
+															</HBox>
+															<HBox>
+																<VBox>
+																	<VBox>
+																		<Label text="{i18n>PaymentTerms}: " design="Bold"></Label>
+																		<Text text="{oPoSuggestionModel>paymentTerms}"/>
+																	</VBox>
+																</VBox>
+															</HBox>
+														</l:content>
+													</l:Grid>
+													<HBox>
+														<Button text="{i18n>Copy}" press="copyPOToInvoiceTabRow" class="sapUiSmallMarginEnd sapUiSizeCompact " type="Emphasized"
+															icon="sap-icon://duplicate" tooltip="Copy PO"/>
+													</HBox>
+													<HBox>
+													<Table items="{oPoSuggestionModel>purchaseDocItems}" class="tableClass" id="poTableId" sticky="ColumnHeaders">
+														<columns>
+															<Column hAlign="Begin" width="2.5rem" minScreenWidth="Tablet" demandPopin="true">
+																<CheckBox id="idtogglePOLine" class="tableSelectionChkBox sapUiTinyMarginBegin" select="togglePOLineSelect"/>
+															</Column>
+															<Column hAlign="Begin" width="5rem" minScreenWidth="Small" demandPopin="true">
+																<Label text="{i18n>ITEM}" design="Bold"/>
+															</Column>
+															<!--width="10rem"-->
+															<Column hAlign="Begin" width="10rem" minScreenWidth="Tablet" demandPopin="true">
+																<Label text="{i18n>ShortText}" design="Bold"/>
+															</Column>
+															<!--width="6rem"-->
+															<Column hAlign="Begin" width="6rem" minScreenWidth="Tablet" demandPopin="true">
+																<Label text="{i18n>Quantity}" design="Bold" tooltip="Quantity"/>
+															</Column>
+															<!--width="7rem"-->
+															<Column hAlign="Begin" width="7rem" minScreenWidth="Tablet" demandPopin="true">
+																<Label text="{i18n>ProfitCenter}" design="Bold" tooltip="Profit Center"/>
+															</Column>
+															<!--width="8em" -->
+															<Column hAlign="Begin" width="8rem" minScreenWidth="Tablet" demandPopin="true">
+																<Label text="{i18n>OrderUnit} : SKU" design="Bold"/>
+															</Column>
+															<!--width="6em" -->
+															<Column hAlign="Begin" width="6rem" minScreenWidth="Tablet" demandPopin="true">
+																<Label text="{i18n>OrderUnit}" tooltip="Order Unit" design="Bold"/>
+															</Column>
+															<!--width="6rem"-->
+															<Column hAlign="Begin" width="6rem" minScreenWidth="Tablet" demandPopin="true">
+																<Label text="{i18n>VendorMaterial}" tooltip="Vendor Material" design="Bold"/>
+															</Column>
+															<!--width="4rem"-->
+															<Column hAlign="Begin" width="4rem" minScreenWidth="Tablet" demandPopin="true">
+																<Label text="{i18n>TaxCode}" design="Bold"/>
+															</Column>
+															<!--width="4rem"-->
+															<Column hAlign="Begin" width="4rem" minScreenWidth="Tablet" demandPopin="true">
+																<Label text="{i18n>UPC}" design="Bold" tooltip="UPC"/>
+															</Column>
+															<!--width="6rem" -->
+															<Column hAlign="Begin" width="6rem" minScreenWidth="Tablet" demandPopin="true">
+																<Label text="{i18n>UnitPrice}" design="Bold" tooltip="Unit Price"/>
+															</Column>
+														</columns>
+														<items>
+															<ColumnListItem type="Navigation">
+																<cells>
+																	<HBox>
+																		<!--	<Button class="tableBtnAlignMent smallPadding opacity tableSelectionChkBox" tooltip="Deleted Line Item" type="Emphasized" enabled="false"
+										icon="sap-icon://delete" />-->
+																		<CheckBox class="tableSelectionChkBox" selected="{oPoSuggestionModel>checkBoxSelection}" select="toggleEachPOLineSelect"
+																			visible="{path:'oPoSuggestionModel>isMatched', formatter:'com.inc.ApWorkbench.util.Formatter.reverseBoolean'}"/>
+																	</HBox>
+																	<InputBase class="tableInputClassNonEditable" editable="false" value="{oPoSuggestionModel>documentItem}" textAlign="Begin"/>
+																	<InputBase class="tableInputClassNonEditable" editable="false" value="{oPoSuggestionModel>shortText}"
+																		tooltip="{oPoSuggestionModel>shortText}" textAlign="Begin"/>
+																	<InputBase class="tableInputClassNonEditable" editable="false" value="{oPoSuggestionModel>poQty}" textAlign="Begin"/>
+																	<InputBase class="tableInputClassNonEditable" editable="false" value="{oPoSuggestionModel>profitCenter}" textAlign="Begin"/>
+																	<InputBase class="tableInputClassNonEditable" editable="false" value="{oPoSuggestionModel>convNum1}:{oPoSuggestionModel>convDen1}"
+																		textAlign="Begin"/>
+																	<InputBase class="tableInputClassNonEditable" editable="false" value="{oPoSuggestionModel>orderUnit}" textAlign="Begin"/>
+																	<InputBase class="tableInputClassNonEditable" editable="false" value="{oPoSuggestionModel>vendMat}" textAlign="Begin"/>
+																	<InputBase class="tableInputClassNonEditable" editable="false" value="{oPoSuggestionModel>taxCode}" textAlign="Begin"/>
+																	<InputBase class="tableInputClassNonEditable" editable="false" value="{oPoSuggestionModel>upcCode}" textAlign="Begin"/>
+																	<InputBase class="tableInputClassNonEditable" editable="false" value="{oPoSuggestionModel>netPrice}" textAlign="Begin"/>
+																</cells>
+															</ColumnListItem>
+														</items>
+													</Table>
+													</HBox>
+												</content>
+											</Panel>
+										</VBox>
+									</VBox>
+								</IconTabFilter>
+								<IconTabFilter text="{i18n>POHistory}" key="grn">
+									<!-- GRN TAB :: START -->
+									<VBox id="grnTab" class="paddingClass" items="{oGRNModel>/grnUIDtoList}">
+										<Panel expandable="true" expanded="true" width="auto" class=" box_css panelBackGdColor sapUiTinyMarginBottom">
+											<headerToolbar>
+												<Toolbar height="2rem">
+													<Label text="{i18n>PurchaseOrderHistory}: "/>
+													<Label text="{oGRNModel>documentNumber}" design="Bold"/>
+													<ToolbarSpacer/>
+													<SegmentedButton selectedKey="Summary" selectionChange="groupGrnData">
+														<items>
+															<SegmentedButtonItem text="{i18n>Summary}" key="Summary"/>
+															<SegmentedButtonItem text="{i18n>Detail}" key="Detail"/>
+														</items>
+													</SegmentedButton>
+													<!--<ToggleButton class="sapUiSizeCompact" icon="sap-icon://group-2" text="Summary" press="groupGrnData"/>-->
+												</Toolbar>
+											</headerToolbar>
+											<content>
+												<Table visible="{oGRNModel>grnItemUIListVisible}" id="grnTableId" items="{ path: 'oGRNModel>grnItemUIList', templateShareable:true }">
+													<columns>
+														<Column width="6em" hAlign="Center" minScreenWidth="Small">
+															<Label text="PO ITEM" design="Bold"/>
+														</Column>
+														<!--<Column width="8em" hAlign="Center" minScreenWidth="Tablet" demandPopin="true">-->
+														<!--	<Label text="SERIAL NO." design="Bold"/>-->
+														<!--</Column>-->
+														<Column hAlign="Begin" width="10rem" minScreenWidth="Tablet" demandPopin="true">
+															<Label text="DELIV QTY" design="Bold"/>
+														</Column>
+														<Column hAlign="Begin" width="10rem" minScreenWidth="Tablet" demandPopin="true">
+															<Label text="PO PR QNT" design="Bold"/>
+														</Column>
+														<Column hAlign="Begin" width="10rem" minScreenWidth="Tablet" demandPopin="true">
+															<Label text="VAL GR LOC" design="Bold"/>
+														</Column>
+														<Column hAlign="Begin" width="10rem" minScreenWidth="Tablet" demandPopin="true">
+															<Label text="INV QTY" design="Bold"/>
+														</Column>
+														<Column hAlign="Begin" width="10rem" minScreenWidth="Tablet" demandPopin="true">
+															<Label text="INV QTY PO" design="Bold"/>
+														</Column>
+														<Column hAlign="Begin" width="10rem" minScreenWidth="Tablet" demandPopin="true">
+															<Label text="VAL IV LOC" design="Bold"/>
+														</Column>
+														<Column hAlign="Begin" width="10rem" minScreenWidth="Tablet" demandPopin="true">
+															<Label text="IVVAL LOC" design="Bold"/>
+														</Column>
+														<Column hAlign="Begin" width="5rem" minScreenWidth="Tablet" demandPopin="true">
+															<Label text="CURRENCY" design="Bold"/>
+														</Column>
+													</columns>
+													<items>
+														<ColumnListItem>
+															<cells>
+																<InputBase textAlign="Center" editable="false" class="tableInputClassNonEditable" value="{oGRNModel>documentItem}"/>
+																<!--<InputBase textAlign="Center" editable="false" class="tableInputClassNonEditable" value="{oGRNModel>serialNo}"/>-->
+																<InputBase textAlign="Begin" class="tableInputClassNonEditable" width="100%" editable="false" value="{oGRNModel>delivQty}"/>
+																<InputBase textAlign="Begin" class="tableInputClassNonEditable" width="100%" editable="false" value="{oGRNModel>poPrQnt}"/>
+																<InputBase textAlign="Begin" class="tableInputClassNonEditable" width="100%" editable="false" value="{oGRNModel>valGrLoc}"/>
+																<InputBase textAlign="Begin" class="tableInputClassNonEditable" width="100%" editable="false" value="{oGRNModel>ivQty}"/>
+																<InputBase textAlign="Begin" class="tableInputClassNonEditable" width="100%" editable="false" value="{oGRNModel>ivQtyPo}"/>
+																<InputBase textAlign="Begin" class="tableInputClassNonEditable" width="100%" editable="false" value="{path:'oGRNModel>valIvLoc'}"/>
+																<InputBase textAlign="Begin" class="tableInputClassNonEditable" width="100%" editable="false" value="{path:'oGRNModel>ivvalLoc'}"/>
+																<InputBase textAlign="Begin" class="tableInputClassNonEditable" width="100%" editable="false" value="{path:'oGRNModel>currency'}"/>
+															</cells>
+														</ColumnListItem>
+													</items>
+												</Table>
+												<Table visible="{oGRNModel>grnItemTotalUIListVisible}" class="invTabScroll displayTableProp" id="grnSummaryTableId"
+													items="{ path: 'oGRNModel>grnItemTotalUIList', templateShareable:true }">
+													<columns>
+														<!--minScreenWidth="Tablet"-->
+														<Column width="6em" hAlign="Center">
+															<Label text="PO ITEM" design="Bold"/>
+														</Column>
+														<!--<Column width="8em" hAlign="Center">-->
+														<!--	<Label text="SERIAL NO." design="Bold"/>-->
+														<!--</Column>-->
+														<Column width="6em" hAlign="Center">
+															<Label text="DOC YEAR" design="Bold"/>
+														</Column>
+														<Column width="9em" hAlign="Center">
+															<Label text="MAT DOC" design="Bold"/>
+														</Column>
+														<Column width="8em" hAlign="Center">
+															<Label text="MAT DOC ITEM" design="Bold"/>
+														</Column>
+														<!--minScreenWidth="Tablet" demandPopin="true"-->
+														<Column width="10em" hAlign="Center" mergeDuplicates="true">
+															<Label text="HIST TYPE" design="Bold"/>
+														</Column>
+														<Column width="10em" hAlign="Center">
+															<Label text="MOVE TYPE" design="Bold"/>
+														</Column>
+														<Column width="16em" hAlign="Center">
+															<Label text="POSTING DATE" design="Bold"/>
+														</Column>
+														<Column width="10em" hAlign="Center">
+															<Label text="QUANTITY" design="Bold"/>
+														</Column>
+														<Column width="8em" hAlign="Center">
+															<Label text="VAL LOCCUR" design="Bold"/>
+														</Column>
+														<Column width="8em" hAlign="Center">
+															<Label text="CURR" design="Bold"/>
+														</Column>
+														<Column width="11em" hAlign="Center">
+															<Label text="DB CR IND" design="Bold"/>
+														</Column>
+														<Column width="9em" hAlign="Center">
+															<Label text="MATERIAL" design="Bold"/>
+														</Column>
+														<Column width="13em" hAlign="Center">
+															<Label text="PLANT" design="Bold"/>
+														</Column>
+													</columns>
+													<items>
+														<ColumnListItem>
+															<cells>
+																<InputBase textAlign="Center" editable="false" class="tableInputClassNonEditable" value="{oGRNModel>documentItem}"/>
+																<!--<InputBase textAlign="Center" editable="false" class="tableInputClassNonEditable" value="{oGRNModel>serialNo}"/>-->
+																<InputBase textAlign="Center" editable="false" class="tableItemRightAlign tableInputClassNonEditable" value="{path:'oGRNModel>matDocYr'}"/>
+																<InputBase textAlign="Center" editable="false" class="tableInputClassNonEditable" value="{path : 'oGRNModel>matDoc'}"/>
+																<InputBase textAlign="Center" editable="false" class="tableInputClassNonEditable" value="{oGRNModel>matDocItm}"/>
+																<InputBase textAlign="Center" editable="false" class="tableInputClassNonEditable" value="{oGRNModel>histType}"
+																	tooltip="{oGRNModel>histType}"/>
+																<InputBase textAlign="Center" editable="false" class="tableInputClassNonEditable" value="{oGRNModel>moveType}"/>
+																<InputBase textAlign="Center" editable="false" class="tableInputClassNonEditable" value="{oGRNModel>postingDate}"/>
+																<InputBase textAlign="Center" editable="false" class="tableInputClassNonEditable" value="{oGRNModel>qty}"/>
+																<InputBase textAlign="Center" editable="false" class="tableInputClassNonEditable" value="{oGRNModel>ivvalLoc}"/>
+																<InputBase textAlign="Center" editable="false" class="tableInputClassNonEditable" value="{oGRNModel>locCur}"/>
+																<InputBase textAlign="Center" editable="false" class="tableInputClassNonEditable" value="{oGRNModel>proDisposition}"/>
+																<InputBase textAlign="Center" editable="false" class="tableInputClassNonEditable" value="{oGRNModel>itemsDisp}"/>
+																<InputBase textAlign="Center" editable="false" class="tableInputClassNonEditable"/>
+																<InputBase textAlign="Center" editable="false" class="tableInputClassNonEditable"/>
+															</cells>
+														</ColumnListItem>
+													</items>
+												</Table>
+											</content>
+										</Panel>
+									</VBox>
+								</IconTabFilter>
+							</items>
+						</IconTabBar>
+					</VBox>
+				</IconTabFilter>
+				<IconTabFilter text="Cost Allocation" key="costallocation">
+					<!--	<Panel class="inctureAmountGridClass incutrePanelPaddingClass" expandable="true" expanded="true">-->
+					<!--	<headerToolbar>-->
+					<Toolbar height="2rem" class="borderRadius">
+						<ToolbarSpacer/>
+						<Label text="{i18n>Amount}:" design="Bold"/>
+						<Input value="{oInvoiceModel>/totalGlAmount}" width="9rem"/>
+						<Button id="unplannedCostAddRowId" text="Add Row" type="Emphasized" icon="sap-icon://add"
+							class="sapUiSizeCompact sapUiTinyMargin dynamicCls" press="fnAddCodingInDeliverRow" tooltip="Add Coding Row"
+							enabled="{oInvoiceModel>/posted}"/>
+					</Toolbar>
+					<!--	</headerToolbar>-->
+					<content>
+						<VBox id="deliveryCostVBoxId">
+							<Table class="invTabScroll glAccountCls" items="{ path: 'oInvoiceModel>/nonPoDtoList', templateShareable : true }">
+								<columns>
+									<Column width="14em" hAlign="Center" minScreenWidth="Tablet">
+										<Label text="{i18n>Description}" design="Bold"/>
+									</Column>
+									<Column width="10em" hAlign="Center">
+										<Label text="G/L Account" required="true" design="Bold"/>
+									</Column>
+									<Column width="10em" hAlign="Center">
+										<Label text="Debt/Cred" required="true" design="Bold"/>
+									</Column>
+									<Column width="10em" hAlign="Center">
+										<Label text="{i18n>CostCenter}" design="Bold"/>
+									</Column>
+									<Column width="10em" hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+										<Label text="{i18n>InternalOrder}" design="Bold"/>
+									</Column>
+									<Column width="10em" hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+										<Label text="{i18n>ProfitCenter}" design="Bold"/>
+									</Column>
+									<Column width="9em" hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+										<Label text="{i18n>Asset}" design="Bold"/>
+									</Column>
+									<Column width="10em" hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+										<Label text="{i18n>Amount}" required="true" design="Bold"/>
+									</Column>
+									<Column width="10em" hAlign="Center" minScreenWidth="Desktop" demandPopin="true">
+										<Label text="{i18n>Text}" design="Bold"/>
+									</Column>
+									<Column></Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<Input value="{oInvoiceModel>materialDescription}" tooltip="{oInvoiceModel>materialDescription}" editable="false"/>
+											<!--<ComboBox value="{oInvoiceModel>materialDescription}" selectionChange="fnGlDescription" showSecondaryValues="true"-->
+											<!--	items="{ path:'glAccountModel>/d/results', templateShareable : true}" change="fnState" id="dropDownCss" filterSecondaryValues="true"-->
+											<!--	class="dropDownCss paymentFontCss">-->
+											<!--	<core:ListItem additionalText="{path:'glAccountModel>Saknr', formatter:'incture.accpay.util.formatter.removeZero'}"-->
+											<!--		text="{glAccountModel>Txt50}"/>-->
+											<!--</ComboBox>-->
+											<Input value="{oInvoiceModel>glCode}" filterSuggests="false"
+												suggestionItems="{path: 'glAccountModel>/d/results', templateShareable : true }" tooltip="{oInvoiceModel>glCode}"
+												suggestionItemSelected="glDescription" showSuggestion="true" suggest="glAccountSuggest" editable="{oInvoiceModel>/posted}">
+												<suggestionItems>
+													<core:ListItem text="{path:'glAccountModel>GLAccounts', formatter:'com.inc.ApWorkbench.util.Formatter.removeZero'}"
+														additionalText="{glAccountModel>GLAccDesc}"/>
+												</suggestionItems>
+											</Input>
+											<Select selectedKey="{oInvoiceModel>debitCreditInd}" change="hdrChargesAmtCalculation" class="dropDownCss tableDropDownCss"
+												tooltip="{oInvoiceModel>debitCreditInd}">
+												<core:Item text="Debit" key="S"/>
+												<core:Item text="Credit" key="H"/>
+											</Select>
+											<Input value="{oInvoiceModel>costCenter}" tooltip="{oInvoiceModel>costCenter}"
+												suggestionItems="{ path:'costCenterModel>/d/results', templateShareable : true}" filterSuggests="false" showSuggestion="true"
+												suggest="costCenterSuggest" editable="{oInvoiceModel>/posted}">
+												<suggestionItems>
+													<core:ListItem text="{costCenterModel>CostCenters}" additionalText="{costCenterModel>CostCenterDesc}"/>
+												</suggestionItems>
+											</Input>
+											<Input value="{oInvoiceModel>internalOrder}" tooltip="{oInvoiceModel>internalOrder}"
+												suggestionItems="{path:'internalOrderModel>/d/results', templateShareable : true}" filterSuggests="false" showSuggestion="true"
+												suggest="internalOrderSuggest" editable="{oInvoiceModel>/posted}">
+												<suggestionItems>
+													<core:ListItem text="{path:'internalOrderModel>IntOrdNumber'}" additionalText="{internalOrderModel>IntOrdDesc}"/>
+												</suggestionItems>
+											</Input>
+											<Input value="{oInvoiceModel>profitCenter}" class="margintopinFld" tooltip="{oInvoiceModel>profitCenter}" editable="{oInvoiceModel>/posted}"/>
+											<Input width="100%" value="{oInvoiceModel>asset}" suggestionItems="{ path:'assetModel>/d/results', templateShareable : true}"
+												editable="{oInvoiceModel>/posted}" filterSuggests="false" class="margintopinFld" showSuggestion="true" suggest="fnAssetSuggest"
+												tooltip="{oInvoiceModel>asset}">
+												<suggestionItems>
+													<core:ListItem text="{path:'assetModel>Anln1'}"/>
+												</suggestionItems>
+											</Input>
+											<Input value="{oInvoiceModel>amount}" class="margintopinFld tableItemRightAlign" change="hdrChargesAmtCalculation"
+												editable="{oInvoiceModel>/posted}" tooltip="{oInvoiceModel>amount}"/>
+											<Input width="100%" value="{oInvoiceModel>text}" class="margintopinFld" tooltip="{oInvoiceModel>text}" editable="{oInvoiceModel>/posted}"/>
+											<Button icon="sap-icon://sys-cancel" tooltip="Delete" press="deletePlannedChargesData"
+												class="tableBtnAlignMent tableSelectionChkBox glCancelBtn" enabled="{oInvoiceModel>/posted}"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</VBox>
+					</content>
+					<!--	</Panel>-->
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+		<!--		<Toolbar class="invHeaderTBRCSS">
+				<content>
+					<ToolbarSpacer></ToolbarSpacer>
+					<Button type="Emphasized" press="onpressVendorBalance" text="Vendor Balances" tooltip="Vendor Balances"></Button>
+					<Button icon="sap-icon://activity-2" tooltip="Activity Log" class="sapUiSmallMarginBegin" press="onOpenActivityLog"/>
+					<Button type="Emphasized" icon="sap-icon://message-popup" press="onOpenMessage" tooltip="Messages" class="dynamicCls"
+						enabled="{oInvoiceModel>/posted}">
+						<customData>
+							<BadgeCustomData key="badge" value="{oInvoiceModel>/messageCount}" visible="true"/>
+						</customData>
+					</Button>
+					<Button type="Emphasized" press="onDemandPDF" id="idOpenPDFBtn" text="{i18n>pdf}" enabled="{oPropertyModel>/bPdfBtn}"
+						tooltip="{i18n>OpenPDF}"></Button>
+				</content>
+				<layoutData>
+					<l:GridData span="L12 M12 S12"/>
+				</layoutData>
+			</Toolbar>-->
+		<!--</HBox>-->
+		<!--	</Panel>-->
+		<!--Invoice Header Details :: END-->
+	</VBox>
+</core:FragmentDefinition>

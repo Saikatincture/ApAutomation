@@ -1,0 +1,351 @@
+<mvc:View controllerName="com.inc.ConfigCockpit.controller.Cockpit" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:core="sap.ui.core">
+	<App id="app">
+		<Page id="page" title="{i18n>title}" class="TaskPage">
+			<content>
+				<VBox class="mainPage sapUiSmallMargin">
+					<!--	<f:SimpleForm  editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12"-->
+					<!--		labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"-->
+					<!--		singleContainerFullSize="false" class="simpleForm1">-->
+					<!--		<f:content>-->
+					<!--			<core:Title text="" />-->
+					<HBox justifyContent="SpaceBetween" alignItems="Center">
+						
+					<VBox width="100%">
+						<HBox>
+							<Label text="{i18n>CompanyCode}" design="Bold" class="sapUiSmallMargin"/>
+							<ComboBox items="{ path: 'mCompanyModel>/results' }" class="sapUiSizeCompact" change="onCompanySelect" selectedKey="{MasterModel>/configurationDto/companyCode}" editable="{baseModel>/Editable}">
+									<core:ListItem key="{mCompanyModel>companyCode}" text="{mCompanyModel>companyName} - {mCompanyModel>companyCode}"/>
+							</ComboBox>
+						</HBox>
+					</VBox>
+					<VBox width="100%">
+						<HBox>
+							<Label text="{i18n>TaxCode}" design="Bold" class="sapUiSmallMargin"/>
+							<ComboBox items="{ path: 'mTaxModel>/results' }" class="sapUiSizeCompact" selectedKey="{MasterModel>/configurationDto/defaultTaxCode}" editable="{baseModel>/Editable}">
+								<core:ListItem key="{mTaxModel>taxCode}" text="{mTaxModel>taxCode} - {mTaxModel>description}"/>
+							</ComboBox>
+								
+						</HBox>
+					</VBox>
+					</HBox>
+					<HBox class="sapUiSmallMarginBegin sapUiSizeCompact">
+						<Label text="{i18n>OcrSource}"  design="Bold" class="sapUiTinyMarginTop"/>
+						<!--<HBox width="100%" class="sapUiSizeCompact">-->
+						<RadioButtonGroup columns="3" id="ocrRadioGroup" selectedIndex="-1" select="radioSelectionHandler1" editable="{baseModel>/Editable}">
+							<!--<RadioButton text="SAP OCR" groupName="ocrSourceGrp" selected="true" class="sapUiSmallMarginBegin sapUiMediumMarginEnd sapUiSmallMarginBottom"/>-->
+							<!--<RadioButton text="Abby Flexi Capture" groupName="ocrSourceGrp" class="sapUiMediumMarginEnd sapUiSmallMarginBottom"/>-->
+							<!--<RadioButton text="Abby Vantage" groupName="ocrSourceGrp" class="sapUiSmallMarginBottom"/>-->
+							<RadioButton text="SAP OCR" class="sapUiSmallMarginBegin sapUiMediumMarginEnd"/>
+							<RadioButton text="Abby Flexi Capture" class="sapUiMediumMarginEnd"/>
+							<RadioButton text="Abby Vantage"/>
+						</RadioButtonGroup>
+						<!--</HBox>-->
+					</HBox>
+					
+					<VBox width="100%" class="emailConfigSection">
+							<HBox class="emailConfigTitle" justifyContent="SpaceBetween" alignItems="Center">
+								<VBox>
+									<Title text="Email Reader Configuration" level="H2"></Title>
+								</VBox>
+								<VBox>
+									<Switch state="{baseModel>/emailReaderSwitch}" class="sapUiTinyMarginBottom sapUiTinyMarginEnd" enabled="{baseModel>/Editable}">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Switch>
+								</VBox>
+							</HBox>
+							<!--<layout:Grid class="emailConfigGrid" visible="{baseModel>/emailReaderSwitch}">-->
+							<!--	<layout:content>-->
+							<HBox visible="{baseModel>/emailReaderSwitch}" class="emailConfigBox">
+									<HBox class="durationTitle">
+										<Label text="Start Date" design="Bold" labelFor="emailDuration" class="sapUiSmallMarginEnd"/>
+										<DatePicker
+											class="borderlessBox sapUiSizeCompact"
+											placeholder="Start Date"
+											valueFormat="dd/MM/yyyy"
+											value="{MasterModel>/emailSchedular/startDate}"
+											editable="{baseModel>/Editable}"
+											valueState = "None"
+											change="validateStartDate"
+											/>
+										<Label text="End Date" design="Bold" labelFor="emailDuration" class="sapUiLargeMarginBegin sapUiSmallMarginEnd"/>
+										<DatePicker
+											class="borderlessBox sapUiSizeCompact"
+											placeholder="End Date"
+											valueFormat="dd/MM/yyyy"
+											value="{MasterModel>/emailSchedular/endDate}"
+											editable="{baseModel>/Editable}"
+											valueState="None"
+											change="validateEndDate"
+											/>
+											
+										<Label text="Frequency" design="Bold" labelFor="emailFrequency" class="sapUiLargeMarginBegin sapUiSmallMarginEnd"/>
+										<!--<Input id="emailFrequency" class="borderlessBox sapUiSizeCompact"/>-->
+										<ComboBox class="borderlessBox sapUiSizeCompact" change="ValidateFrequency" selectedKey="{MasterModel>/emailSchedular/frequencyNumber}" editable="{baseModel>/Editable}">
+											<core:Item key="1" text="1" />
+											<core:Item key="3" text="3" />
+											<core:Item key="5" text="5" />
+											<core:Item key="10" text="10" />
+											<core:Item key="30" text="30" />
+										</ComboBox>
+										<ComboBox class="sapUiSmallMarginBegin borderlessBox sapUiSizeCompact" selectedKey="{MasterModel>/emailSchedular/frequencyUnit}"  editable="{baseModel>/Editable}">
+											<core:Item key="min" text="Minutes" />
+											<core:Item key="hrs" text="Hours" />
+										</ComboBox>
+									</HBox>
+							</HBox>
+						</VBox>
+						<VBox width="100%" class="emailConfigSection">
+							<HBox class="emailConfigTitle" justifyContent="SpaceBetween" alignItems="Center">
+								<VBox>
+									<Title text="GRN Scheduler Configuration" level="H2" class="sapUiMediumMarginEnd"></Title>
+								</VBox>
+								<VBox>
+								<Switch state="{baseModel>/grnSchedulerSwitch}" class="sapUiTinyMarginBottom sapUiTinyMarginEnd" enabled="{baseModel>/Editable}">
+									<layoutData>
+										<FlexItemData growFactor="1"/>
+									</layoutData>
+								</Switch>
+								</VBox>
+							</HBox>
+							<HBox visible="{baseModel>/grnSchedulerSwitch}" class="emailConfigBox">
+									<HBox class="durationTitle">
+										<Label text="Start Date" design="Bold" labelFor="grnDuration" class="sapUiSmallMarginEnd"/>
+										<DatePicker
+											class="borderlessBox sapUiSizeCompact"
+											value="{MasterModel>/grnSchedular/startDate}"
+											valueFormat="dd/MM/yyyy"
+											placeholder="Start Date"
+											editable="{baseModel>/Editable}"
+											/>
+											
+										<Label text="End Date" design="Bold" labelFor="emailDuration" class="sapUiLargeMarginBegin sapUiSmallMarginEnd"/>
+										<DatePicker
+											class="borderlessBox sapUiSizeCompact"
+											value="{MasterModel>/grnSchedular/endDate}"
+											valueFormat="dd/MM/yyyy"
+											placeholder="End Date"
+											editable="{baseModel>/Editable}"
+											/>
+											
+										<Label text="Frequency" design="Bold" labelFor="emailFrequency" class="sapUiLargeMarginBegin sapUiSmallMarginEnd"/>
+										<!--<Input id="grnScheduler" class="borderlessBox sapUiSizeCompact"/>-->
+										<ComboBox class="borderlessBox sapUiSizeCompact" change="ValidateFrequency" selectedKey="{MasterModel>/grnSchedular/frequencyNumber}" editable="{baseModel>/Editable}">
+											<core:Item key="1" text="1" />
+											<core:Item key="3" text="3" />
+											<core:Item key="5" text="5" />
+											<core:Item key="10" text="10" />
+											<core:Item key="30" text="30" />
+										</ComboBox>
+										<ComboBox class="sapUiSmallMarginBegin borderlessBox sapUiSizeCompact" selectedKey="{MasterModel>/grnSchedular/frequencyUnit}" editable="{baseModel>/Editable}">
+											<core:Item key="min" text="Minutes" />
+											<core:Item key="hrs" text="Hours" />
+										</ComboBox>
+									
+								</HBox>
+							</HBox>
+							<!--	</layout:content>-->
+							<!--</layout:Grid>-->
+						</VBox>
+					<HBox justifyContent="SpaceBetween" alignItems="Center">
+						<VBox width="100%">
+							
+							<Table mode="MultiSelect" id="apMailboxTable" class="sapUiSizeCompact" items="{MasterModel>/APMailIDList}">
+								<headerToolbar>
+									<OverflowToolbar>
+										<!--<Title text=""/>-->
+										<ToolbarSpacer/>
+										<Button icon="sap-icon://add" type="Emphasized" press="onAddAPMailBox" enabled="{baseModel>/Editable}"/>
+										<Button icon="sap-icon://delete" type="Emphasized" enabled="{baseModel>/Editable}" press="onDeleteAPMailBox"/>
+									</OverflowToolbar>
+								</headerToolbar>
+								<columns>
+									<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin">
+										<Text text="Accounts Payable Mailbox ID"/>
+									</Column>
+								</columns>
+								<items>
+								<ColumnListItem>
+									<cells>
+										<Input value="{MasterModel>}" type="Email" placeholder="Enter Email..." change="validateEmail" class="sapUiSizeCompact" width="100%" valueState="None" editable="{baseModel>/Editable}"/>
+									</cells>
+								</ColumnListItem>
+								</items>
+							</Table>
+								<!--<HBox alignItems="Center">-->
+								<!--	<Label text="{i18n>APMailboxID}" design="Bold"/>-->
+								<!--	<Input class="sapUiSizeCompact"/>-->
+								<!--</HBox>-->
+							</VBox>
+							<VBox width="100%">
+								
+								<Table mode="MultiSelect" id="apScanTable" class="sapUiSizeCompact" items="{MasterModel>/APScanTeamList}">
+								<headerToolbar>
+									<OverflowToolbar>
+										<!--<Title text=""/>-->
+										<ToolbarSpacer/>
+										<Button icon="sap-icon://add" type="Emphasized" enabled="{baseModel>/Editable}" press="onAddAPScanTeam"/>
+										<Button icon="sap-icon://delete" type="Emphasized" enabled="{baseModel>/Editable}" press="onDeleteAPScanTeam"/>
+									</OverflowToolbar>
+								</headerToolbar>
+								<columns>
+									<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Begin">
+										<Text text="Accounts Payable Scanning Team"/>
+									</Column>
+								</columns>
+								<items>
+								<ColumnListItem>
+									<cells>
+										<Input value="{MasterModel>}" type="Email" placeholder="Enter Email..." change="validateEmail" class="sapUiSizeCompact" width="100%" valueState="None" editable="{baseModel>/Editable}"/>
+									</cells>
+								</ColumnListItem>
+								</items>
+							</Table>
+								<!--<HBox alignItems="Center">-->
+								<!--	<Label text="{i18n>APScanningTeam}" design="Bold"/>-->
+								<!--	<Input class="sapUiSizeCompact"/>-->
+								<!--</HBox>-->
+							</VBox>
+						</HBox>
+						
+						<!--<core:Title text="" />-->
+						<!--	</f:content>-->
+						<!--</f:SimpleForm>-->
+						
+						<Table id="idPostingTable" mode="MultiSelect" class="sapUiTinyMarginBottom sapUiSizeCompact" items="{MasterModel>/vendorDetailsDto}">
+							<headerToolbar>
+								<OverflowToolbar>
+									<Title text="Auto Posting Rules"/>
+									<ToolbarSpacer/>
+									<Button icon="sap-icon://add" type="Emphasized" press="onAddPosting" enabled="{baseModel>/Editable}"/>
+									<Button icon="sap-icon://delete" type="Emphasized" press="onDeletePosting" enabled="{baseModel>/Editable}"/>
+								</OverflowToolbar>
+							</headerToolbar>
+							<columns>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+									<Text text="Vendor ID"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+									<Text text="Company Code"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+									<Text text="Auto Posting"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+									<Text text="Partial Posting"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+									<Text text="Auto Rejection"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Input value="{MasterModel>vendorId}" suggest="searchVendorId" startSuggestion="3" maxSuggestionWidth="20rem" showSuggestion="true" filterSuggests="false" maxLength="20" showTableSuggestionValueHelp="false"
+									suggestionRows="{suggestionModel>/d/results}" suggestionItemSelected="onVendorSelected" change="chkSelectedVendor"  editable="{baseModel>/Editable}">
+											<suggestionColumns>
+												<Column hAlign="Begin">
+													<Label text="Vendor Id"/>
+												</Column>
+												<Column hAlign="Center">
+													<Label text="Vendor Name1"/>
+												</Column>
+											</suggestionColumns>
+											<suggestionRows>
+												<ColumnListItem>
+													<cells>
+														<Text text="{path:'suggestionModel>Vendor', formatter:'com.inc.ConfigCockpit.util.Formatter.removeZero'}" wrapping="true"/>
+														<Text text="{suggestionModel>Name1}" tooltip="{suggestionModel>Name1}"/>
+													</cells>
+												</ColumnListItem>
+											</suggestionRows>
+										</Input>
+										<ComboBox items="{ path: 'mCompanyModel>/results' }" class="sapUiSizeCompact" selectedKey="{MasterModel>companyCode}" editable="{baseModel>/Editable}">
+											<core:ListItem key="{mCompanyModel>companyCode}" text="{mCompanyModel>companyName} - {mCompanyModel>companyCode}"/>
+										</ComboBox>
+										<Switch state="{MasterModel>autoPosting}" customTextOn=" " customTextOff=" " enabled="{baseModel>/Editable}">
+											<layoutData>
+												<FlexItemData growFactor="1"/>
+											</layoutData>
+										</Switch>
+										<Switch state="{MasterModel>partialPosting}" customTextOn=" " customTextOff=" " enabled="{baseModel>/Editable}">
+											<layoutData>
+												<FlexItemData growFactor="1"/>
+											</layoutData>
+										</Switch>
+										<Switch state="{MasterModel>autoRejection}" customTextOn=" " customTextOff=" " enabled="{baseModel>/Editable}">
+											<layoutData>
+												<FlexItemData growFactor="1"/>
+											</layoutData>
+										</Switch>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+						<!--<FlexBox-->
+						<!--    alignItems="Center"-->
+						<!--    justifyContent="End">-->
+						<!--    <items>-->
+						<!--        <Button enabled="true" icon="sap-icon://navigation-right-arrow" class="sapUiSmallMarginEnd"/>-->
+						<!--        <Button enabled="true" icon="sap-icon://open-command-field" class="sapUiSmallMarginEnd"/>-->
+						<!--        <Button enabled="true" icon="sap-icon://process" />-->
+						<!--    </items>-->
+						<!--</FlexBox>-->
+						
+						<Panel expandable="true" headerText="Email Templates" expanded="false" class="templatePanel">
+							<content>
+								<HBox>
+									<Label text="Rejection Mail Template" design="Bold"/>
+									<VBox class="MailTemplate">
+										<HBox>
+											<Label text="Subject" class="sapUiSmallMarginEnd"/>
+											<VBox width="100%">
+												<TextArea value="{MasterModel>/rejectionMail/subject}" rows="1" width="100%" class="borderlessBox sapUiSizeCompact" editable="{baseModel>/Editable}"/>
+											</VBox>
+										</HBox >
+										<HBox>
+											<Label text="Body" class="sapUiMediumMarginEnd"/>
+											<VBox width="100%">
+												<TextArea value="{MasterModel>/rejectionMail/body}" width="100%" rows="5" class="borderlessBox" editable="{baseModel>/Editable}"/>
+											</VBox>
+										</HBox>
+									</VBox>
+								</HBox>
+								<HBox>
+									<Label text="Exception Mail Template" design="Bold"/>
+									<VBox class="MailTemplate">
+										<HBox>
+											<Label text="Subject" class="sapUiSmallMarginEnd"/>
+											<VBox width="100%">
+												<TextArea value="{MasterModel>/exceptionMail/subject}" width="100%" rows="1" class="borderlessBox" editable="{baseModel>/Editable}"/>
+											</VBox>
+										</HBox>
+										<HBox>
+											<Label text="Body" class="sapUiMediumMarginEnd"/>
+											<VBox width="100%">
+												<TextArea value="{MasterModel>/exceptionMail/body}" width="100%" rows="5" class="borderlessBox" editable="{baseModel>/Editable}"/>
+											</VBox>
+										</HBox>
+									</VBox>
+								</HBox>
+							</content>
+						</Panel>
+						<!--<HBox class="sapUiTinyMargin" justifyContent="SpaceBetween" alignItems="Center">-->
+						<HBox>
+							<Label text="Maximum number of Users per Supplier Account" design="Bold" class="sapUiSmallMargin"/>
+							<StepInput value="{MasterModel>/configurationDto/maximumNoofUsers}" step="1" width="50%" class="sapUiSizeCompact sapUiTinyMarginTop" editable="{baseModel>/Editable}"></StepInput>
+						</HBox>
+					</VBox>
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button text="Submit" type="Emphasized" press="onSubmit" visible="{baseModel>/submitBtn}"/>
+						<Button text="Edit" type="Emphasized" press="onEdit" visible="{baseModel>/editBtn}"/>
+						<Button text="Cancel" press="onCancel" visible="{baseModel>/cancelBtn}"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</App>
+	</mvc:View>

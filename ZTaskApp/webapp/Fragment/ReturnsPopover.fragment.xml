@@ -1,0 +1,36 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Popover placement="Auto" showHeader="false" resizable="false" class="PopClass">
+		<VBox>
+			<HBox>
+				<Label text="GR Number:" design="Bold"/>
+				<Label/><Text text=" " width="2px"/>
+				<Text text="{tblModel>/grNumber}"></Text>
+			</HBox>
+			<HBox>
+				<Label text="GR Item:" design="Bold"/>
+				<Label/><Text text=" " width="2px"/>
+				<Text text="{tblModel>/grItem}"></Text>
+			</HBox>
+			<HBox>
+				<Label text="PO Number:" design="Bold"/>
+				<Label/><Text text=" " width="2px"/>
+				<Text text="{tblModel>/poNumber}"></Text>
+			</HBox>
+			<HBox>
+				<Label text="PO Item:" design="Bold"/>
+				<Label/><Text text=" " width="2px"/>
+				<Text text="{tblModel>/poItem}"></Text>
+			</HBox>
+			<HBox>
+				<Label text="Plant:" design="Bold"/>
+				<Label/><Text text=" " width="2px"/>
+				<Text text="{tblModel>/plant}"></Text>
+			</HBox>
+			<HBox>
+				<Label text="SLOC:" design="Bold"/>
+				<Label/><Text text=" " width="2px"/>
+				<Text text="{tblModel>/storgeLocation}"></Text>
+			</HBox>
+		</VBox>
+	</Popover>
+</core:FragmentDefinition>

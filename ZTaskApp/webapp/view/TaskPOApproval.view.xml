@@ -1,0 +1,127 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:u="sap.uxap"
+	xmlns:form="sap.ui.layout.form" controllerName="com.inc.ZTaskApp.controller.TaskPOApproval" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App id="app">
+		<pages>
+			<Page navButtonPress="onNavBack" showNavButton="true" showFooter="true" class="sapUiSizeCompact RDSPage RDSTitle">
+				<content>
+					<form:SimpleForm title="{i18n>ReviewPageStep1}" minWidth="1024" editable="false" layout="ResponsiveGridLayout">
+						<form:content>
+							<Label text="{i18n>confirmationid}" design="Bold"/>
+							<Text id="confirmText" text="{oPOConfirmModel>/confirmationSerialNo}"/>
+							<Label text="{i18n>confirmationtext}" design="Bold"/>
+							<Text text="{oPOConfirmModel>/purchaseHeader/confirmationText}"/>
+							<Label text="{i18n>comments}" design="Bold" visible="{oPOConfirmModel>/commentsVisible}"/>
+							<Text text="{oPOConfirmModel>/purchaseHeader/comment}" visible="{oPOConfirmModel>/commentsVisible}"/>
+						</form:content>
+					</form:SimpleForm>
+					<form:SimpleForm title="{i18n>ReviewPageStep2}" minWidth="1024" editable="false" layout="ResponsiveGridLayout">
+						<!--<form:content>-->
+						<!--	<Label text="{i18n>PO No}  " design="Bold" class="sapUiSizeCompact RDSLabel"/>-->
+						<!--	<Text text="{oPOConfirmModel>/purchaseHeader/documentNumber}" class=" sapUiSizeCompact"/>-->
+						<!--	<Label text="{i18n>CreatedBy}  " design="Bold" class="RDSLabel"/>-->
+						<!--	<Text text="{oPOConfirmModel>/purchaseHeader/createdBy}"/>-->
+						<!--	<Label text="{i18n>PODate} " design="Bold" class="sapUiSizeCompact RDSLabel"/>-->
+						<!--	<Text text="{path:'oPOConfirmModel>/purchaseHeader/poCreatedDate', formatter:'com.inc.ZTaskApp.utility.formatter.itemDate'}"-->
+						<!--		class=" sapUiSizeCompact"/>-->
+						<!--	<Label text="{i18n>PONetPrice}  " design="Bold" class="sapUiSizeCompact RDSLabel"/>-->
+						<!--	<Text text="{oPOConfirmModel>/purchaseHeader/poNetPrice}"/>-->
+						<!--	<Label text="{i18n>CompanyCode} " design="Bold" class="RDSLabel"/>-->
+						<!--	<Text-->
+						<!--		text="{parts:[{path: 'oPOConfirmModel>/purchaseHeader/companyCode'}, {path:'oPOConfirmModel>/purchaseHeader/CompanyName'}], formatter:'incture.com.APCreateInvoice.util.Formatter.getCompanyCode'}"/>-->
+						<!--</form:content>-->
+					</form:SimpleForm>
+					<l:Grid containerQuery="true" defaultSpan="L3 M6 S12" class="sapUiSizeCompact sapUiTinyMargin">
+						<HBox>
+							<Label text="{i18n>PO No} : " design="Bold" class="sapUiSizeCompact RDSLabel"/>
+							<Text text="{oPOConfirmModel>/purchaseHeader/documentNumber}" class=" sapUiSizeCompact"/>
+						</HBox>
+						<HBox>
+							<Label text="{i18n>PODate} :" design="Bold" class="sapUiSizeCompact RDSLabel"/>
+							<Text text="{path:'oPOConfirmModel>/purchaseHeader/poCreatedDate', formatter:'com.inc.ZTaskApp.utility.formatter.itemDate'}"
+								class=" sapUiSizeCompact"/>
+						</HBox>
+						<HBox>
+							<Label text="{i18n>PONetPrice} : " design="Bold" class="sapUiSizeCompact RDSLabel"/>
+							<Text text="{oPOConfirmModel>/purchaseHeader/poNetPrice}"/>
+						</HBox>
+						<HBox>
+							<Label text="{i18n>CompanyCode} : " design="Bold" class="RDSLabel"/>
+							<Text
+								text="{parts:[{path: 'oPOConfirmModel>/purchaseHeader/companyCode'}, {path:'oPOConfirmModel>/purchaseHeader/CompanyName'}], formatter:'incture.com.APCreateInvoice.util.Formatter.getCompanyCode'}"/>
+						</HBox>
+						<HBox>
+							<Label text="{i18n>CreatedBy} : " design="Bold" class="RDSLabel"/>
+							<Text text="{oPOConfirmModel>/purchaseHeader/createdBy}"/>
+						</HBox>
+					</l:Grid>
+					<VBox class="sapUiTinyMargin">
+						<Table alternateRowColors="true" items="{oPOConfirmModel>/poConfirmationItems}" class="sapUiSizeCompact RDSMtable" inset="false"
+							fixedLayout="false">
+							<columns>
+								<Column hAlign="Begin" demandPopin="true" minScreenWidth="Small">
+									<Label text="{i18n>itemId}" design="Bold" class="RDSLabel"/>
+								</Column>
+								<Column hAlign="Begin" demandPopin="true" minScreenWidth="Small">
+									<Label text="{i18n>matCode}" design="Bold" class="RDSLabel"/>
+								</Column>
+								<Column hAlign="Begin" demandPopin="true" minScreenWidth="Small">
+									<Label text="{i18n>description}" design="Bold" class="RDSLabel"/>
+								</Column>
+								<Column hAlign="Begin" demandPopin="true" minScreenWidth="Small">
+									<Label text="{i18n>orderQty}" design="Bold" class="RDSLabel"/>
+								</Column>
+								<Column hAlign="Begin" demandPopin="true" minScreenWidth="Small">
+									<Label text="{i18n>confirmQty}" design="Bold" class="RDSLabel"/>
+								</Column>
+								<Column hAlign="Begin" demandPopin="true" minScreenWidth="Small">
+									<Label text="{i18n>UOM}" design="Bold" class="RDSLabel"/>
+								</Column>
+								<Column hAlign="Begin" demandPopin="true" minScreenWidth="Small">
+									<Label text="{i18n>unitPrice}" design="Bold" class="RDSLabel"/>
+								</Column>
+								<Column hAlign="Begin" demandPopin="true" minScreenWidth="Small">
+									<Label text="{i18n>netPrice}" design="Bold" class="RDSLabel"/>
+								</Column>
+								<Column hAlign="Begin" demandPopin="true" minScreenWidth="Small">
+									<Label text="{i18n>plant}" design="Bold" class="RDSLabel"/>
+								</Column>
+								<Column hAlign="Begin" demandPopin="true" minScreenWidth="Small">
+									<Label text="{i18n>DeliveryDate}" design="Bold" class="RDSLabel"/>
+								</Column>
+								<Column hAlign="Begin" demandPopin="true" minScreenWidth="Small">
+									<Label text="{i18n>promisedDeliveryDate}" design="Bold" class="RDSLabel"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem highlight="{oPOConfirmModel>sHighLight}">
+									<Text text="{oPOConfirmModel>poItemId}"/>
+									<Link text="{oPOConfirmModel>materialCode}"/>
+									<Text text="{oPOConfirmModel>description}"/>
+									<Text text="{path:'oPOConfirmModel>orderQuantity', formatter:'com.inc.ZTaskApp.utility.formatter.decimalFixed'}"/>
+									<Text text="{path:'oPOConfirmModel>confirmQuantity', formatter:'com.inc.ZTaskApp.utility.formatter.decimalFixed'}"/>
+									<!--<Text text="{oPOConfirmModel>orderQuantity}"/>-->
+									<!--<Text text="{oPOConfirmModel>confirmQuantity}"/>-->
+									<Text text="{oPOConfirmModel>uom}"/>
+									<Text text="{path:'oPOConfirmModel>unitPrice',formatter:'com.inc.ZTaskApp.utility.formatter.decimalFixedThree'}"/>
+									<Text text="{path:'oPOConfirmModel>netPrice', formatter:'com.inc.ZTaskApp.utility.formatter.decimalFixedThree'}"/>
+									<Text text="{oPOConfirmModel>plant}"/>
+									<Text text="{path: 'oPOConfirmModel>deliveryDate', formatter:'com.inc.ZTaskApp.utility.formatter.itemDate'}"/>
+									<Text text="{path: 'oPOConfirmModel>promisedDeliveryDate', formatter:'com.inc.ZTaskApp.utility.formatter.itemDate'}"/>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</VBox>
+				</content>
+				<footer>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<Button type="Default" id="acceptBtnID" text="{i18n>accept}" press="onAccept" visible="{baseModel>/acceptBtnVis}"/>
+						<Button type="Reject" id="rejectBtnID" text="{i18n>reject}" press="onPressRejectTask" visible="{baseModel>/rejectBtnVis}"/>
+						<!--<Button type="Default" id="resendBtnID" text="{i18n>resend}" press="onResend" visible="{baseModel>/resendBtnVis}"/>-->
+						<Button type="Negative" id="cancelBtnID" text="{i18n>cancel}" press="onCancel" visible="{baseModel>/cancelBtnVis}"/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

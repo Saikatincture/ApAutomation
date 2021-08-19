@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>selectVariants}" class="sapUiSizeCompact" contentWidth="25%">
+		<content>
+			<VBox>
+				<Toolbar>
+					<SearchField width="100%" liveChange="onSearchSavedFilters"/>
+					<ToolbarSpacer></ToolbarSpacer>
+					<Button icon="sap-icon://delete" press="onConfirmDeleteFilters" tooltip="{i18n>Delete}" enabled="{mFilterModel>/deleteVarBtnEnabled}"/>
+				</Toolbar>
+				<Table inset="false" items="{mFilterModel>/FilterArray}" id="POSearchFilterVariants" itemPress="onDialogFilterConfirm" mode="MultiSelect"
+					selectionChange="onSelectionChangeSF">
+					<columns>
+						<Column></Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<HBox>
+									<Text text="{mFilterModel>filterName}" class="sapUiTinyMarginTop"/>
+								</HBox>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</VBox>
+		</content>
+		<buttons>
+			<Button text="{i18n>Apply}" press="onDialogFilterConfirm" tooltip="{i18n>Apply}" enabled="{mFilterModel>/selectVarBtnEnabled}"/>
+			<Button text="{i18n>Cancel}" press="onEndingVariantClose" tooltip="{i18n>Cancel}" visible="{mFilterModel>/cancelVarBtnVisible}"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,77 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.incture.CreateEInvoice.controller.purchaseOrderConfim" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="Purchase Order Confirmation">
+				<content>
+					<Wizard id="CreateProductWizard" class="sapUiResponsivePadding--header sapUiResponsivePadding--content" complete="wizardCompletedHandler">
+						<WizardStep id="ProductTypeStep" title="Enter Confirmation Number" validated="true">
+							<HBox alignItems="Center" justifyContent="Center" width="100%">
+								<form:SimpleForm editable="true">
+									<Label text="Price"/>
+									<Input value="{/productPrice}"/>
+									<Label text=" VAT is included"/>
+									<CheckBox selected="{/productVAT}"/>
+								</form:SimpleForm>
+							</HBox>
+						</WizardStep>
+						<WizardStep title="Verify Qty and Dates" validated="true">
+							<HBox alignItems="Center" justifyContent="Center" width="100%"></HBox>
+						</WizardStep>
+						<WizardStep title="Preview" validated="true">
+							<HBox alignItems="Center" justifyContent="Center" width="100%">
+								<form:SimpleForm title="1. Product Type" minWidth="1024" editable="false" layout="ResponsiveGridLayout">
+									<form:content>
+										<Label text="Type"/>
+										<Text id="ProductTypeChosen" text="{/productType}"/>
+										<Link press="editStepOne" text="Edit"/>
+									</form:content>
+								</form:SimpleForm>
+								<form:SimpleForm title="2. Product Information" minWidth="1024" editable="false" layout="ResponsiveGridLayout">
+									<form:content>
+										<Label text="Name"/>
+										<Text id="ProductNameChosen" text="{/productName}"/>
+										<Label text="Weight"/>
+										<Text id="ProductWeightChosen" text="{/productWeight}"/>
+										<Label text="Manufacturer"/>
+										<Text id="ProductManufacturerChosen" text="{/productManufacturer}"/>
+										<Label text="Description"/>
+										<Text id="ProductDescriptionChosen" text="{/productDescription}"/>
+										<Link press="editStepTwo" text="Edit"/>
+									</form:content>
+								</form:SimpleForm>
+								<form:SimpleForm title="3. Optional Information" minWidth="1024" editable="false" layout="ResponsiveGridLayout">
+									<form:content>
+										<Label text="Some text"/>
+										<Text text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "/>
+										<Label text="Manufacturing Date"/>
+										<Text id="ManufacturingDate" text="{/manufacturingDate}"/>
+										<Label text="Availability"/>
+										<Text id="AvailabilityChosen" text="{/availabilityType}"/>
+										<Label text="Size"/>
+										<HBox>
+											<Text id="Size" text="{/size}"/>
+											<Text id="Size2" class="sapUiTinyMarginBegin" text="{/measurement}"/>
+										</HBox>
+										<Link press="editStepThree" text="Edit"/>
+									</form:content>
+								</form:SimpleForm>
+								
+							</HBox>
+						</WizardStep>
+					</Wizard>
+				</content>
+				<footer>
+				<OverflowToolbar>
+					<ToolbarSpacer/>
+					<Button text="Previous" visible="{/backButtonVisible}" press="onDialogBackButton" />
+					<Button text="Next Step" type="Emphasized" enabled="{/nextButtonEnabled}" visible="{/nextButtonVisible}" press="onDialogNextButton" />
+					<Button text="Review" type="Emphasized" visible="{/reviewButtonVisible}" press="onDialogNextButton" />
+					<Button text="Finish" type="Emphasized" visible="{/finishButtonVisible}" press="handleWizardSubmit" />
+					<Button	text="Cancel" type="Transparent" press="handleWizardCancel"/>
+				</OverflowToolbar>
+			</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

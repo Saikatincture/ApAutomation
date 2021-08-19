@@ -1,0 +1,107 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f" xmlns:layout="sap.ui.layout"
+	xmlns:uxap="sap.uxap" xmlns:form="sap.ui.layout.form" controllerName="com.inc.ZTaskApp.controller.TaskApproval"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	
+	<f:DynamicPage stickySubheaderProvider="iconTabBar" class="sapUiSizeCompact" showFooter="true" toggleHeaderOnTitleClick="{/titleClickable}">
+		<!-- DynamicPage Title -->
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="{hdrMdl>/results/returnsHeader/returnRequestId}" class="slTitleCls"/>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+		<!-- DynamicPage Header -->
+		<f:header>
+			<f:DynamicPageHeader pinnable="true" class="customFontFamilyClass">
+				<layout:VerticalLayout>
+					<FlexBox wrap="Wrap" fitContainer="true">
+						<VBox class="sapUiLargeMarginEnd">
+							<!--sapUiSmallMarginBottom-->
+							<HBox class="sapUiTinyMarginBottom">
+								<Label text="{i18n>grDocNum}" design="Bold" class="sapUiSmallMarginEnd"/>
+								<Text text="{hdrMdl>/results/returnsHeader/grDocumentNumber}"/>
+							</HBox>
+							<HBox class="sapUiTinyMarginBottom">
+								<Label text="{i18n>companyCode}" design="Bold" class="sapUiSmallMarginEnd"/>
+								<Text text="{hdrMdl>/results/returnsHeader/companyCode}"/>
+							</HBox>
+						</VBox>
+						<VBox class="sapUiLargeMarginEnd">
+							<!--sapUiSmallMarginBottom-->
+							<HBox class="sapUiTinyMarginBottom">
+								<Label text="{i18n>poNum}" design="Bold" class="sapUiSmallMarginEnd"/>
+								<Text text="{hdrMdl>/results/returnsHeader/poNumber}"/>
+							</HBox>
+							<HBox class="sapUiTinyMarginBottom">
+								<Label text="{i18n>vendor}" design="Bold" class="sapUiSmallMarginEnd"/>
+								<Text text="{hdrMdl>/results/returnsHeader/vendor}-{hdrMdl>/results/returnsHeader/vendorName}"/>
+							</HBox>
+						</VBox>
+						<VBox class="sapUiLargeMarginEnd">
+							<!--sapUiSmallMarginBottom-->
+							<HBox class="sapUiTinyMarginBottom">
+								<Label text="{i18n>comments}" design="Bold" class="sapUiSmallMarginEnd"/>
+								<core:Icon src="sap-icon://edit" press="onPressRemarks" class="sapUiTinyMarginBegin"></core:Icon>
+							</HBox>
+						</VBox>
+						<!--<VBox class="sapUiLargeMarginEnd sapUiSmallMarginBottom" width="100px"></VBox>-->
+					</FlexBox>
+				</layout:VerticalLayout>
+			</f:DynamicPageHeader>
+		</f:header>
+		<!-- Dynamic Page Content -->
+		<f:content>
+			<IconTabBar id="iconTabBar" select="onTabSelect" class="sapUiResponsiveContentPadding" selectedKey="returnKey">
+				<items>
+					<IconTabFilter id="idRetTab" text="{i18n>Return}" key="returnKey" count="{returnListModel>/dataLength}" class="slTitleCls">
+						<List id="idRetList" class="customFontFamilyClass" headerText="" includeItemInSelection="false" selectionChange="onItemSelectionRet"
+							growing="true" items="{hdrMdl>/results/returnsItems}" sticky="HeaderToolbar" delete="onDeletePress">
+							<ObjectListItem title="{hdrMdl>material}" type="Active" press="onListItemPressRet" number="{hdrMdl>netPrice}">
+								<firstStatus>
+									<ObjectStatus text="{returnListModel>itemStagingStatus}"
+										state="{path:'returnListModel>itemStagingStatus',formatter:'.formatter.colorState'}"/>
+								</firstStatus>
+								<!--<ObjectAttribute title="{i18n>INV}" text="{returnListModel>refDocNum}"/>-->
+								<ObjectAttribute text="{hdrMdl>quantity} {hdrMdl>uom} X {hdrMdl>unitPrice}"/>
+								<ObjectAttribute title="{i18n>reasonTxt}" text="{hdrMdl>reasonText}"/>
+							</ObjectListItem>
+							<headerToolbar>
+								<OverflowToolbar>
+									<!--<CheckBox id="idSelAllRet" select="onSelectAllRet">-->
+									<!--	<layoutData>-->
+									<!--		<OverflowToolbarLayoutData priority="NeverOverflow"/>-->
+									<!--	</layoutData>-->
+									<!--</CheckBox>-->
+									<Title text="{i18n>TotalAmount}:" level="H2" class="slTitleCls1"></Title>
+									<ObjectNumber number="{hdrMdl>/results/returnsHeader/totalAmount}" emphasized="false" class="slTitleCls1"></ObjectNumber>
+									<ToolbarSpacer/>
+									<!--<Button icon="sap-icon://accept" press="handleApprovePressReturn" tooltip="{i18n>Approve}" type="Accept"/>-->
+									<!--<Button icon="sap-icon://decline" press="handleRejectPressReturn" tooltip="{i18n>Reject}" type="Reject"/>-->
+									<!--<Button icon="sap-icon://reset" press="handleResetPressReturn" tooltip="{i18n>Resett}"/>-->
+									<!--<Button icon="sap-icon://display" press="handleDisplayPressReturn" tooltip="{i18n>DisplayActions}"/>-->
+								</OverflowToolbar>
+							</headerToolbar>
+							<!--   <infoToolbar>
+                        <OverflowToolbar design="Solid" height="2rem" press="handleInfobarPress">
+                           <Label text="This is info toolbar" />
+                           <ToolbarSpacer />
+                        </OverflowToolbar>
+                     </infoToolbar>-->
+						</List>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</f:content>
+		<!-- DynamicPage Footer -->
+		<f:footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button type="Default" text="{i18n>accept}" press="onAccept" visible="{baseModel>/acceptBtnVis}"/>
+				<Button type="Default" text="{i18n>reject}" press="onReject" visible="{baseModel>/rejectBtnVis}"/>
+				<Button type="Default" text="{i18n>resend}" press="onResend" visible="{baseModel>/resendBtnVis}"/>
+				<Button type="Default" text="{i18n>cancel}" press="onCancel" visible="{baseModel>/cancelBtnVis}"/>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>

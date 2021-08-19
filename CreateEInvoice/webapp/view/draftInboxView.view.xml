@@ -1,0 +1,141 @@
+<mvc:View controllerName="com.incture.CreateEInvoice.controller.draftInboxView" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m" xmlns:f="sap.f" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<App id="app">
+		<pages>
+			<Page id="keyEInvoicedraftInbox" title="{i18n>EInvoice}" class="sapUiSizeCompact RDSPage RDSTitle">
+				<content>
+					<OverflowToolbar>
+						<Label text="{i18n>Search}" design="Bold"></Label>
+						<ToolbarSpacer/>
+						<Button text="{i18n>CollapseSearch}" class="RDSgoButton" tooltip="{i18n>CollapseSearch}" press="onPressCollapse"
+							visible="{baseModel>/CollapseVisiblity}"/>
+						<Button text="{i18n>ExpandSearch}" class="RDSgoButton" tooltip="{i18n>ExpandSearch}" press="onPressOpen"
+							visible="{baseModel>/openVisiblity}"/>
+					</OverflowToolbar>
+					<VBox class="filterBox sapUiTinyMargin sapUiSizeCompact" visible="{baseModel>/SearchVisiblity}">
+						<l:Grid defaultSpan="XL3 L3 M6 S12" class="sapUiSizeCompact sapUiSmallMarginBeginEnd sapUiTinyMarginTop">
+							<VBox>
+								<Label text="{i18n>InvoiceNo}" class="RDSLabel"/>
+								<Input placeholder="Enter Invoice No" value="{mDraftDetails>/draftNo}" class="RDSinputV1" width="80%"/>
+							</VBox>
+							<VBox>
+								<Label text="{i18n>VendorName}" class="RDSLabel"/>
+								<Input value="{mDraftDetails>/vendorId} {mDraftDetails>/vendorName}" class="RDSinputV1" width="80%" showSuggestion="true"
+									placeholder="Enter Vendor Id" suggest="fnVendorIdSuggest" suggestionItemSelected="searchVendorAddr"
+									suggestionItems="{searchVendorModel>/d/results}">
+									<suggestionItems class="sapUiSizeCompact">
+										<core:ListItem text="{searchVendorModel>Vendor}" class="sapUiSizeCompact" additionalText="{searchVendorModel>Name1}"/>
+									</suggestionItems>
+								</Input>
+							</VBox>
+							<VBox>
+								<Label text="{i18n>PONumber}" class="RDSLabel"/>
+								<Input value="{mDraftDetails>/PONo}" class="RDSinputV1" placeholder="Enter PO Number" type="Number" width="80%"></Input>
+							</VBox>
+							<VBox>
+								<Label text="{i18n>Status}" class="RDSLabel"/>
+								<ComboBox selectedKey="{mDraftDetails>/Status}" items="{mDraftDetails>/aStatus}" width="80%">
+									<core:Item text="{mDraftDetails>text}" key="{mDraftDetails>lifeCycleStatus}"></core:Item>
+								</ComboBox>
+							</VBox>
+							<VBox>
+								<Label text="{i18n>InvoiceDateRangeSelect}" class="RDSLabel"/>
+								<DateRangeSelection id="DRS2" change="handleChange" width="80%" dateValue="{mDraftDetails>/dateValue}"
+									secondDateValue="{mDraftDetails>/secondDateValue}"/>
+							</VBox>
+							<VBox></VBox>
+							<VBox></VBox>
+							<VBox>
+								<Label/>
+								<HBox>
+									<Button text="{i18n>Reset}" icon="sap-icon://reset" press="onResetFilter" class="RDSgoButton sapUiSmallMarginEnd" width="6rem"></Button>
+									<Button text="{i18n>Search}" icon="sap-icon://search" press="onGOFilter" class="RDSgoButton" width="6rem"></Button>
+								</HBox>
+							</VBox>
+						</l:Grid>
+					</VBox>
+					<Toolbar>
+						<Label text="{i18n>ListOfInvoices} - ({mDraftDetails>/count})" design="Bold"/>
+						<ToolbarSpacer/>
+						<Button text="{i18n>CreateEInvoice}" class="RDSgoButton" tooltip="{i18n>CreateEInvoice}" press="onPressCreateEInvoice"/>
+						<Button icon="sap-icon://action-settings" press="onPressPersonalization"/>
+					</Toolbar>
+					<Table items="{mDraftDetails>/aDraftlist}" class="sapUiSizeCompact RDSMtable">
+						<columns>
+							<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/0/status}" demandPopin="true" minScreenWidth="Small"
+								popinDisplay="Inline">
+								<Label text="{i18n>InvNo}" design="Bold" class="RDSLabel"/>
+							</Column>
+							<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/1/status}" demandPopin="true" minScreenWidth="Small"
+								popinDisplay="Inline">
+								<Label text="{i18n>PONo}" design="Bold" class="RDSLabel"/>
+							</Column>
+							<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/2/status}" demandPopin="true" minScreenWidth="Small"
+								popinDisplay="Inline" width="13rem">
+								<Label text="{i18n>Vendor}" design="Bold" class="RDSLabel"/>
+							</Column>
+							<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/3/status}" demandPopin="true" minScreenWidth="Small"
+								popinDisplay="Inline">
+								<Label text="{i18n>CreatedAt}" design="Bold" class="RDSLabel"/>
+							</Column>
+							<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/4/status}" demandPopin="true" minScreenWidth="Small"
+								popinDisplay="Inline" width="14rem">
+								<Label text="{i18n>CreatedBy}" design="Bold" class="RDSLabel"/>
+							</Column>
+							<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/5/status}" demandPopin="true" minScreenWidth="Small"
+								popinDisplay="Inline">
+								<Label text="{i18n>SAPInvoiceNo}" design="Bold" class="RDSLabel"/>
+							</Column>
+							<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/6/status}" demandPopin="true" minScreenWidth="Small"
+								popinDisplay="Inline" width="11rem">
+								<Label text="{i18n>ValidationStatus}" design="Bold" class="RDSLabel"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Small" popinDisplay="Inline">
+								<Label text="{i18n>PaymentTerms}" design="Bold" class="RDSLabel"/>
+							</Column>
+							<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/7/status}" demandPopin="true" minScreenWidth="Small"
+								popinDisplay="Inline">
+								<Label text="{i18n>Action}" design="Bold" class="RDSLabel"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<Text text="{mDraftDetails>requestId}"></Text>
+								<Text text="{mDraftDetails>refDocNum}"></Text>
+								<Text text="{mDraftDetails>vendorId}-{mDraftDetails>vendorName}"></Text>
+								<Text text="{mDraftDetails>createdAt}"></Text>
+								<Text text="{mDraftDetails>createdByInDb}"></Text>
+								<Text text="{mDraftDetails>sapInvoiceNumber}"></Text>
+								<!--	<Text text="{mDraftDetails>lifecycleStatusText}"></Text>-->
+								<ObjectStatus text="{path : 'mDraftDetails>lifecycleStatusText'}" inverted="true" state="{mDraftDetails>lifecycleState}"/>
+								<Text text="{mDraftDetails>paymentTerms}"></Text>
+								<HBox>
+									<core:Icon src="{mDraftDetails>actionIcon}" press="onPressEdit"/>
+									<core:Icon src="sap-icon://download" class="sapUiSmallMarginBegin" press="onPressDownload"/>
+								</HBox>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+				<footer>
+					<OverflowToolbar class="incturePrimaryClassInbox">
+						<content>
+							<ToolbarSpacer/>
+							<VBox id="idPageNumberDiv" justifyContent="Center" alignItems="Center">
+								<HBox>
+									<Button id="idPrevButton" icon="sap-icon://close-command-field" class="ftbtn" press="onScrollLeft"/>
+									<HBox items="{paginatedModel>/array}">
+										<Link text="{paginatedModel>text}" press="onPageClick" class="paginationNumbers"/>
+									</HBox>
+									<Button id="idNextButton" icon="sap-icon://open-command-field" class="ftbtn" press="onScrollRight"/>
+								</HBox>
+							</VBox>
+						</content>
+						<ToolbarSpacer/>
+						<Label id="idCurrentPage" class="pageNumberStyleClass"/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

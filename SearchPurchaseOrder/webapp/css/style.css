@@ -1,0 +1,1132 @@
+/* Enter your custom styles here */
+/*Start of Activity LOG CSS*/
+.POObjectStatus .sapMObjStatusText {
+    color: #fff;
+    width: 9.7rem;
+}
+
+.dialogStyle {
+    position: relative;
+    /*top: 4% !important;*/
+    /*left: 30% !important;*/
+}
+
+.poSearchactivitylogVboxOnGoing {
+    border: 1.5px solid #FEA200;
+    border-radius: 6px;
+    padding: 10px;
+    width: 25rem;
+}
+
+.ConfirmationLeftMargin {
+    margin-left: 0.5rem;
+}
+
+.poSearchactivitylogVboxDone {
+    border: 1.5px solid #1D9B2D;
+    border-radius: 6px;
+    padding: 10px;
+    width: 25rem;
+}
+
+.poSearchactivitylogVboxToBeDone {
+    border: 1.5px solid #c2beb8;
+    border-radius: 6px;
+    padding: 10px;
+    width: 25rem;
+}
+
+.poSearchactivitylogVboxOnGoing.sapUiSmallMarginBottom {
+    margin-bottom: 1rem !important;
+}
+
+.poSearchactivitylogVboxToBeDone.sapUiSmallMarginBottom {
+    margin-bottom: 1rem !important;
+}
+
+.poSearchactivitylogVBOX.sapUiSmallMarginBottom {
+    margin-bottom: 1rem !important;
+}
+
+.dashLineOnGoing {
+    margin-left: -0.72rem;
+    margin-top: 2rem;
+    border-left: 2px solid #FEA200;
+}
+
+.dummydashLineOnGoing {
+    margin-left: -0.72rem;
+    margin-top: 2rem;
+    border-left: 2px solid #FFFFFF;
+}
+
+.dummyBox {
+    margin-left: 1.5rem;
+}
+
+.dashLineDone {
+    margin-left: -0.72rem;
+    margin-top: 2rem;
+    border-left: 2px solid #1D9B2D;
+}
+
+.dashLineToBeDone {
+    margin-left: -0.72rem;
+    margin-top: 2rem;
+    border-left: 2px solid #c2beb8;
+}
+
+.doneProcessCircle {
+    color: #1D9B2D;
+    font-size: 1.9rem;
+    margin-left: 0.5rem;
+}
+
+.onGoingProcessCircle {
+    color: #FEA200;
+    font-size: 1.9rem;
+    margin-left: 0.5rem;
+}
+
+.toBeDoneProcessCircle {
+    color: #c2beb8;
+    font-size: 1.9rem;
+    margin-left: 0.5rem;
+}
+
+/*.invoicedashlineColor {*/
+/*    border-left: 2px dotted #c2beb8;*/
+/*}*/
+
+/*.dotline {*/
+/*    margin-left: -0.45rem;*/
+/*    margin-top: 1.1rem;*/
+/*}*/
+
+
+
+
+/*.InvoiceReceiptCOLOR {*/
+/*    color: #fca903 !important;*/
+/*}*/
+
+
+/*End of Activity LOG CSS*/
+
+.atachmentCls {
+    height: 3rem !important;
+}
+
+.atachmentCls.sapMIBar.sapMTB .sapMBarChild {
+    width: 65%;
+}
+
+.marginLvlsubtotal {
+    margin-left: 6.25rem;
+}
+
+.marginLvlTotalTax {
+    margin-left: 5.6rem;
+}
+
+.marginLvlAmountDue {
+    margin-left: 4.7rem;
+}
+
+/* Enter your custom styles here */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root {
+    --primary-color: 0, 84, 167;
+    --Primary-color-hs: 210, 100%;
+    --Primary-color-l: 65%;
+    --error-color: #F05B5B;
+    --Error-color-hs: 0, 83%;
+    --Error-color-l: 65%;
+    --warning-color: #E09D00;
+    --Warning-color-hs: 42, 100%;
+    --Warning-color-l: 44%;
+    --info-color: #0092D1;
+    --Info-color-hs: 198, 100%;
+    --Info-color-l: 41%;
+    --default-color: #647987;
+    --success-color: #00A834;
+    --inputFill-color: white;
+    --gray-0: white;
+    --gray-1: #FAFAF9;
+    --gray-2: #F3F2F2;
+    --gray-3: #ECEBEA;
+    --gray-4: #DDDBDA;
+    --gray-5: #868686;
+    --gray-6: #676767;
+    --gray-7: #555555;
+    --gray-8: #2E2E2E;
+    --gray-9: #1C1C1C;
+    --font-family: 'Roboto', sans-serif;
+    --ui-color-1: #880000;
+    --ui-color-2: #bb0000;
+    --ui-color-3: #E78C07;
+    --ui-color-4: #2B7C2B;
+    --ui-color-5: #427CAC;
+    --ui-color-6: #925ace;
+    --ui-color-7: #ab21Be;
+    --ui-color-8: #1a9898;
+}
+
+
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+
+.RDSMtable .sapMTableTH {
+    background: hsl(var(--Primary-color-hs), calc(var(--Primary-color-l)*1.49));
+}
+
+
+/*.RDSMtable .sapMListTblAlternateRowColors>:nth-child(even) {
+    
+}*/
+
+.RDSMtable .sapMListTblRow:hover {
+    background: hsl(var(--Primary-color-hs), calc(var(--Primary-color-l)*1.52)) !important;
+}
+
+.RDSMtable .sapMListTblRow {
+    background: var(--inputFill-color) !important;
+}
+
+.RDSMtable .sapMColumnHeader {
+    justify-content: flex-start !important;
+}
+
+.RDSMtable .sapMLIBSelected {
+    background: hsl(var(--Primary-color-hs), calc(var(--Primary-color-l)*1.52)) !important;
+}
+
+.RDSMtable .sapMListTbl {
+    border-radius: 0.3rem !important;
+    padding: 0.2rem 0.1rem 0rem 0.1rem;
+    border: .0625rem solid #ddd;
+}
+
+.RDSMtable .sapMListShowSeparatorsAll .sapMListTblSubRow:last-child>td:not(.sapMListTblDummyCell),
+.sapMListShowSeparatorsAll .sapMLIBShowSeparator:last-child>td:not(.sapMListTblDummyCell) {
+    border-bottom: none !important;
+}
+
+.RDSMtable .sapMTBStandard {
+    border-bottom: none !important;
+}
+
+.RDSMtable .sapMListTblCell>.sapMText {
+    color: var(--gray-8) !important;
+    font-family: var(--font-family);
+    font-weight: normal !important;
+    font-size: 0.875rem !important;
+}
+
+.RDSMtable .sapMColumnHeader>.sapMLabel {
+    font-family: var(--font-family) !important;
+    font-size: 0.875rem !important;
+}
+
+.RDSPage .sapMPageFooter .sapMFooter-CTX {
+    background: rgba(var(--primary-color), 1) !important;
+}
+
+.RDSsubmitButton .sapMBtnInner {
+    border-radius: 2px;
+    border: none;
+    background: var(--inputFill-color) !important;
+    color: rgba(var(--info-color), 1) !important;
+    text-shadow: none !important
+}
+
+.RDSsubmitButton .sapMBtnIcon {
+    color: rgba(var(--primary-color), 1) !important;
+}
+
+.RDSsubmitButton .sapMBtnContent {
+    color: rgba(var(--primary-color), 1);
+    font-size: .875rem;
+    font-family: var(--font-family);
+}
+
+
+/*Primary info Button*/
+
+.RDSprimaryInfoBtn .sapMBtnInner {
+    border-radius: 2px !important;
+    border: none !important;
+    background-color: var(--info-color) !important;
+}
+
+.RDSprimaryInfoBtn .sapMBtnContent {
+    color: var(--gray-0);
+    font-size: .875rem;
+    font-family: var(--font-family);
+}
+
+.RDSTitle .sapMIBar-CTX .sapMTitle {
+    color: var(--gray-0);
+    text-shadow: none;
+}
+
+.RDSTitle .sapMIBar-CTX .sapMBtnInner,
+.sapMBar .sapMBtnInner,
+.sapMHeader-CTX .sapMBtnInner,
+.sapMFooter-CTX .sapMBtnInner {
+    background: var(--gray-0);
+    border-color: transparent;
+}
+
+.RDSTitle .sapMBtn:hover:not(.sapMBtnDisabled)>.sapMBtnHoverable:not(.sapMBtnDisabled):not(.sapMBtnActive):not(.sapMToggleBtnPressed):not(.sapMBtnTransparent).sapMBtnDefault,
+.sapMBtn:hover:not(.sapMBtnDisabled)>.sapMBtnHoverable:not(.sapMBtnDisabled):not(.sapMBtnActive):not(.sapMToggleBtnPressed):not(.sapMBtnTransparent).sapMBtnBack,
+.sapMBtn:hover:not(.sapMBtnDisabled)>.sapMBtnHoverable:not(.sapMBtnDisabled):not(.sapMBtnActive):not(.sapMToggleBtnPressed):not(.sapMBtnTransparent).sapMBtnGhost {
+    color: var(--gray-0);
+}
+
+
+
+.RDSprimaryInfoBtn .sapMBtnIcon {
+    color: var(--gray-0);
+}
+
+.RDSprimaryInfoBtn .sapMBtnActive .sapMBtnIcon {
+    color: var(--gray-0);
+}
+
+.RDSprimaryInfoBtn:not(.sapMBtnDisabled).sapMBtn:hover>.sapMBtnInner {
+    background-color: hsl(var(--Info-color-hs), calc(var(--Info-color-l)*.8));
+}
+
+
+/*Secondary info Button*/
+
+.RDSsecondaryInfoBtn .sapMBtnInner {
+    height: 2.25rem;
+    border-radius: 2px;
+    border: 1px solid var(--info-color);
+    background-color: var(--gray-0);
+}
+
+.RDSsecondaryInfoBtn .sapMBtnContent {
+    color: var(--info-color);
+    font-size: .875rem;
+    font-family: var(--font-family);
+    line-height: 2.2rem;
+}
+
+.RDSsecondaryInfoBtn .sapMBtnIcon {
+    color: var(--info-color);
+}
+
+.RDSsecondaryInfoBtn .sapMBtnActive .sapMBtnIcon {
+    color: var(--gray-0);
+}
+
+.RDSsecondaryInfoBtn:not(.sapMBtnDisabled).sapMBtn:hover>.sapMBtnInner {
+    background-color: var(--info-color);
+    border: 1px solid var(--info-color);
+}
+
+.RDSsecondaryInfoBtn:not(.sapMBtnDisabled).sapMBtn:hover .sapMBtnContent {
+    color: var(--gray-0);
+}
+
+.RDSsecondaryInfoBtn:not(.sapMBtnDisabled).sapMBtn:hover .sapMBtnIcon {
+    color: var(--gray-0);
+}
+
+
+/* Primary Button */
+
+.RDSgoButton .sapMBtnInner {
+    border-radius: 2px;
+    border: none;
+    background-color: rgba(var(--primary-color), 1);
+}
+
+.RDSgoButton .sapMBtnContent {
+    color: var(--gray-0);
+    font-size: .875rem;
+    font-family: var(--font-family);
+}
+
+.RDSgoButton .sapMBtnIcon {
+    color: var(--gray-0);
+}
+
+.RDSgoButton .sapMBtnActive .sapMBtnIcon {
+    color: var(--gray-0);
+}
+
+.RDSgoButton:not(.sapMBtnDisabled).sapMBtn:hover>.sapMBtnInner {
+    background-color: hsl(var(--Primary-color-hs), calc(var(--Primary-color-l)*.8));
+}
+
+
+/*message strip*/
+
+.RDSmsgStripWarning .sapMBtnDisabled.sapMBtnBack>.sapMBtnIcon,
+:not(.sapMBtnDisabled) .sapMBtnTransparent>.sapMBtnIcon,
+:not(.sapMBtnDisabled) .sapMBtnGhost>.sapMBtnIcon {
+    color: rgba(var(--primary-color), 1);
+}
+
+.RDSmsgStripWarning .sapMMsgStripInformation {
+    background-color: hsl(var(--warning-color-hs), calc(var(--warning-color-l)*1.2));
+    ;
+    border-color: var(--warning-color);
+}
+
+.RDSmsgStripWarning .sapMText {
+    font-size: .875rem;
+    font-family: var(--font-family);
+    color: var(--gray-8);
+}
+
+.RDSmsgStripWarning.sapMMsgStripInformation .sapMMsgStripIcon {
+    color: var(--warning-color);
+}
+
+.RDSmsgStrip .sapMMsgStripInformation {
+    background-color: hsl(var(--info-color-hs), calc(var(--info-color-l)*1.2));
+    border-color: var(--info-color);
+}
+
+.RDSmsgStrip .sapMText {
+    font-size: .875rem;
+    font-family: var(--font-family);
+    color: var(--gray-8);
+}
+
+.RDSmsgStrip.sapMMsgStripInformation .sapMMsgStripIcon {
+    color: var(--info-color);
+}
+
+.RDSmsgStripError .sapMMsgStripInformation {
+    background-color: hsl(var(--error-color-hs), calc(var(--error-color-l)*1.2));
+    border-color: var(--error-color);
+}
+
+.RDSmsgStripError .sapMText {
+    font-size: .875rem;
+    font-family: var(--font-family);
+    color: var(--gray-8);
+}
+
+.RDSmsgStripError.sapMMsgStripInformation .sapMMsgStripIcon {
+    color: var(--error-color);
+}
+
+.RDSmsgStripSuccess .sapMMsgStripInformation {
+    background-color: hsl(var(--success-color-hs), calc(var(--success-color-l)*1.2));
+    border-color: var(--success-color);
+}
+
+.RDSmsgStripSuccess .sapMText {
+    font-size: .875rem;
+    font-family: var(--font-family);
+    color: var(--gray-8);
+}
+
+.RDSmsgStripSuccess.sapMMsgStripInformation .sapMMsgStripIcon {
+    color: var(--success-color);
+}
+
+.sapMMessageToast {
+    border: .0625rem solid var(--success-color) !important;
+    background-color: #f2fdf5 !important;
+    color: var(--gray-8) !important;
+    font-family: var(--font-family) !important;
+    font-size: .875rem !important;
+}
+
+
+/*search bar */
+
+.sapMSFF:hover {
+    border-color: #00000060 !important;
+}
+
+.sapMSFVal>.sapMSFF>.sapMSFR:hover {
+    background-color: hsl(var(--Primary-color-hs), calc(var(--Primary-color-l)*1.49)) !important;
+}
+
+.sapMSFS:hover {
+    background-color: hsl(var(--Primary-color-hs), calc(var(--Primary-color-l)*1.49)) !important;
+}
+
+.sapMSFB {
+    color: rgba(var(--primary-color), 1) !important;
+}
+
+.sapMFocus>.sapMSFF::before {
+    border: none !important;
+}
+
+.sapMSFF>.sapMSFB:not(.sapMSFBF):active,
+.sapMSFF>.sapMSFB.sapMSFBA {
+    background-color: rgba(var(--primary-color), 1);
+}
+
+/*version 1*/
+
+.RDSsearchBarV1 .sapMSFF {
+    border: 1px solid var(--gray-4);
+    background-color: var(--inputFill-color);
+}
+
+.RDSsearchBarV1.sapMFocus>.sapMSFF {
+    outline: none;
+    border: 1px solid rgba(var(--primary-color), 1) !important;
+}
+
+.RDSMtable .sapMListTblCell>.sapMText {
+    color: var(--gray-8) !important;
+    font-family: var(--font-family);
+    font-weight: normal !important;
+    font-size: 0.875rem !important;
+}
+
+.RDSMtable .sapMColumnHeader>.sapMLabel {
+    font-family: var(--font-family) !important;
+    font-size: 0.875rem !important;
+}
+
+.RDSMtable .sapMLabelTBHeader {
+    font-family: var(--font-family) !important;
+    font-size: 0.875rem !important;
+}
+
+.RDSprchaseorderDetail {
+    font-family: var(--font-family) !important;
+    font-size: 1rem !important;
+}
+
+.RDSiconTabBar .sapMITH {
+    background: var(--inputFill-color) !important;
+    box-shadow: inset 0 -0.25rem 0 -0.125rem var(--inputFill-color);
+}
+
+
+/* Icon tab Bar */
+
+.RDStabBar .sapMITH {
+    background: none;
+    padding: 0px;
+    -webkit-box-shadow: 0px 1px 0.5px 0px #DEDEDF00;
+    -moz-box-shadow: 0px 1px 0.5px 0px #DEDEDF00;
+    box-shadow: 0px 1px 0.5px 0px #DEDEDF00;
+    border-bottom: none !important;
+}
+
+.RDStabBar .sapMITBContentArrow::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    border-radius: 0px;
+    background: #bfbfbf;
+}
+
+.RDStabBar .sapMITBSelected .sapMITBContentArrow::after {
+    background: rgba(var(--primary-color), 1);
+}
+
+.RDStabBar .sapMITBItem:focus .sapMITBText::after {
+    border: none !important;
+}
+
+.RDStabBar .sapMITH .sapMITBHead .sapMITBFilter {
+    background: var(--gray-0);
+    border-right: 1px solid #DEDEDF;
+}
+
+.RDStabBar .sapMITBFilterDefault.sapMITBSelected .sapMITBText {
+    color: rgba(var(--primary-color), 1);
+}
+
+.RDStabBar .sapMITBFilterDefault.sapMITBSelected:hover .sapMITBText {
+    color: rgba(var(--primary-color), 1);
+}
+
+.RDStabBar .sapMITH .sapMITBHead .sapMITBFilter:first-child {
+    padding-left: 1rem;
+    margin-left: 0rem;
+}
+
+.RDStabBar .sapMITH .sapMITBHead .sapMITBFilter:last-child {
+    padding-right: 1rem;
+    margin-left: 0rem;
+}
+
+.RDStabBar .sapMITBContentArrow {
+    position: inherit;
+}
+
+.RDStabBar .sapMITBContent {
+    background: var(--gray-0);
+}
+
+.RDSCustomTabBar .sapMITH .sapMITBHead {
+    margin-top: 0rem !important;
+}
+
+.RDSCustomTabBar .sapMITH .sapMITBHead {
+    border-bottom: none !important;
+}
+
+
+/*.RDSCustomTabBar .sapMITBHead {
+    margin-top: 0rem !important;
+    background-color: white !important;
+}
+.RDSCustomTabBar .sapMITH .sapMITBHead {
+    border-bottom: .0625rem solid var(--gray-4) !important;
+}
+.RDSCustomTabBar .sapMITH
+{
+border-bottom:none !important;
+}*/
+
+
+/* Input Label */
+
+.RDSLabel {
+    font-size: 0.875rem;
+    font-family: var(--font-family);
+    color: var(--gray-8) !important;
+}
+
+/*Form title text color*/
+
+.RDSForm .sapUiForm .sapUiFormTitle {
+    color: var(--gray-9) !important;
+    font-family: var(--font-family) !important;
+    font-size: 1rem !important;
+    font-weight: normal !important;
+}
+
+/* Input class - version 1*/
+
+.RDSinputV1 .sapMInputBaseContentWrapper {
+    border: 1px solid var(--gray-4);
+    background-color: var(--inputFill-color);
+    border-height: 36px !important;
+}
+
+.RDSinputV1.sapMFocus .sapMInputBaseContentWrapper {
+    outline: none;
+    border: 1px solid rgba(var(--primary-color), 1) !important;
+}
+
+.RDSToolHeaderLabel {
+    font-family: var(--font-family);
+    color: red !important;
+}
+
+
+/*CheckBox*/
+
+.RDScheckBox .sapMCbBg {
+    border: solid .12rem var(--gray-6);
+}
+
+.RDScheckBox .sapMCbHoverable:hover {
+    border-color: rgba(var(--primary-color), 1);
+    background: var(--gray-0);
+}
+
+.sapMCbBg.sapMCbMarkChecked:before {
+    color: rgba(var(--primary-color), 1);
+}
+
+html.sap-desktop .sapMCb:not(.sapMCbBgDis):not(.sapMCbDisplayOnly).sapMCbHasLabel:focus:before {
+    border: none;
+}
+
+.RDScheckBox .sapMLabel {
+    font-size: 0.875rem;
+    font-family: var(--font-family);
+    color: var(--gray-8) !important;
+}
+
+.RDSPage .sapMIBar.sapMHeader-CTX {
+    background: rgba(var(--primary-color), 1) !important;
+}
+
+.RDSPage .sapMIBar-CTX .sapMLabel {
+    color: var(--inputFill-color) !important;
+    font-family: var(--font-family);
+}
+
+.RDSPage .sapMIBar-CTX .sapUiIcon {
+    color: var(--inputFill-color) !important;
+}
+
+.RDSPage .sapMIBar-CTX .sapMBtnIcon {
+    color: rgba(var(--primary-color), 1) !important;
+}
+
+
+/*Secondary Button*/
+
+.RDSsecondaryBtn .sapMBtnInner {
+    border-radius: 2px;
+    border: 1px solid rgba(var(--primary-color), 1);
+    background-color: var(--gray-0);
+}
+
+.RDSsecondaryBtn .sapMBtnContent {
+    color: rgba(var(--primary-color), 1);
+    font-size: .875rem;
+    font-family: var(--font-family);
+}
+
+.RDSsecondaryBtn .sapMBtnIcon {
+    color: rgba(var(--primary-color), 1);
+}
+
+.RDSsecondaryBtn .sapMBtnActive .sapMBtnIcon {
+    color: var(--gray-0);
+}
+
+.RDSsecondaryBtn:not(.sapMBtnDisabled).sapMBtn:hover>.sapMBtnInner {
+    background-color: rgba(var(--primary-color), 1);
+    border: 1px solid rgba(var(--primary-color), 1);
+}
+
+.RDSsecondaryBtn:not(.sapMBtnDisabled).sapMBtn:hover .sapMBtnContent {
+    color: var(--gray-0);
+}
+
+.RDSsecondaryBtn:not(.sapMBtnDisabled).sapMBtn:hover .sapMBtnIcon {
+    color: var(--gray-0);
+}
+
+
+/*Secondary Error Button*/
+
+.RDSsecondaryErrorBtn .sapMBtnInner {
+    border-radius: 2px;
+    border: 1px solid var(--error-color);
+    background-color: var(--gray-0);
+}
+
+.RDSsecondaryErrorBtn .sapMBtnContent {
+    color: var(--error-color);
+    font-size: .875rem;
+    font-family: var(--font-family);
+}
+
+.RDSsecondaryErrorBtn .sapMBtnIcon {
+    color: var(--error-color);
+}
+
+.RDSsecondaryErrorBtn .sapMBtnActive .sapMBtnIcon {
+    color: var(--gray-0);
+}
+
+.RDSsecondaryErrorBtn:not(.sapMBtnDisabled).sapMBtn:hover>.sapMBtnInner {
+    background-color: var(--error-color);
+    border: 1px solid var(--error-color);
+}
+
+.RDSsecondaryErrorBtn:not(.sapMBtnDisabled).sapMBtn:hover .sapMBtnContent {
+    color: var(--gray-0);
+}
+
+.RDSsecondaryErrorBtn:not(.sapMBtnDisabled).sapMBtn:hover .sapMBtnIcon {
+    color: var(--gray-0);
+}
+
+
+/*Default button*/
+
+.RDSdefualtBtn .sapMBtnInner {
+    border-radius: 2px;
+    border: 1px solid var(--gray-4);
+    background-color: var(--gray-1);
+}
+
+.RDSdefualtBtn .sapMBtnContent {
+    color: var(--gray-7);
+}
+
+.RDSdefualtBtn .sapMBtnIcon {
+    color: var(--gray-7);
+}
+
+.RDSdefualtBtn .sapMBtnActive .sapMBtnIcon {
+    color: var(--gray-7) !important;
+}
+
+.RDSdefualtBtn:not(.sapMBtnDisabled).sapMBtn:hover>.sapMBtnInner {
+    background-color: var(--gray-2);
+    border: 1px solid var(--gray-4);
+}
+
+
+/*Secondary succuss Button*/
+
+.RDSuccssButton .sapMBtnInner {
+    border-radius: 2px !important;
+    border: 1px solid var(--success-color) !important;
+    background-color: var(--gray-0) !important;
+}
+
+.RDSuccssButton .sapMBtnContent {
+    color: var(--success-color);
+    font-size: .875rem;
+    font-family: var(--font-family);
+}
+
+.RDSuccssButton .sapMBtnIcon {
+    color: var(--success-color);
+}
+
+.RDSuccssButton .sapMBtnActive .sapMBtnIcon {
+    color: var(--gray-0);
+}
+
+.RDSuccssButton:not(.sapMBtnDisabled).sapMBtn:hover>.sapMBtnInner {
+    background-color: var(--success-color) !important;
+    border: 1px solid var(--success-color) !important;
+}
+
+.RDSuccssButton:not(.sapMBtnDisabled).sapMBtn:hover .sapMBtnContent {
+    color: var(--gray-0) !important;
+}
+
+.RDSuccssButton:not(.sapMBtnDisabled).sapMBtn:hover .sapMBtnIcon {
+    color: var(--gray-0) !important;
+}
+
+
+/* system input icons - like combobox, Datepicker, valuehelp class*/
+
+.sapMInputBaseIconPressed .sapMInputBaseIcon,
+.sapMInputBaseIconPressed .sapMInputBaseIcon:hover {
+    background-color: rgba(var(--primary-color), 1) !important;
+    ;
+    color: var(--gray-0);
+}
+
+.sapMInputBaseIcon:hover {
+    background-color: hsl(var(--Primary-color-hs), calc(var(--Primary-color-l)*1.49)) !important;
+}
+
+.sapMInputBaseIconPressed .sapMInputBaseContentWrapper {
+    border-color: rgba(var(--primary-color), 1) !important;
+    ;
+}
+
+.sapMInputBaseIconContainer .sapMInputBaseIcon {
+    color: rgba(var(--primary-color), 1);
+}
+
+.sapMText {
+    font-family: var(--font-family) !important;
+}
+
+
+/* system Select Input class*/
+
+.sapMSltHoverable:not(.sapMSltState):not(.sapMSltIconOnly):hover {
+    border-color: var(--gray-10);
+}
+
+.sapMSltArrow {
+    color: rgba(var(--primary-color), 1);
+}
+
+.sapMSlt>.sapMSltArrow:hover {
+    background-color: hsl(var(--Primary-color-hs), calc(var(--Primary-color-l)*1.49)) !important;
+}
+
+.sapMSltPressed>.sapMSltArrow {
+    background: rgba(var(--primary-color), 1);
+    ;
+}
+
+.sapMSelectListItemBaseSelected {
+    background: rgba(var(--primary-color), 0.2);
+    border-bottom: .0625rem solid rgba(var(--primary-color), 1);
+    ;
+}
+
+.sapMSltPressed:not(.sapMSltDisabled):not(.sapMSltState) {
+    border-color: rgba(var(--primary-color), 1);
+}
+
+.sapMSelectListItemBaseSelected.sapMSelectListItemBaseHoverable:hover {
+    background-color: rgba(var(--primary-color), 0.3);
+}
+
+
+/* system input class*/
+
+.sapMInputBaseContentWrapper:hover {
+    border-color: var(--gray-10) !important;
+    background-color: var(--inputFill-color);
+}
+
+.sapUiBody {
+    font-family: var(--font-family);
+}
+
+.sapUiIcon:focus {
+    outline: none;
+}
+
+.sapMInputBaseIconContainer .sapMInputBaseIcon:active {
+    background-color: rgba(var(--primary-color), 1) !important;
+    color: var(--gray-0);
+}
+
+.sapMInputBaseInner[placeholder] {
+    font-family: var(--font-family);
+}
+
+.sapMFocus.sapMTextArea .sapMInputBaseContentWrapper .sapMInputBaseInner {
+    outline: none;
+}
+
+.sapMPage>.sapMPageHeader+section,
+.sapMPage>.sapMPageSubHeader+section,
+.sapMPage>.sapMPageHeader+.sapUiHiddenPlaceholder+section {
+    top: 2.6rem;
+}
+
+.RDSDialog .sapMDialog>footer .sapMFooter-CTX {
+    background: hsl(var(--Primary-color-hs), calc(var(--Primary-color-l)*.8)) !important;
+}
+
+.RDSDialog .sapContrast.sapMFooter-CTX .sapMBtnInner:not(.sapMBtnDisabled) {
+    color: var(--inputFill-color) !important;
+}
+
+.RDSDialog.sapUiSizeCompact.sapMDialog>footer .sapMFooter-CTX,
+.sapUiSizeCompact .sapMDialog>footer .sapMFooter-CTX {
+    background: hsl(var(--Primary-color-hs), calc(var(--Primary-color-l)*.8)) !important;
+}
+
+.RDSShipmentPage {
+    background-color: var(--inputFill-color) !important;
+}
+
+
+.RDSShipmentpadding {
+
+    background-color: var(--inputFill-color) !important;
+    margin-left: 0.8rem !important;
+    margin-right: 0.8rem !important;
+    margin-top: 0.5rem !important;
+}
+
+.RDSShipmentpaddingToolBar {
+    padding-left: 0.8rem !important;
+    padding-right: 0.8rem !important;
+    padding-top: 1.3rem !important;
+    padding-bottom: 1.3rem !important;
+    background-color: var(--inputFill-color) !important;
+    border: none;
+}
+
+.sapUiFormM:not(.sapUiFormEdit)>.sapUiFormResGrid>div:not(.sapMTB) {
+    padding-bottom: 0rem !important;
+}
+
+
+/*dialog box*/
+
+.RDSdialogBg.sapMDialog>header.sapMDialogTitle .sapMTitle {
+    color: var(--gray-8) !important;
+    font-family: var(--font-family);
+    font-size: 1rem !important;
+    font-weight: bold !important;
+}
+
+.RDSdialogBg.sapMDialog.sapMPopup-CTX>header .sapMHeader-CTX,
+.sapMDialog.sapMPopup-CTX>header .sapMSubHeader-CTX {
+    background: var(--gray-2) !important;
+}
+
+.RDSdialogBg .sapMText {
+    /*color: var(--gray-0);*/
+    color: var(--gray-8) !important;
+}
+
+.RDSdialogBg .sapMBtnInner.sapMBtnText {
+    color: rgba(var(--primary-color), 1) !important;
+    text-shadow: 0 0 0;
+}
+
+.RDSdialogBg.sapMDialog>.sapMDialogSection {
+    background-color: var(--gray-2);
+    border-top: 1px solid var(--gray-4);
+    border-bottom: 1px solid var(--gray-4);
+}
+
+.RDSdialogBg .sapMBtnContent {
+    font-family: var(--font-family);
+}
+
+
+
+.RDSdialogBg .sapMFooter-CTX {
+    background: white !important;
+    border-top: none !important;
+}
+
+.RDSdialogBg .sapMLabelTBHeader {
+    font-size: 0.875rem !important;
+    font-family: var(--font-family) !important;
+    font-weight: normal !important;
+}
+
+.RDSdialogBg .RDSsecondaryBtnDailog .sapMBtnContent {
+    color: rgba(var(--primary-color), 1);
+    font-size: .875rem;
+    font-family: var(--font-family);
+}
+
+.RDSdialogBg .RDSsecondaryBtnDailog:not(.sapMBtnDisabled).sapMBtn:hover>.sapMBtnInner {
+    background-color: rgba(var(--primary-color), 1);
+    border: 1px solid rgba(var(--primary-color), 1);
+}
+
+.RDSdialogBg .RDSsecondaryBtnDailog:not(.sapMBtnDisabled).sapMBtn:hover .sapMBtnContent {
+    color: var(--gray-0);
+}
+
+/*RadioButton*/
+
+.RDSradioButton.sapMRbB .sapMRbHoverable {
+    stroke: green;
+}
+
+/* Select Input Class */
+
+
+/* version 1*/
+
+.RDSseletV1 {
+    border: 1px solid #DEDEDF;
+    background-color: var(--inputFill-color);
+}
+
+
+.RDSradioButton.sapMRb .sapMRbB .sapMRbBOut {
+    stroke: var(--gray-6);
+}
+
+.RDSradioButton.sapMRbSel .sapMRbBInn {
+    fill: rgba(var(--primary-color), 1);
+}
+
+.RDSradioButton .sapMLabel {
+    font-size: 0.875rem;
+    font-family: var(--font-family);
+    color: var(--gray-8) !important;
+}
+
+/*Info message box*/
+
+.RDSinfoDialog.sapMDialog.sapMMessageBoxInfo .sapMDialogIcon.sapUiIcon {
+    color: var(--info-color) !important;
+}
+
+
+.RDSinfoDialog.sapMDialog>header.sapMDialogTitle .sapMTitle {
+    color: var(--info-color) !important;
+}
+
+.RDSinfoDialog.sapMDialog.sapMMessageDialog.sapMMessageBoxInfo .sapMDialogTitle>.sapMBar {
+    box-shadow: inset 1 0rem var(--gray-4), 0 0 0.25rem 0 rgba(0, 0, 0, 0.15), inset 0 -0.0625rem 0 0 var(--gray-4);
+}
+
+
+/*.sapMDialog.sapMMessageDialog.sapMMessageBoxInfo .sapMDialogTitle>.sapMBar{
+	box-shadow: inset 0 -0.0625rem red, 0 0 0.25rem 0 rgba(0, 0, 0, 0.15), inset 0 -0.0625rem 0 0 red;
+}*/
+
+.RDSinfoDialog.sapMDialog.sapMPopup-CTX>header .sapMHeader-CTX,
+.sapMDialog.sapMPopup-CTX>header .sapMSubHeader-CTX {
+    background: var(--gray-2);
+}
+
+.RDSinfoDialog .sapMText {
+    /*color: var(--gray-0);*/
+    color: var(--gray-8) !important;
+}
+
+.RDSinfoDialog.sapMMessageDialog .sapMBtnInner:hover {
+    background-color: rgba(var(--primary-color), 1) !important;
+    border: 1px solid rgba(var(--primary-color), 1) !important;
+}
+
+.RDSinfoDialog.sapMMessageDialog .sapMBtnInner {
+    background-color: var(--gray-0) !important;
+    border: 1px solid rgba(var(--primary-color), 1) !important;
+}
+
+.RDSinfoDialog.sapMMessageDialog .sapMBtnInner.sapMBtnText {
+    color: rgba(var(--primary-color), 1) !important;
+}
+
+.RDSinfoDialog.sapMMessageDialog .sapMBtnInner.sapMBtnText:hover {
+    color: var(--gray-0) !important;
+}
+
+.RDSinfoDialog .sapMIBar.sapMFooter-CTX {
+    background-color: var(--gray-0) !important;
+    border-top: 1px solid var(--gray-4) !important;
+}
+
+.RDSinfoDialog.sapMDialog>.sapMDialogSection {
+    background-color: var(--gray-2);
+}
+
+.RDSinfoDialog .sapMBtnContent {
+    font-family: var(--font-family);
+}
+
+.RDSinfoDialog .sapMBtnInner {
+    text-shadow: none !important;
+}
+
+.RDSshipmentToolbar .sapMLabelTBHeader {
+    font-size: 0.875rem !important;
+    font-family: var(--font-family) !important;
+
+}
+
+.RDSshipmentToolbar {
+    font-size: 0.875rem !important;
+    font-family: var(--font-family) !important;
+
+}
+
+.classCustomTitle {
+    height: 0rem !important;
+}
+
+.sapUiSizeCompact .sapUiFormContainerTitle>.sapUiFormTitle {
+    height: 0rem !important;
+}
+
+.toolBarClass {
+    padding: 0rem !important;
+}
+
+.acknowledgeItemClass {
+    background-color: #8FBC8F !important;
+}
+
+.rejectItemClass {
+    background: #CD5C5C !important;
+}

@@ -1,0 +1,169 @@
+<core:View controllerName="com.inc.ApWorkbench.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:grid="sap.ui.layout.cssgrid" xmlns:f="sap.f" xmlns:w="sap.ui.integration.widgets" xmlns:core="sap.ui.core"
+	xmlns:fm="sap.ui.layout.form" xmlns:viz="sap.viz.ui5.controls" xmlns:vizFeeds="sap.viz.ui5.controls.common.feeds"
+	xmlns:vizData="sap.viz.ui5.data" xmlns:layout="sap.ui.layout">
+	<App id="app">
+		<pages>
+			<Page id="page" title="Accounts Payable Dashboard" showHeader="false">
+				<Toolbar>
+					<SearchField width="18%" class="sapUiTinyMarginEnd" placeholder="Search Vendor Id"/>
+					<SearchField width="18%" placeholder="Search Company Code"/>
+					<ToolbarSpacer/>
+					<Label text="Form Date:" class="sapUiLargeMarginBegin"/>
+					<DatePicker id="DP1" placeholder="Enter Date" change="handleChange" width="20%"/>
+					<Label text="To Date:"/>
+					<DatePicker id="DP2" placeholder="Enter Date" change="handleChange" width="20%"/>
+					<Button type="Emphasized" text="GO" class="sapUiSizeCompact"/>
+					<Button type="Emphasized" text="Reset" class="sapUiSizeCompact"/>
+				</Toolbar>
+				<fm:SimpleForm maxContainerCols="4" editable="true" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="6" emptySpanL="0"
+					emptySpanM="0" columnsL="4" columnsM="2" class="removeSpace">
+					<fm:content>
+						<VBox height="6rem" class="sapUiTinyMarginTop cardCls">
+							<Label text="{i18n>OverDueInvoices}" textAlign="Center" design="Bold" class="sapUiTinyMarginTop sapUiSmallMarginBegin dashboardlvlCSS"/>
+							<Link text="7" class="sapUiMediumMarginTop cardLabelTxt overdueTxt sapUiSmallMarginBegin" press="onLink"></Link>
+						</VBox>
+						<VBox height="6rem" class="sapUiTinyMarginTop cardCls">
+							<Label text="{i18n>InvoiceswithError}" textAlign="Center" design="Bold" class="sapUiTinyMarginTop sapUiSmallMarginBegin dashboardlvlCSS"/>
+							<Link text="20" class="sapUiMediumMarginTop cardLabelTxt warningTxt sapUiSmallMarginBegin" textAlign="Center" press="onLink"/>
+						</VBox>
+						<VBox height="6rem" class="sapUiTinyMarginTop cardCls">
+							<Label text="{i18n>InvoicesPendingToday}" textAlign="Center" design="Bold" class="sapUiTinyMarginTop sapUiSmallMarginBegin dashboardlvlCSS"/>
+							<Link text="24" class="sapUiMediumMarginTop cardLabelTxt pendingTxt sapUiSmallMarginBegin" textAlign="Center" press="onLink"/>
+						</VBox>
+						<VBox height="6rem" class="sapUiTinyMarginTop cardCls">
+							<Label text="{i18n>POInvoices}" textAlign="Center" design="Bold" class="sapUiTinyMarginTop sapUiSmallMarginBegin dashboardlvlCSS"/>
+							<Link text="{oDashboardModel>/poInvoice}" class="sapUiMediumMarginTop cardLabelTxt sapUiSmallMarginBegin" textAlign="Center"
+								press="onLinkPressPo"/>
+						</VBox>
+						<VBox height="6rem" class="sapUiTinyMarginTop cardCls">
+							<Label text="{i18n>Non-POInvoices}" textAlign="Center" design="Bold" class="sapUiTinyMarginTop sapUiSmallMarginBegin dashboardlvlCSS"/>
+							<Link text="{oDashboardModel>/nonpoInvoice}" class="sapUiMediumMarginTop cardLabelTxt sapUiSmallMarginBegin" textAlign="Center"
+								press="onLinkPressNonpo"/>
+						</VBox>
+						<VBox height="6rem" class="sapUiTinyMarginTop cardCls">
+							<Label text="{i18n>InvoicesAwaiting}" textAlign="Center" design="Bold" class="sapUiSmallMarginBegin dashboardlvlCSS"></Label>
+							<Label text="{i18n>Approval}" textAlign="Center" design="Bold" class="sapUiSmallMarginBegin dashboardlvlCSS"></Label>
+							<Link text="52" textAlign="Center" class="cardLabelTxt sapUiSmallMarginBegin" press="onLink"/>
+						</VBox>
+					</fm:content>
+				</fm:SimpleForm>
+				<grid:CSSGrid id="grid1">
+					<grid:customLayout>
+						<grid:GridResponsiveLayout layoutChange="onLayoutChange">
+							<grid:layoutS>
+								<grid:GridSettings gridTemplateColumns="auto" gridTemplateRows="auto" gridGap="0.5rem"></grid:GridSettings>
+							</grid:layoutS>
+							<grid:layoutM>
+								<grid:GridSettings gridTemplateColumns="1fr 1fr 1fr" gridTemplateRows="auto" gridGap="0.5rem"></grid:GridSettings>
+							</grid:layoutM>
+							<grid:layoutL>
+								<grid:GridSettings gridTemplateColumns="2fr 2fr 2fr" gridTemplateRows="auto" gridGap="0.5rem"></grid:GridSettings>
+							</grid:layoutL>
+							<grid:layoutXL>
+								<grid:GridSettings gridTemplateColumns="2fr 2fr 2fr" gridTemplateRows="auto" gridGap="0.5rem"></grid:GridSettings>
+							</grid:layoutXL>
+						</grid:GridResponsiveLayout>
+					</grid:customLayout>
+					<VBox class="vBoxCls">
+						<viz:VizFrame height="313px" width="auto" xmlns="sap.viz" id="oDonutChart" vizType="donut" selectData="onClickDonutData"
+							vizProperties="{legendGroup: { layout: { position: 'right' } },interaction: {selectability: {mode: 'SINGLE'}},plotArea: { drawingEffect: 'glossy' },title:{ text:'Overall Exception wise count',alignment :'left',style:{color:'#000000'}}}">
+							<viz:dataset>
+								<vizData:FlattenedDataset data="{sampleDatajson>/items}">
+									<vizData:dimensions>
+										<vizData:DimensionDefinition name="status" value="{sampleDatajson>status}"/>
+									</vizData:dimensions>
+									<vizData:measures>
+										<vizData:MeasureDefinition name="count" value="{sampleDatajson>count}"/>
+									</vizData:measures>
+								</vizData:FlattenedDataset>
+							</viz:dataset>
+							<viz:feeds>
+								<vizFeeds:FeedItem uid="size" type="Measure" values='count'/>
+								<vizFeeds:FeedItem uid="color" type="Dimension" values="status"/>
+							</viz:feeds>
+						</viz:VizFrame>
+					</VBox>
+					<VBox class="vBoxCls">
+						<viz:VizFrame height="313px" vizType='bar' width="auto" selectData="onClickBarData" id="barChart"
+							vizProperties="{interaction: {selectability: {mode: 'SINGLE'}},plotArea: { drawingEffect: 'normal' ,dataLabel: { position: 'inside' ,visible: true},colorPalette:['#50a853'] },title:{ text:'Invoices Pending by Vendor',alignment :'left',style:{color:'#000000'}},legend : { visible: false }}">
+							<viz:dataset>
+								<vizData:FlattenedDataset data="{graphModel>/items}">
+									<vizData:dimensions>
+										<vizData:DimensionDefinition name="Vendor" value="{graphModel>task}"/>
+									</vizData:dimensions>
+									<vizData:measures>
+										<vizData:MeasureDefinition name="Count" value="{graphModel>count}"/>
+										<vizData:MeasureDefinition name="Vendor" value="{graphModel>task}"/>
+									</vizData:measures>
+								</vizData:FlattenedDataset>
+							</viz:dataset>
+							<viz:feeds>
+								<vizFeeds:FeedItem id='valueAxisFeed1' uid="valueAxis" type="Measure" values="Count"/>
+								<vizFeeds:FeedItem id='categoryAxisFeed1' uid="categoryAxis" type="Dimension" values="Vendor"/>
+							</viz:feeds>
+						</viz:VizFrame>
+					</VBox>
+					<VBox class="vBoxCls">
+						<viz:VizFrame height="313px" xmlns="sap.viz" vizType="line" width="auto" selectData="onClickArea" id="areaChart"
+							vizProperties="{categoryAxis: { label: { rotation: 'false', angle: '0', truncatedLabelRatio: '100' } },interaction: {selectability: {mode: 'SINGLE'}},plotArea: { drawingEffect: 'normal',colorPalette:['#5bbe52'] } ,title:{ text:'Invoices by invoice Due date',alignment :'left',style:{color:'#000000'}},legendGroup: {layout: { position: 'bottom' } }}">
+							<viz:dataset>
+								<vizData:FlattenedDataset data="{graphModel>/milk}">
+									<vizData:dimensions>
+										<vizData:DimensionDefinition name="month" value="{graphModel>month}"/>
+									</vizData:dimensions>
+									<vizData:measures>
+										<vizData:MeasureDefinition name="count" value="{graphModel>count}"/>
+									</vizData:measures>
+								</vizData:FlattenedDataset>
+							</viz:dataset>
+							<viz:feeds>
+								<vizFeeds:FeedItem uid="valueAxis" type="Measure" values="count"/>
+								<vizFeeds:FeedItem uid="categoryAxis" type="Dimension" values="month"/>
+							</viz:feeds>
+						</viz:VizFrame>
+					</VBox>
+					<!--	<VBox class="vBoxCls quickLinkCls sapUiTinyMarginEnd">
+						<Title text="Quick Link" class="linkBegin sapUiTinyMarginTop"/>
+						<Link text="Go to Inbox" class="linkCls sapUiTinyMarginBegin" press="onNavToInbox"></Link>
+						<Link text="Create E-Invoice" class="linkCls sapUiTinyMarginBegin" press="onNavToEinvoice" enabled="false"></Link>
+						<Link text="Create Payment Request" class="linkCls sapUiTinyMarginBegin" press="onNavToPaymentRequest"></Link>
+					</VBox>-->
+				</grid:CSSGrid>
+				<fm:SimpleForm maxContainerCols="4" editable="true" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="6" emptySpanL="0"
+					emptySpanM="0" columnsL="4" columnsM="2">
+					<fm:content>
+						<viz:VizFrame uiConfig="{applicationSet:'fiori'}" selectData="onClickAging" height='300px' width="100%" id="agingChart"
+							vizProperties="{interaction: {selectability: {mode: 'SINGLE'}},plotArea: { drawingEffect: 'normal' ,colorPalette:['#007553','#00B380','#09B363','#0DFF8E','#18F24B','#A0F533'] ,dataLabel: { position: 'inside' ,visible: true} }, title: { text : 'Aging Report',style:{color:'#000000'}},valueAxis: { title: { visible: false} }}"
+							vizType='column'>
+							<viz:dataset>
+								<vizData:FlattenedDataset data="{reportModel>/listOfReponse}">
+									<vizData:dimensions>
+										<vizData:DimensionDefinition name="User" value="{reportModel>user}"/>
+									</vizData:dimensions>
+									<vizData:measures>
+										<vizData:MeasureDefinition name="overDue" value="{reportModel>overDue}"/>
+										<vizData:MeasureDefinition name="+7 days" value="{reportModel>+7 days}"/>
+										<vizData:MeasureDefinition name="+14 days" value="{reportModel>+14 days}"/>
+										<vizData:MeasureDefinition name="+21 days" value="{reportModel>+21 days}"/>
+										<vizData:MeasureDefinition name="+28 days" value="{reportModel>+28 days}"/>
+										<vizData:MeasureDefinition name=">28 days" value="{reportModel>>28 days}"/>
+										</vizData:measures>
+									</vizData:FlattenedDataset>
+								</viz:dataset>
+								<viz:feeds>
+									<vizFeeds:FeedItem id='week5' uid="valueAxis" type="Measure" values="overDue"/>
+									<vizFeeds:FeedItem id='week1' uid="valueAxis" type="Measure" values="+7 days"/>
+									<vizFeeds:FeedItem id='week2' uid="valueAxis" type="Measure" values="+14 days"/>
+									<vizFeeds:FeedItem id='week3' uid="valueAxis" type="Measure" values="+21 days"/>
+									<vizFeeds:FeedItem id='week4' uid="valueAxis" type="Measure" values="+28 days"/>
+									<vizFeeds:FeedItem id='week6' uid="valueAxis" type="Measure" values=">28 days"/>
+										<vizFeeds:FeedItem id='categoryAxisFeed' uid="categoryAxis" type="Dimension" values="User"/>
+									</viz:feeds>
+								</viz:VizFrame>
+							</fm:content>
+						</fm:SimpleForm>
+					</Page>
+				</pages>
+			</App>
+		</core:View>

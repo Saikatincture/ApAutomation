@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Dialog draggable="true" title="Invoice Status">
+		<beginButton>
+			<Button text="{i18n>post}" press="fnSubmit" visible="{oInvoiceModel>/postBtnvisible}"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>Cancel}" press="onClosevalidatefrag"/>
+		</endButton>
+		<content>
+			<HBox alignItems="Center" justifyContent="Center" class="sapUiSmallMargin sapUiSizeCompact">
+				<Label text="Status" class="sapUiSmallMarginEnd"/>
+				<ObjectStatus text="{oInvoiceModel>/remidianStatus}" state="{oInvoiceModel>/remidianState}"/>
+			</HBox>
+			<HBox alignItems="Center" justifyContent="Center" class="sapUiSizeCompact">
+				<Label text="User" class="sapUiSmallMarginEnd"/>
+				<Select forceSelection="false" width="8.5rem">
+					<core:Item key="ABSR@novonordisk.com" text="ABSR@novonordisk.com"/>
+					<core:Item key="SKWB@novonordisk.com" text="SKWB@novonordisk.com"/>
+					<core:Item key="DEFG@novonordisk.com" text="DEFG@novonordisk.com"/>
+					<core:Item key="SDBA@novonordisk.com" text="SDBA@novonordisk.com"/>
+				</Select>
+			</HBox>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

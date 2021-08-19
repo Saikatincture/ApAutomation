@@ -1,0 +1,110 @@
+{
+	"milk": [{
+		"month": "January",
+		"count": "2"
+	}, {
+		"month": "February",
+		"count": "10"
+	}, {
+		"month": "March",
+		"count": "15"
+	}, {
+		"month": "April",
+		"count": "18"
+	}, {
+		"month": "May",
+		"count": "56"
+	}, {
+		"month": "June",
+		"count": "20"
+	}, {
+		"month": "July",
+		"count": "16"
+	}, {
+		"month": "August",
+		"count": "18"
+	}, {
+		"month": "September",
+		"count": "54"
+	}, {
+		"month": "October",
+		"count": "50"
+	}, {
+		"month": "November",
+		"count": "36"
+	}, {
+		"month": "December",
+		"count": "48"
+	}],
+	"items": [{
+			"task": "SANOFI",
+			"count": "231"
+		}, {
+			"task": "RANBAXY",
+			"count": "90"
+		}, {
+			"task": "TIGER BALM",
+			"count": "234"
+		}, {
+			"task": "ELI-LILY",
+			"count": "890"
+		}, {
+			"task": "3M",
+			"count": "453"
+		}
+
+	],
+	"milk1": [{
+		"Type": "Vendor Mismatch",
+		"count": 14,
+		"Cost": 94383.52,
+		"Consumption": 76855.15368
+	}, {
+		"Type": "PO Error",
+		"count": 8,
+		"Cost": 397952.77,
+		"Consumption": 304964.8856125
+	}, {
+		"Type": "Duplicate",
+		"count": 7,
+		"Cost": 115844.26,
+		"Consumption": 98268.9597904
+	}, {
+		"Type": "Bill to ship PO Incorrect",
+		"count": 2,
+		"Cost": 263180.86,
+		"Consumption": 176502.5521223
+	}, {
+		"Type": "Vendor Not Found",
+		"count": 1,
+		"Cost": 611658.59,
+		"Consumption": 538515.47632832
+	}],
+	"items1": [{
+			"type": "Operations",
+			"TotalInvoices": "31",
+			"PendingInvoices": "10"
+		}, {
+			"type": "Marketing",
+			"TotalInvoices": "90",
+			"PendingInvoices": "20"
+		}, {
+			"type": "Finance",
+			"TotalInvoices": "23",
+			"PendingInvoices": "34"
+		}, {
+			"type": "Partner Mangement",
+			"TotalInvoices": "90",
+			"PendingInvoices": "46"
+		}, {
+			"type": "Talent Management",
+			"TotalInvoices": "53",
+			"PendingInvoices": "78"
+		}, {
+			"type": "CEO's Office",
+			"TotalInvoices": "43",
+			"PendingInvoices": "62"
+		}
+
+	]
+}

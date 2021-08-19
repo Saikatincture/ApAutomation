@@ -1,0 +1,155 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.uxap" xmlns:m="sap.m" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" controllerName="com.inc.SearchPurchaseOrder.controller.createPO"
+	height="100%">
+	<m:App>
+		<m:pages>
+			<m:Page showHeader="true" enableScrolling="false" navButtonPress="onNavBack" showNavButton="false" title="{i18n>CreatePO}"
+				class="sapUiSizeCompact RDSPage RDSTitle">
+				<m:content>
+					<ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="false" enableLazyLoading="false" headerContentPinnable="true"
+						preserveHeaderStateOnScroll="false" showFooter="true" height="100%" showHeaderContent="true" showEditHeaderButton="false"
+						selectedSection="InvoiceInfo">
+						<headerTitle>
+							<ObjectPageDynamicHeaderTitle visible="false">
+								<actions>
+									<m:OverflowToolbarButton icon="sap-icon://edit" text="edit header" type="Emphasized" tooltip="edit"/>
+									<m:OverflowToolbarButton icon="sap-icon://pull-down" text="show section" type="Emphasized" tooltip="pull-down"/>
+									<m:OverflowToolbarButton icon="sap-icon://show" text="show state" tooltip="show"/>
+									<m:Button text="Toggle Footer" press="toggleFooter"/>
+								</actions>
+							</ObjectPageDynamicHeaderTitle>
+						</headerTitle>
+						<headerContent></headerContent>
+						<sections>
+							<ObjectPageSection titleUppercase="false" id="InvoiceInfo" title="{i18n>PurchaseOrderHeader}">
+								<subSections>
+									<ObjectPageSubSection mode="Expanded">
+										<blocks>
+											<l:Grid defaultSpan="L6 M6 S12" class="sapUiSizeCompact" width="100%">
+												<m:VBox>
+													<f:SimpleForm id="purchaseOrderHeader1" editable="false" layout="ResponsiveGridLayout" labelSpanM="2" labelSpanS="12" adjustLabelSpan="true"
+														emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+														<f:content>
+															<core:Title/>
+															<m:Label text="{i18n>Vendor}" design="Bold" required="true" class="RDSLabel sapUiTinyMarginTop"/>
+															<m:Input value="{mCreatePO>/VendorID}{mCreatePO>/dashVendor}{mCreatePO>/SelectedVendorName}" showSuggestion="true"
+																placeholder="{i18n>EnterVendorId}" suggest="fnVendorIdSuggest" suggestionItemSelected="searchVendorAddr" class="RDSinputV1"
+																suggestionItems="{path:'searchVendorModel>/d/results', templateShareable:false}" width="50%" change="onChangeVendor">
+																<m:suggestionItems class="sapUiSizeCompact">
+																	<core:ListItem text="{searchVendorModel>Vendor}" class="sapUiSizeCompact" additionalText="{searchVendorModel>Name1}"/>
+																</m:suggestionItems>
+															</m:Input>
+															<m:Label text="{i18n>PurchasingOrg}" design="Bold" required="true" class="RDSLabel sapUiTinyMarginTop"/>
+															<m:Input value="{mCreatePO>/PurchasingOrg}" showSuggestion="true" placeholder="{i18n>EnterPurchOrg}" suggest="fnPurchasingOrg"
+																class="RDSinputV1" suggestionItems="{path:'mPurchasingOrg>/d/results', templateShareable:false}" width="50%" change="onChangePurchasingOrg">
+																<m:suggestionItems class="sapUiSizeCompact">
+																	<core:ListItem text="{mPurchasingOrg>purchasingOrg}" class="sapUiSizeCompact" additionalText="{mPurchasingOrg>purchasingOrgName}"/>
+																</m:suggestionItems>
+															</m:Input>
+															<m:Label text="{i18n>Currency}" design="Bold" class="RDSLabel sapUiTinyMarginTop"/>
+															<m:Text text="{mCreatePO>/currency}" class="sapUiTinyMarginTop"/>
+														</f:content>
+													</f:SimpleForm>
+												</m:VBox>
+												<m:VBox>
+													<f:SimpleForm id="purchaseOrderHeader2" editable="false" layout="ResponsiveGridLayout" labelSpanM="2" labelSpanS="12" adjustLabelSpan="true"
+														emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+														<f:content>
+															<core:Title/>
+															<m:Label text="{i18n>PurchasingGroup}" design="Bold" class="RDSLabel sapUiTinyMarginTop" required="true"/>
+															<m:Input value="{mCreatePO>/purchasingGroup}" showSuggestion="true" placeholder="{i18n>EnterPurchGrp}" suggest="fnPurchasingGroup"
+																class="RDSinputV1" suggestionItems="{path:'mPurchasingGroup>/d/results', templateShareable:false}" width="50%">
+																<m:suggestionItems class="sapUiSizeCompact">
+																	<core:ListItem text="{mPurchasingGroup>purchasingGroup}" class="sapUiSizeCompact" additionalText="{mPurchasingGroup>purchasingGroupName}"/>
+																</m:suggestionItems>
+															</m:Input>
+															<m:Label text="{i18n>CompCode}" design="Bold" class="RDSLabel sapUiTinyMarginTop" required="true"/>
+															<m:ComboBox placeholder="{i18n>SelectCompany}" items="{mCompanyModel>/results}" change="onCompanycodeChange"
+																selectedKey="{mCreatePO>/selectedCompanyCode}" showSecondaryValues="false" filterSecondaryValues="true" width="50%">
+																<m:items>
+																	<core:ListItem key="{mCompanyModel>companyCode}" text="{mCompanyModel>companyCode}-{mCompanyModel>companyName}"
+																		additionalText="{mCompanyModel>companyCode}" class="sapUiTinyMarginBegin"/>
+																</m:items>
+															</m:ComboBox>
+														</f:content>
+													</f:SimpleForm>
+												</m:VBox>
+											</l:Grid>
+										</blocks>
+									</ObjectPageSubSection>
+								</subSections>
+							</ObjectPageSection>
+							<ObjectPageSection title="{i18n>PurchaseOrderItems}">
+								<subSections>
+									<ObjectPageSubSection title="{i18n>PurchaseOrderItems}">
+										<blocks>
+											<l:Grid defaultSpan="L12 M12 S12" class="sapUiSizeCompact ">
+												<m:Table id="poItems" alternateRowColors="true" items="{mCreatePO>/results}" class="sapUiSizeCompact RDSMtable" mode="MultiSelect">
+													<m:headerToolbar>
+														<m:OverflowToolbar>
+															<m:ToolbarSpacer/>
+															<m:Button icon="sap-icon://add" class="sapUiSizeCompact" press="onAddRow"/>
+															<m:Button icon="sap-icon://delete" class="sapUiSizeCompact" press="onDeleteRow"/>
+														</m:OverflowToolbar>
+													</m:headerToolbar>
+													<m:columns>
+														<m:Column hAlign="Center" minScreenWidth="Small" demandPopin="true" width="8em">
+															<m:Label text="{i18n>Material}" design="Bold" class="RDSLabel"/>
+														</m:Column>
+														<m:Column hAlign="Center" minScreenWidth="Small" demandPopin="true" width="8em">
+															<m:Label text="{i18n>Description}" design="Bold" class="RDSLabel"/>
+														</m:Column>
+														<m:Column hAlign="Center" minScreenWidth="Small" demandPopin="true" width="10em">
+															<m:Label text="{i18n>Plant}" design="Bold" class="RDSLabel"/>
+														</m:Column>
+														<m:Column hAlign="Center" minScreenWidth="Small" demandPopin="true" width="8em">
+															<m:Label text="{i18n>Quantity}" design="Bold" class="RDSLabel"/>
+														</m:Column>
+														<m:Column hAlign="Center" minScreenWidth="Small" demandPopin="true" width="6em">
+															<m:Label text="{i18n>Unit}" design="Bold" class="RDSLabel"/>
+														</m:Column>
+														<m:Column hAlign="Center" minScreenWidth="Small" demandPopin="true" width="10em">
+															<m:Label text="{i18n>UnitPrice}" design="Bold" class="RDSLabel"/>
+														</m:Column>
+													</m:columns>
+													<m:items>
+														<m:ColumnListItem>
+															<m:Input value="{mCreatePO>Material}" showSuggestion="true" placeholder="{i18n>EnterMaterial}" suggest="fngetMaterial"
+																suggestionItemSelected="fngetMaterialDescription" class="RDSinputV1"
+																suggestionItems="{path:'mMaterialmodel>/d/results', templateShareable:false}" valueState="{mCreatePO>MaterialError}"
+																change="getMaterialValue">
+																<m:suggestionItems class="sapUiSizeCompact">
+																	<core:ListItem text="{mMaterialmodel>Material}" class="sapUiSizeCompact" additionalText="{mMaterialmodel>MaterialDescription}"/>
+																</m:suggestionItems>
+															</m:Input>
+															<m:Input value="{mCreatePO>Description}" editable="false" class="RDSinputV1"/>
+															<m:Input value="{mCreatePO>Plant}" showSuggestion="true" placeholder="{i18n>EnterPlant}" suggest="fnsuggestPlant" class="RDSinputV1"
+																suggestionItems="{path:'mPlantmodel>/d/results', templateShareable:false}" valueState="{mCreatePO>PlantError}" change="onChangePlant">
+																<m:suggestionItems class="sapUiSizeCompact">
+																	<core:ListItem text="{mPlantmodel>plant}" class="sapUiSizeCompact" additionalText="{mPlantmodel>name}"/>
+																</m:suggestionItems>
+															</m:Input>
+															<m:Input value="{mCreatePO>Quantity}" change="onQtyChange" class="RDSinputV1" valueState="{mCreatePO>QuantityError}"/>
+															<m:Input value="{mCreatePO>Unit}" class="RDSinputV1" change="onUnitChange" valueState="{mCreatePO>UnitError}"/>
+															<m:Input value="{mCreatePO>UnitPrice}" change="onUnitPriceChange" class="RDSinputV1" valueState="{mCreatePO>UnitPriceError}"/>
+														</m:ColumnListItem>
+													</m:items>
+												</m:Table>
+											</l:Grid>
+										</blocks>
+									</ObjectPageSubSection>
+								</subSections>
+							</ObjectPageSection>
+						</sections>
+						<footer>
+							<m:OverflowToolbar>
+								<m:ToolbarSpacer/>
+								<m:Button text="{i18n>Submit}" press="onSubmitPO" class="RDSgoButton"/>
+							</m:OverflowToolbar>
+						</footer>
+					</ObjectPageLayout>
+				</m:content>
+			</m:Page>
+		</m:pages>
+	</m:App>
+</mvc:View>

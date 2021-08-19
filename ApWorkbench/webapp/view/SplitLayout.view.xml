@@ -1,0 +1,57 @@
+<mvc:View controllerName="com.inc.ApWorkbench.controller.SplitLayout" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" class="sapUiSizeCompact">
+	<App>
+		<pages>
+			<Page class="invoicePage" id="invoiceId" busyIndicatorDelay="0">
+				<customHeader>
+					<OverflowToolbar class="incturetoolbarPrimaryClass">
+						<content>
+							<Button icon="sap-icon://nav-back" tooltip="{i18n>navBack}" class="inctureIconClass" press="onNavToInbox"></Button>
+							<Title text="{oInvoiceModel>/oInvoiceHeaderDetails/requestId}"></Title>
+							<ToolbarSpacer></ToolbarSpacer>
+							<MessageStrip text="Please validate Invoice due amount" type="Error" enableFormattedText="true" showIcon="false"
+								visible="{path:'oInvoiceModel>/oInvoiceHeaderDetails/balance', formatter:'com.inc.ApWorkbench.util.Formatter.balanceMsg' }"
+								class="sapUiSizeCompact"></MessageStrip>
+							<Label text="{i18n>invoiceAmt}" required="true"></Label>
+							<Text text="{path :'oInvoiceModel>/oInvoiceHeaderDetails/currency', formatter:'com.inc.ApWorkbench.util.Formatter.currencySymbolWithValue'}"
+								tooltip="{detailPageModel>/invoiceDetailUIDto/currency}"/>
+							<Input width="9%" class="inctureToolbarInputClass" textAlign="Right" editable="{oInvoiceModel>/posted}"
+								value="{path: 'oInvoiceModel>/oInvoiceHeaderDetails/invoiceTotal', type: 'sap.ui.model.type.Float'}" change="fnInvoiceAmtChange"></Input>
+							<Label text="{i18n>grossAmt}"></Label>
+							<Text text="{path :'oInvoiceModel>/oInvoiceHeaderDetails/currency', formatter:'com.inc.ApWorkbench.util.Formatter.currencySymbolWithValue'}"
+								tooltip="{detailPageModel>/invoiceDetailUIDto/currency}"/>
+							<Input width="9%" enabled="{oPropertyModel>/bNonEditableField}" class="inctureToolbarInputClass" textAlign="Right"
+								value="{path: 'oInvoiceModel>/oInvoiceHeaderDetails/grossAmount', type: 'sap.ui.model.type.Float'}"></Input>
+							<Label text="{i18n>balance}"></Label>
+							<Text text="{path :'oInvoiceModel>/oInvoiceHeaderDetails/currency', formatter:'com.inc.ApWorkbench.util.Formatter.currencySymbolWithValue'}"
+								tooltip="{detailPageModel>/invoiceDetailUIDto/currency}"/>
+							<Input width="9%" enabled="{oPropertyModel>/bNonEditableField}" class="inctureToolbarInputClass" textAlign="Right"
+								value="{path: 'oInvoiceModel>/oInvoiceHeaderDetails/balance', type: 'sap.ui.model.type.Float'}"></Input>
+						</content>
+					</OverflowToolbar>
+				</customHeader>
+				<content>
+					<l:Splitter id="idMainSplitter" width="100%">
+						<!--Fragments For Each Split Screen-->
+					</l:Splitter>
+					<!--Uploading Document Section-->
+				</content>
+				<footer>
+					<OverflowToolbar class="incturePrimaryClass">
+						<content>
+							<ToolbarSpacer></ToolbarSpacer>
+							<!--	<Button text="{i18n>CreatePO}" class="sapUiSizeCompact marginTopPOBtn dynamicCls" type="Emphasized" press="onPressAddPO"
+								tooltip="Add Purchase Order" visible="{=${oInvoiceModel>/posted} ? false : true}"/>
+							<Button text="{i18n>submit}" class="sapUiSizeCompact marginTopPOBtn dynamicCls" type="Emphasized" press="onSubmitPOTask"
+								tooltip="Submit Task" visible="{=${oInvoiceModel>/posted} ? false : true}"></Button>-->
+							<Button text="{i18n>Validate}" class="submitBtnCls" press="onValidateInvoice" tooltip="Validate" visible="{oInvoiceModel>/posted}"></Button>
+							<Button text="{i18n>save}" class="saveBtnCls" press="onSubmit" tooltip="Save" visible="{oInvoiceModel>/posted}"></Button>
+							<Button text="{i18n>submit}" class="submitBtnCls" press="fnSubmit" tooltip="Submit" visible="{oInvoiceModel>/posted}"></Button>
+							<Button text="{i18n>reject}" class="rejectBtnCls" press="onReject" tooltip="Reject" visible="{oInvoiceModel>/posted}"></Button>
+						</content>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

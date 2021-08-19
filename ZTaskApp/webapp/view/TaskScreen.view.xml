@@ -1,0 +1,198 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f" xmlns:layout="sap.ui.layout"
+	xmlns:fb="sap.ui.comp.filterbar" height="100%" width="100%" controllerName="com.inc.ZTaskApp.controller.TaskScreen"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+	<Page class="sapUiSizeCompact TaskPage" title="{i18n>title}">
+		<content>
+				<!--<OverflowToolbar>-->
+				<!--	<Label text="{i18n>search}" design="Bold"></Label>-->
+				<!--	<ToolbarSpacer/>-->
+				<!--	<Button text="{i18n>collapseSearch}" tooltip="{i18n>collapseSearch}" press="onPressCollapse" visible="{baseModel>/CollapseVisiblity}"/>-->
+				<!--	<Button text="{i18n>expandSearch}" tooltip="{i18n>expandSearch}" press="onPressOpen" visible="{baseModel>/openVisiblity}"/>-->
+				<!--</OverflowToolbar>-->
+				<!--<fb:FilterBar showFilterConfiguration="false" useToolbar="false" showGoOnFB="false" class="adaptFilterClass"-->
+				<!--	visible="{baseModel>/SearchVisiblity}">-->
+				<!--	<fb:filterItems>-->
+				<!--		<fb:FilterItem name="A" label="{i18n>wfDefID}">-->
+				<!--			<fb:control>-->
+				<!--				<Input value="{GlobalModel>/taskFilter/workflowDefinitionId}" placeholder="{i18n>wfDefPlaceholder}"/>-->
+				<!--			</fb:control>-->
+				<!--		</fb:FilterItem>-->
+				<!--		<fb:FilterItem name="B" label="{i18n>userID}">-->
+				<!--			<fb:control>-->
+				<!--				<Input value="{GlobalModel>/taskFilter/recipientUsers}" placeholder="{i18n>userIDPlaceholder}"/>-->
+								
+				<!--			</fb:control>-->
+				<!--		</fb:FilterItem>-->
+				<!--		<fb:FilterItem name="C" label="{i18n>subject}">-->
+				<!--			<fb:control>-->
+				<!--				<Input value="{GlobalModel>/taskFilter/subject}" placeholder="{i18n>subjectPlaceholder}"/></fb:control>-->
+				<!--		</fb:FilterItem>-->
+				<!--		<fb:FilterItem name="k" label="{i18n>createdAt}">-->
+				<!--			<fb:control>-->
+				<!--				<DateRangeSelection id="DateRangeId" change="handleDateRangeChange" displayFormatType="Gregorian"></DateRangeSelection>-->
+				<!--			</fb:control>-->
+				<!--		</fb:FilterItem>-->
+						
+				<!--	</fb:filterItems>-->
+				<!--</fb:FilterBar>-->
+				<!--<OverflowToolbar visible="{baseModel>/SearchVisiblity}">-->
+				<!--	<ToolbarSpacer/>-->
+				<!--	<Button icon="sap-icon://search" text="{i18n>search}" type="Emphasized" press="onPressSearchTask" tooltip="{i18n>search}"></Button>-->
+				<!--	<Button icon="sap-icon://refresh" text="{i18n>clear}" press="onPressResetTask" tooltip="{i18n>clear}"></Button>-->
+				<!--	<ToolbarSpacer visible="false"/>-->
+				<!--</OverflowToolbar>-->
+	
+	
+	
+	
+	
+					<Panel id="expandablePanel" expandable="true" expanded="false" expand="onExpand" width="auto" class="panelBoxCls">
+						<headerToolbar>
+							<OverflowToolbar active="true" press="onOverflowToolbarPress">
+								<Title text="Search Task" class="headerTextCls"/>
+								<ToolbarSpacer/>
+									<Button text="{i18n>clear}" icon="sap-icon://reset" press="onPressResetTask" class="sapUiTinyMarginEnd BtnCls2" width="6rem" ></Button>
+									<Button text="{i18n>search}" icon="sap-icon://search" press="onPressSearchTask" width="6rem" class="BtnCls" ></Button>
+										
+							</OverflowToolbar>
+						</headerToolbar>
+						
+							<layout:Grid class="searchGrid">
+								<layout:content>
+									<VBox>
+										<Label text="Workflow Definition ID" design="Bold" labelFor="wfId"/>
+										<Input id="wfId" class="sapUiSizeCompact" width="90%" value="{dataModel>/taskFilter/workflowDefinitionId}"/>
+									</VBox>
+									<VBox>
+										<Label text="User ID" labelFor="userId" design="Bold"/>
+										
+										<Input id="userId" class="sapUiSizeCompact" width="90%" value="{dataModel>/taskFilter/recipientUsers}"/>
+									</VBox>
+									<VBox>
+										<Label text="Subject" labelFor="SubjectId" design="Bold"/>
+										<Input id="SubjectId" class="sapUiSizeCompact" width="90%" value="{dataModel>/taskFilter/subject}"></Input>
+									</VBox>
+									<VBox>
+										<Label text="Created Between" labelFor="dateRangeId" design="Bold"/>
+										<DateRangeSelection id="DateRangeId2" width="90%" class="sapUiSizeCompact" change="handleDateRangeChange"/>
+									</VBox>
+									
+								</layout:content>
+							</layout:Grid>
+							<!--<Bar class="barCls">-->
+							<!--	<contentRight>-->
+									
+							<!--		<Button text="Search" icon="sap-icon://search" press="onPressSearchTask" width="6rem" class="BtnCls" ></Button>-->
+							<!--		<Button text="Clear" icon="sap-icon://reset" press="onPressResetTask" class="sapUiSmallMarginEnd BtnCls2" width="6rem" ></Button>		-->
+							<!--	</contentRight>-->
+							<!--</Bar>-->
+					</Panel>
+					
+					
+					
+			<IconTabBar id="iconTabBar" headerMode="Inline" select=".onStatusFilter" expandable="false" headerBackgroundDesign="Translucent"
+				class="TaskTabBar">
+				<items>
+					<IconTabFilter key="all" count="{dataModel>/taskListAll/recordCount}" text="{i18n>FilterTaskAll}"/>
+					<IconTabSeparator/>
+					<IconTabFilter key="ready" count="{dataModel>/taskListAll/count/READY}" text="{i18n>FilterTasksReady}"/>
+					<IconTabFilter key="completed" count="{dataModel>/taskListAll/count/COMPLETED}" text="{i18n>FilterTasksCompleted}"/>
+					<IconTabFilter key="canceled" count="{dataModel>/taskListAll/count/CANCELED}" text="{i18n>FilterTasksCanceled}"/>
+				</items>
+				<content>
+					<Table id="taskTable" growing="true" growingScrollToLoad="true" width="auto" class="sapUiSizeCompact" 
+						selectionChange="taskSelect" 
+					    mode="None"   
+						inset="false" fixedLayout="false"
+						items="{ path: 'dataModel>/taskListAll/workflowTaskDto', sorter: { path: 'taskID', descending: false }, parameters: { 'expand': 'taskSubject' } }">
+						<headerToolbar>
+							<Toolbar>
+								<Title id="tableHeader" text="{i18n>taskDetails}"/>
+								<ToolbarSpacer/>
+								<Button icon="sap-icon://forward" text="Forward" enabled="{baseModel>/fwdTask}" type="Transparent" press="onPressForward" />
+								<Button icon="sap-icon://cancel" text="Cancel" enabled="{baseModel>/cancelTask}" type="Transparent" press="onPressCancel" />
+								<Button icon="sap-icon://sys-cancel" text="Terminate" enabled="{baseModel>/terminateTask}" type="Transparent" press="onPressTerminate" />
+								<!--<SearchField-->
+								<!--	id="searchField"-->
+								<!--	tooltip="{i18n>worklistSearchTooltip}"-->
+								<!--	search=".onSearch"-->
+								<!--	width="auto">-->
+								<!--</SearchField>-->
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column>
+								<Label id="idColumnTitle" text="{i18n>WorkflowColumnTitle}" design="Bold"/>
+							</Column>
+				
+							<Column demandPopin="true" minScreenWidth="Small">
+								<Label text="{i18n>DateColumnTitle}" design="Bold"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Small">
+								<Label text="{i18n>PriorityColumnTitle}" design="Bold"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Small">
+								<Label text="{i18n>SubjectColumnTitle}" design="Bold"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Small">
+								<Label text="{i18n>ownerColumnTitle}" design="Bold"/>
+							</Column>
+							<Column demandPopin="false" minScreenWidth="Small">
+								<Label text="{i18n>ExceptionColumnTitle}" design="Bold"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Small">
+								<Label text="{i18n>StatusColumnTitle}" design="Bold"/>
+							</Column>
+								<Column id="actionColumn" demandPopin="true" minScreenWidth="Small">
+								<Label text=""/>
+							</Column>
+							<!--<Column id="wfDefColumn">-->
+							<!--	<Label text="{i18n>wfDefColumnTitle}" design="Bold"/>-->
+							<!--</Column>-->
+						</columns>
+						<items>
+							<ColumnListItem type="Navigation" press=".onPressNavigate" class="rowHover" highlight="{path:'dataModel>status', formatter:'com.inc.ZTaskApp.utility.formatter.formatRowHighlight'}">
+									<ObjectIdentifier title="{dataModel>workflowDefinitionId}"/>
+									<!--<Text text="{GlobalModel>description}"/>-->
+									
+									<Text
+										text="{path: 'dataModel>createdAt', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-ddTHH:mm:ss.SSSZ' }, pattern: 'yyyy/MM/dd' } }"/>
+									<Text text="{dataModel>priority}"/>
+									<Text text="{dataModel>subject}"/>
+									<Select
+										
+										items="{
+											path: 'dataModel>userList'
+											
+										}">
+										<core:Item key="{dataModel>user}" text="{dataModel>user}" />
+									</Select>
+									<Text text="{dataModel>description}"/>
+									<Text text="{dataModel>status}"/>
+									<Button icon="sap-icon://forward" type="Transparent" press="onPressForward" class="onHoverVisible" />
+							        <!--<Text text="{path: 'GlobalModel>recipientUsers', formatter: 'com.inc.ZTaskApp.utility.formatter.UserArrayFormatter'}"/>-->
+							        <!--<Text text="{path: 'GlobalModel>recipientUsers'}"/>-->
+									
+							
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+				
+			</IconTabBar>
+		<!--</f:content>-->
+			
+	<!--</f:DynamicPage>-->
+		</content>
+		<!--<footer>-->
+		<!--	<OverflowToolbar>-->
+		<!--		<ToolbarSpacer/>-->
+		<!--		<Button text="{i18n>forward}" class="BtnCls2" enabled="false" id="fwdTaskId"/>-->
+		<!--		<Button text="{i18n>cancel}" class="BtnCls2" enabled="false" id="cancelTaskId"/>-->
+		<!--		<Button text="{i18n>terminate}" class="BtnCls2" enabled="false" id="terminateTaskId"/>-->
+		<!--	</OverflowToolbar>-->
+		<!--</footer>-->
+	</Page>
+	</App>
+</mvc:View>

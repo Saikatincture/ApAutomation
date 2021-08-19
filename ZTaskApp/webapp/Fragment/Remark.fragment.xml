@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:ui="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Dialog title="Comment" contentWidth="65%" class="sapUiSizeCompact">
+		<FeedInput post="onPostComment" showIcon="false" maxLength="199" value="{hdrMdl>/inputComment}"/>
+		<List items="{hdrMdl>/results/returnsCommentsList}" showSeparators="Inner" growing="true" growingThreshold="4">
+			<FeedListItem sender="{hdrMdl>createdBy}" iconDensityAware="false"
+				timestamp="{hdrMdl>createdAt}" text="{hdrMdl>comment}">
+				<FeedListItemAction icon="sap-icon://delete" press="fnDeleteComment" text="Delete"></FeedListItemAction>
+				<FeedListItemAction icon="sap-icon://edit" press="fnEditComment" text="Edit"></FeedListItemAction>
+			</FeedListItem>
+		</List>
+		<buttons>
+			<Button text="OK" press="onOKRemark"/>
+			<Button text="Cancel" press="onCancelRemark"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

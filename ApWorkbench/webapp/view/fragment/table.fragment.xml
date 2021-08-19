@@ -1,0 +1,216 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core"
+	controllerName="com.inc.ApWorkbench.controller.baseCoder" id="prefix1">
+	<VBox visible="{postDataModel>/visbility/NewTemplateTable}">
+		<Table id="idNonPo" class="invTabScroll" items="{ path: 'postDataModel>/newCostArray', templateShareable : true }">
+			<columns>
+				<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/0/status}" hAlign="Center" id="glaccountCol"
+					minScreenWidth="Small" demandPopin="true">
+					<Label text="{i18n>GLAccount}" design="Bold" required="true"/>
+				</Column>
+				<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/1/status}" hAlign="Center" id="descriptionCol"
+					minScreenWidth="Small" demandPopin="true">
+					<Label text="{i18n>Description}" design="Bold"/>
+				</Column>
+				<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/2/status}" hAlign="Center" id="debtCredCol">
+					<Label text="{i18n>DebtCred}" design="Bold"/>
+				</Column>
+				<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/3/status}" hAlign="Center" id="amountCol" minScreenWidth="Small"
+					demandPopin="true">
+					<Label text="{i18n>Amount}" design="Bold" required="true"/>
+				</Column>
+				<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/4/status}" hAlign="Center" id="costcenterCol"
+					minScreenWidth="Small" demandPopin="true">
+					<Label text="{i18n>CostCentre}" design="Bold" required="true"/>
+				</Column>
+				<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/5/status}" hAlign="Center" id="orderCol">
+					<Label text="{i18n>Order}" design="Bold"/>
+				</Column>
+				<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/6/status}" hAlign="Center" id="pfCol">
+					<Label text="{i18n>ProfitCentre}" design="Bold"/>
+				</Column>
+				<Column hAlign="Center" visible="{PersonalizationModel>/personalizationData/userPersonaDto/7/status}" id="textCol" minScreenWidth="Small"
+					demandPopin="true">
+					<Label text="{i18n>Text}" design="Bold" required="true"/>
+				</Column>
+				<Column hAlign="Center" visible="{PersonalizationModel>/personalizationData/userPersonaDto/8/status}" id="comcdCol" minScreenWidth="Small"
+					demandPopin="true">
+					<Label text="{i18n>CoCd}" design="Bold"/>
+				</Column>
+				<Column hAlign="Center" visible="{PersonalizationModel>/personalizationData/userPersonaDto/9/status}" minScreenWidth="Small"
+					demandPopin="true">
+					<Label text="{i18n>accountNum}" design="Bold"/>
+				</Column>
+				<Column id="deleteBtnCol" hAlign="Center" demandPopin="true" minScreenWidth="Small">
+					<Label text="{i18n>Action}" design="Bold"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Input class="tbCellBorder margintopinFld glaccount" value="{postDataModel>glAccount}" filterSuggests="false"
+							suggestionItems="{path:'glAccountModel>/d/results', templateShareable : true }" tooltip="{postDataModel>glCode}"
+							suggestionItemSelected="glDescription" showSuggestion="true" suggest="glAccountSuggest" change="getGLaccountValue"
+							valueState="{postDataModel>glError}">
+							<suggestionItems>
+								<core:ListItem text="{path:'glAccountModel>GLAccounts',formatter:'ui.demo.APInvoiceTask.util.formatter.removeZero'}"
+									additionalText="{glAccountModel>GLAccDesc}"/>
+							</suggestionItems>
+						</Input>
+						<Input class="tbCellBorderNone margintopinFld sapUiTinyMarginEnd" editable="false" value="{postDataModel>materialDescription}"
+							tooltip="{postDataModel>materialDescription}"/>
+						<Select selectedKey="{postDataModel>crDbIndicator}" change="amountCalAfterAllocate" class="inputComboBox tableDropDownCss tbCellBorder">
+							<core:Item text="Debit" key="H"/>
+							<core:Item text="Credit" key="S"/>
+						</Select>
+						<Input class="tbCellBorder amountstate sapUiTinyMarginEnd margintopinFld" type="Number" value="{postDataModel>netValue}"
+							change="amountCalAfterAllocate" valueState="{postDataModel>amountError}"/>
+						<Input class="tbCellBorder margintopinFld costcenterstate sapUiTinyMarginEnd" value="{postDataModel>costCenter}"
+							tooltip="{postDataModel>costCenter}" suggestionItems="{ path:'costCenterModel>/d/results', templateShareable : true}" filterSuggests="false"
+							showSuggestion="true" suggest="costCenterSuggest" liveChange="handlecostCentreInput" change="onChangeCostCenter"
+							valueState="{postDataModel>costCenterError}">
+							<suggestionItems>
+								<core:ListItem text="{costCenterModel>CostCenters}" additionalText="{costCenterModel>CostCenterDesc}"/>
+							</suggestionItems>
+						</Input>
+						<Input class="tbCellBorderChange margintopinFld sapUiTinyMarginEnd" value="{postDataModel>internalOrderId}"
+							tooltip="{postDataModel>internalOrderId}" suggestionItems="{path:'internalOrderModel>/d/results', templateShareable : true}"
+							filterSuggests="false" showSuggestion="true" suggest="internalOrderSuggest">
+							<suggestionItems>
+								<core:ListItem text="{path:'internalOrderModel>IntOrdNumber', formatter:'ui.demo.APInvoiceTask.util.formatter.removeZero'}"
+									additionalText="{internalOrderModel>IntOrdDesc}"/>
+							</suggestionItems>
+						</Input>
+						<Input class="tbCellBorderChange margintopinFld sapUiTinyMarginEnd" value="{postDataModel>profitCentre}"
+							tooltip="{postDataModel>profitCentre}"/>
+						<Input class="tbCellBorder margintopinFld sapUiTinyMarginEnd" width="100%" value="{postDataModel>itemText}" tooltip="{postDataModel>text}"
+							valueState="{postDataModel>itemTextError}" change="onChangeText"/>
+						<Input class="tbCellBorderChange margintopinFld sapUiTinyMarginEnd" width="100%" value="{postDataModel>companyCode}"
+							tooltip="{postDataModel>companyCode}" suggestionItems="{path:'companyCodeModel>/d/results', templateShareable : true}"
+							filterSuggests="false" showSuggestion="true" suggest="companyCodeSuggest">
+							<suggestionItems>
+								<core:ListItem text="{companyCodeModel>CompCodeDesc}"
+									additionalText="{path : 'companyCodeModel>CompCode' , formatter:'ui.demo.APInvoiceTask.util.formatter.removeZero'}"/>
+							</suggestionItems>
+						</Input>
+						<Input class="tbCellBorder glaccount margintopinFld" value="{postDataModel>accNumber}" change="onChangeAccNum"
+							valueState="{postDataModel>accNumberError}"></Input>
+						<Button icon="sap-icon://delete" tooltip="Delete" press="deleteNonPoDataAfterAllocate" class="binIcon"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</VBox>
+	<Table class="invTabScroll" items="{ path: 'postDataModel>/listNonPoItem', templateShareable : true }"
+		visible="{postDataModel>/visbility/DefaultTemplateTable}">
+		<columns>
+			<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/0/status}" hAlign="Center" minScreenWidth="Small"
+				demandPopin="true">
+				<Label text="{i18n>GLAccount}" design="Bold" required="true"/>
+			</Column>
+			<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/1/status}" hAlign="Center" minScreenWidth="Small"
+				demandPopin="true">
+				<Label text="{i18n>Description}" design="Bold"/>
+			</Column>
+			<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/2/status}" hAlign="Center">
+				<Label text="{i18n>DebtCred}" design="Bold"/>
+			</Column>
+			<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/3/status}" hAlign="Center" minScreenWidth="Small"
+				demandPopin="true">
+				<Label text="{i18n>Amount}" design="Bold" required="true"/>
+			</Column>
+			<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/4/status}" hAlign="Center" minScreenWidth="Small"
+				demandPopin="true">
+				<Label text="{i18n>CostCentre}" design="Bold" required="true"/>
+			</Column>
+			<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/5/status}" hAlign="Center">
+				<Label text="{i18n>Order}" design="Bold"/>
+			</Column>
+			<Column visible="{PersonalizationModel>/personalizationData/userPersonaDto/6/status}" hAlign="Center">
+				<Label text="{i18n>ProfitCentre}" design="Bold"/>
+			</Column>
+			<Column hAlign="Center" visible="{PersonalizationModel>/personalizationData/userPersonaDto/7/status}" minScreenWidth="Small"
+				demandPopin="true">
+				<Label text="{i18n>Text}" design="Bold" required="true"/>
+			</Column>
+			<!--<Column hAlign="Center" visible="{PersonalizationModel>/personalizationData/userPersonaDto/7/status}" minScreenWidth="Small"-->
+			<!--	demandPopin="true">-->
+			<!--	<Label text="{i18n>TaxCode}" design="Bold" required="true"/>-->
+			<!--</Column>-->
+			<!--<Column hAlign="Center" visible="{PersonalizationModel>/personalizationData/userPersonaDto/7/status}" minScreenWidth="Small"-->
+			<!--	demandPopin="true">-->
+			<!--	<Label text="{i18n>TaxAmount}" design="Bold" required="true"/>-->
+			<!--</Column>-->
+			<Column hAlign="Center" visible="{PersonalizationModel>/personalizationData/userPersonaDto/8/status}" minScreenWidth="Small"
+				demandPopin="true">
+				<Label text="{i18n>CoCd}" design="Bold"/>
+			</Column>
+			<Column hAlign="Center" visible="{PersonalizationModel>/personalizationData/userPersonaDto/9/status}" minScreenWidth="Small"
+				demandPopin="true">
+				<Label text="{i18n>accountNum}" design="Bold"/>
+			</Column>
+			<Column hAlign="Center" demandPopin="true" minScreenWidth="Small">
+				<Label text="{i18n>Action}" design="Bold"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Input class="tbCellBorder margintopinFld glaccount" value="{postDataModel>glAccount}" filterSuggests="false"
+						suggestionItems="{path:'glAccountModel>/d/results', templateShareable : true }" tooltip="{postDataModel>glCode}"
+						suggestionItemSelected="glDescription" showSuggestion="true" suggest="glAccountSuggest" change="getGLaccountValue"
+						valueState="{postDataModel>glError}">
+						<suggestionItems>
+							<core:ListItem text="{path:'glAccountModel>GLAccounts',formatter:'ui.demo.APInvoiceTask.util.formatter.removeZero'}"
+								additionalText="{glAccountModel>GLAccDesc}"/>
+						</suggestionItems>
+					</Input>
+					<Input class="tbCellBorderNone margintopinFld sapUiTinyMarginEnd" editable="false" value="{postDataModel>materialDescription}"
+						tooltip="{postDataModel>materialDescription}"/>
+					<Select selectedKey="{postDataModel>crDbIndicator}" change="amountCal" class="inputComboBox tableDropDownCss tbCellBorder">
+						<core:Item text="Debit" key="H"/>
+						<core:Item text="Credit" key="S"/>
+					</Select>
+					<Input class="tbCellBorder amountstate sapUiTinyMarginEnd margintopinFld" type="Number" value="{postDataModel>netValue}" change="amountCal"
+						valueState="{postDataModel>amountError}"/>
+					<Input class="tbCellBorder margintopinFld costcenterstate sapUiTinyMarginEnd" value="{postDataModel>costCenter}"
+						tooltip="{postDataModel>costCenter}" suggestionItems="{ path:'costCenterModel>/d/results', templateShareable : true}" filterSuggests="false"
+						showSuggestion="true" suggest="costCenterSuggest" liveChange="handlecostCentreInput" change="onChangeCostCenter"
+						valueState="{postDataModel>costCenterError}">
+						<suggestionItems>
+							<core:ListItem text="{costCenterModel>CostCenters}" additionalText="{costCenterModel>CostCenterDesc}"/>
+						</suggestionItems>
+					</Input>
+					<Input class="tbCellBorderChange margintopinFld sapUiTinyMarginEnd" value="{postDataModel>internalOrderId}"
+						tooltip="{postDataModel>internalOrderId}" suggestionItems="{path:'internalOrderModel>/d/results', templateShareable : true}"
+						filterSuggests="false" showSuggestion="true" suggest="internalOrderSuggest">
+						<suggestionItems>
+							<core:ListItem text="{path:'internalOrderModel>IntOrdNumber', formatter:'ui.demo.APInvoiceTask.util.formatter.removeZero'}"
+								additionalText="{internalOrderModel>IntOrdDesc}"/>
+						</suggestionItems>
+					</Input>
+					<Input class="tbCellBorderChange margintopinFld sapUiTinyMarginEnd" value="{postDataModel>profitCentre}"
+						tooltip="{postDataModel>profitCentre}"/>
+					<Input class="tbCellBorder margintopinFld sapUiTinyMarginEnd" width="100%" value="{postDataModel>itemText}" tooltip="{postDataModel>text}"
+						valueState="{postDataModel>itemTextError}" change="onChangeText"/>
+					<!--<Select class="inputComboBox" visible="true" forceSelection="false" selectedKey="{postDataModel>taxCode}" items="{taxModel>/taxCodes}">-->
+					<!--	<items>-->
+					<!--		<core:ListItem key="{taxModel>taxRate}" text="{taxModel>taxCode}"/>-->
+					<!--	</items>-->
+					<!--</Select>-->
+					<!--<Input value="{postDataModel>taxAmount}" change="taxCalculation" class="tbCellBorderChange margintopinFld sapUiTinyMarginEnd"></Input>-->
+					<Input class="tbCellBorderChange margintopinFld sapUiTinyMarginEnd" value="{postDataModel>companyCode}"
+						tooltip="{postDataModel>companyCode}" suggestionItems="{path:'companyCodeModel>/d/results', templateShareable : true}"
+						filterSuggests="false" showSuggestion="true" suggest="companyCodeSuggest">
+						<suggestionItems>
+							<core:ListItem text="{companyCodeModel>CompCodeDesc}"
+								additionalText="{path : 'companyCodeModel>CompCode' , formatter:'ui.demo.APInvoiceTask.util.formatter.removeZero'}"/>
+						</suggestionItems>
+					</Input>
+					<Input class="tbCellBorder glaccount margintopinFld" value="{postDataModel>accNumber}" change="onChangeAccNum"
+						valueState="{postDataModel>accNumberError}"></Input>
+					<Button icon="sap-icon://delete" tooltip="Delete" press="deleteNonPoData" class="binIcon"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns="sap.m" class="sapUiSizeCompact" xmlns:core="sap.ui.core">
+	<!--<Button text="Create Template" class="sapUiSizeCompact dynamicCls selectTemplateBtn" press="onSaveTemp"></Button>-->
+	<TableSelectDialog noDataText="No Products Found" multiSelect="true" title="Select Template" search="handleTemplateSearch"
+		confirm="handleClose" growing="true" growingThreshold="8" cancel="handleClose" items="{templateModel>/aNonPoTemplate}" contentHeight="100%"
+		contentWidth="50%" >
+		<columns>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Label text="Select Template Name" class="selectTemp"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Label text="Account Number" class="selectTemp"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Label text="Amount" class="selectTemp"/>
+			</Column>
+			
+		</columns>
+		<ColumnListItem>
+			<cells>
+				<Text text="{templateModel>templateName}" class="selectTemp"/>
+				<Text text="{templateModel>accountNumber}" class="selectTemp"/>
+				<Input value="{templateModel>amount}" class="selectTemp margintopinFld"/>
+			
+			</cells>
+		</ColumnListItem>
+	</TableSelectDialog>
+</core:FragmentDefinition>

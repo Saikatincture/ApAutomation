@@ -1,0 +1,280 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	controllerName="com.incture.CreateEInvoice.controller.previewPage" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="{i18n>Preview}" navButtonPress="onNavBack" showNavButton="false" class="sapUiSizeCompact RDSPage RDSTitle">
+				<ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+					<l:Grid defaultSpan="L12 M12 S12" class="inctureGridClass sapUiSizeCompact">
+						<l:content>
+							<OverflowToolbar>
+								<Label text="{i18n>SUMMARY}" design="Bold" class="RDSLabel"/>
+							</OverflowToolbar>
+							<l:Grid defaultSpan="XL6 L6 M6 S12" class="sapUiSizeCompact sapUiSmallMarginBeginEnd sapUiTinyMarginTop">
+								<VBox>
+									<Label text="{i18n>CompanyCode} :" class="sapUiSizeCompact RDSLabel" design="Bold"/>
+									<Text text="{mHeaderDetails>/Company_Code}-{mHeaderDetails>/CompanyName}"/>
+								</VBox>
+								<VBox>
+									<Label text="{i18n>Subtotal} :" class="RDSLabel" design="Bold"/>
+									<Text text="${mReviewModel>/totalAmount}"/></VBox>
+								<VBox>
+									<Label text="{i18n>Invoice} :" class="sapUiSizeCompact RDSLabel" design="Bold"/>
+									<Text text="{mHeaderDetails>/invoicetype}"/>
+								</VBox>
+								<VBox>
+									<Label text="{i18n>TotalTax} : " class="RDSLabel" design="Bold"/>
+									<Text text="${mReviewModel>/taxAmount}"/>
+								</VBox>
+								<VBox>
+									<Label text="{i18n>Vendor} :" class="sapUiSizeCompact RDSLabel" design="Bold"/>
+									<Text text="{mHeaderDetails>/vendorID}-{mHeaderDetails>/vendorName}"/>
+								</VBox>
+								<VBox>
+									<Label text="{i18n>TotalAmountwithouttax} :" class="RDSLabel" design="Bold"/>
+									<Text text="${mReviewModel>/totalAmount}"/>
+								</VBox>
+								<VBox>
+									<Label text="{i18n>Type} :" class="sapUiSizeCompact RDSLabel" design="Bold"/>
+									<Text text="{mHeaderDetails>/type}"/>
+								</VBox>
+								<VBox>
+									<Label text="{i18n>AmountDue} :" class="RDSLabel" design="Bold"/>
+									<Text text="${mReviewModel>/dueAmount}"/>
+								</VBox>
+							</l:Grid>
+							<OverflowToolbar>
+								<Label text="{i18n>BILLING}" design="Bold" class="RDSLabel"/>
+							</OverflowToolbar>
+							<l:Grid defaultSpan="L6 M6 S12" class="sapUiSizeCompact">
+								<VBox>
+									<f:SimpleForm id="remitToForm" editable="false" layout="ResponsiveGridLayout" title="{i18n>RemitTo}" labelSpanM="2" labelSpanS="12"
+										adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+										singleContainerFullSize="false">
+										<f:content>
+											<core:Title/>
+											<Label/>
+											<Text text="{mHeaderDetails>/invoicebppartnerName}"/>
+											<Label/>
+											<Text text="{mHeaderDetails>/invoicebpstreet}"/>
+											<Label/>
+											<Text text="{mHeaderDetails>/invoicebpcity} {mHeaderDetails>/invoicebppostalCode} {mHeaderDetails>/invoicebpcountry}"/>
+										</f:content>
+									</f:SimpleForm>
+								</VBox>
+								<VBox>
+									<f:SimpleForm id="BilltoForm" editable="false" layout="ResponsiveGridLayout" title="{i18n>BillTo}" labelSpanM="2" labelSpanS="12"
+										adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+										singleContainerFullSize="false">
+										<f:content>
+											<core:Title/>
+											<Label/>
+											<Text text="{mHeaderDetails>/billtopartnerName}"/>
+											<Label/>
+											<Text text="{mHeaderDetails>/billtostreet}"/>
+											<Label/>
+											<Text text="{mHeaderDetails>/billtocity} {mHeaderDetails>/billtopostalCode} {mHeaderDetails>/billtocountry}"/>
+										</f:content>
+									</f:SimpleForm>
+								</VBox>
+							</l:Grid>
+							<OverflowToolbar>
+								<Label text="{i18n>SHIPPING}" design="Bold" class="RDSLabel"/>
+							</OverflowToolbar>
+							<l:Grid defaultSpan="L6 M6 S12" class="sapUiSizeCompact">
+								<VBox>
+									<f:SimpleForm id="shippingToForm" editable="false" layout="ResponsiveGridLayout" title="{i18n>ShipTo}" labelSpanM="2" labelSpanS="12"
+										adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+										singleContainerFullSize="false">
+										<f:content>
+											<core:Title/>
+											<Label/>
+											<Text text="{mHeaderDetails>/shiptopartnerName}"/>
+											<Label/>
+											<Text text="{mHeaderDetails>/shiptostreet}"/>
+											<Label/>
+											<Text text="{mHeaderDetails>/shiptocity} {mHeaderDetails>/shiptopostalCode} {mHeaderDetails>/shiptocountry}"/>
+										</f:content>
+									</f:SimpleForm>
+								</VBox>
+								<VBox>
+									<f:SimpleForm id="shippingForm" editable="false" layout="ResponsiveGridLayout" title="{i18n>ShipFrom}" labelSpanM="2" labelSpanS="12"
+										adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+										singleContainerFullSize="false">
+										<f:content>
+											<core:Title/>
+											<Label/>
+											<Text text="{mHeaderDetails>/shipfrompartnerName}"/>
+											<Label/>
+											<Text text="{mHeaderDetails>/shipfromstreet}"/>
+											<Label/>
+											<Text text="{mHeaderDetails>/shipfromcity} {mHeaderDetails>/shipfrompostalCode} {mHeaderDetails>/shipfromcountry}"/>
+										</f:content>
+									</f:SimpleForm>
+								</VBox>
+							</l:Grid>
+							<OverflowToolbar>
+								<Label text="{i18n>INVOICEDETAILS}" design="Bold" class="RDSLabel"/>
+							</OverflowToolbar>
+							<l:Grid defaultSpan="L6 M6 S12" class="sapUiSizeCompact">
+								<VBox class="sapUiSizeCompact">
+									<Label text="{i18n>PONumber}" design="Bold" class="sapUiSizeCompact RDSLabel"/>
+									<Text text="{mHeaderDetails>/Purch_Ord}" class="sapUiSizeCompact"/>
+								</VBox>
+								<VBox class="sapUiSizeCompact">
+									<Label text="{i18n>InvoiceNumber}" design="Bold" class="sapUiSizeCompact RDSLabel"/>
+									<Text text="{mReviewModel>/invNo}" class="sapUiSizeCompact"/>
+								</VBox>
+								<VBox class="sapUiSizeCompact">
+									<Label text="{i18n>Vendor}" design="Bold" class="sapUiSizeCompact RDSLabel"/>
+									<Text text="{mHeaderDetails>/vendorID}-{mHeaderDetails>/vendorName}" class="sapUiSizeCompact"/>
+								</VBox>
+								<VBox class="sapUiSizeCompact">
+									<Label text="{i18n>InvoiceDate}" design="Bold" class="sapUiSizeCompact RDSLabel"/>
+									<Text text="{mReviewModel>/invDate}" class="sapUiSizeCompact"/>
+								</VBox>
+								<VBox class="sapUiSizeCompact">
+									<Label text="{i18n>PaymentTerms}" design="Bold" class="sapUiSizeCompact RDSLabel"/>
+									<Text text="{mHeaderDetails>/PaymentTerms}" class="sapUiSizeCompact"/>
+								</VBox>
+							</l:Grid>
+							<Table alternateRowColors="true" items="{mReviewModel>/results}" class="sapUiSizeCompact RDSMtable" inset="false" fixedLayout="false">
+								<columns>
+									<Column hAlign="Begin" demandPopin="true" minScreenWidth="Small" popinDisplay="Inline">
+										<Label text="{i18n>ItemId}" design="Bold"/>
+									</Column>
+									<Column hAlign="Begin" demandPopin="true" minScreenWidth="Small" popinDisplay="Inline">
+										<Label text="{i18n>MatCode}" design="Bold"/>
+									</Column>
+									<Column hAlign="Begin" demandPopin="true" minScreenWidth="Small" popinDisplay="Inline">
+										<Label text="{i18n>Description}" design="Bold"/>
+									</Column>
+									<Column hAlign="Begin" demandPopin="true" minScreenWidth="Small" popinDisplay="Inline">
+										<Label text="{i18n>InvoiceQty}" design="Bold"/>
+									</Column>
+									<Column hAlign="Begin" demandPopin="true" minScreenWidth="Small" popinDisplay="Inline">
+										<Label text="{i18n>UOM}" design="Bold"/>
+									</Column>
+									<Column hAlign="Begin" demandPopin="true" minScreenWidth="Small" popinDisplay="Inline">
+										<Label text="{i18n>UnitPrice}" design="Bold"/>
+									</Column>
+									<Column hAlign="Begin" demandPopin="true" minScreenWidth="Small" popinDisplay="Inline">
+										<Label text="{i18n>TaxCode}" design="Bold"/>
+									</Column>
+									<Column hAlign="Begin" demandPopin="true" minScreenWidth="Small" popinDisplay="Inline">
+										<Label text="{i18n>TaxPercentage}" design="Bold"/>
+									</Column>
+									<Column hAlign="Begin" demandPopin="true" minScreenWidth="Small" popinDisplay="Inline">
+										<Label text="{i18n>NetPrice}" design="Bold"/>
+									</Column>
+									<Column hAlign="Begin" demandPopin="true" minScreenWidth="Small" popinDisplay="Inline">
+										<Label text="{i18n>TaxAmount}" design="Bold"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<Text text="{mReviewModel>PoItem}"/>
+										<Text text="{mReviewModel>Material}"/>
+										<Text text="{mReviewModel>ShortText}"/>
+										<Text text="{mReviewModel>Quantity}"/>
+										<Text text="{mReviewModel>PoUnit}"/>
+										<Text text="{mReviewModel>NetPrice}"/>
+										<Text text="{mReviewModel>taxCode}"/>
+										<Text text="{mReviewModel>taxPer}"/>
+										<Text text="{mReviewModel>netWorth}"></Text>
+										<Text text="{mReviewModel>taxAmount}"></Text>
+									</ColumnListItem>
+								</items>
+							</Table>
+							<l:Grid defaultSpan="L4 M4 S12" class="sapUiSizeCompact">
+								<VBox></VBox>
+								<VBox></VBox>
+								<VBox alignItems="End">
+									<HBox>
+										<Label text="{i18n>Subtotal} :" class="RDSLabel marginLvlsubtotal"/>
+										<Text text="${mReviewModel>/totalAmount}" class="sapUiTinyMarginBegin"/>
+									</HBox>
+									<HBox>
+										<Label text="{i18n>TotalTax} : " class="RDSLabel marginLvlTotalTax"/>
+										<Text text="${mReviewModel>/taxAmount}" class="sapUiTinyMarginBegin"/>
+									</HBox>
+									<HBox>
+										<Label text="{i18n>TotalAmountwithouttax} :" class="RDSLabel"/>
+										<Text text="${mReviewModel>/totalAmount}" class="sapUiTinyMarginBegin"/>
+									</HBox>
+									<HBox>
+										<Label text="{i18n>AmountDue} :" class="RDSLabel marginLvlAmountDue"/>
+										<Text text="${mReviewModel>/dueAmount}" class="sapUiTinyMarginBegin"/>
+									</HBox>
+								</VBox>
+							</l:Grid>
+							<Toolbar>
+								<Label text="{i18n>TAXDETAILS}" design="Bold" class="RDSLabel"/>
+							</Toolbar>
+							<Table class="sapUiSizeCompact RDSMtable" items="{mHeaderDetails>/invoiceTaxDetails}">
+								<columns>
+									<Column hAlign="Begin" width="auto" demandPopin="true" minScreenWidth="Small" popinDisplay="Inline">
+										<Label text="{i18n>TaxCode}" design="Bold" class="RDSLabel"/>
+									</Column>
+									<Column hAlign="Begin" width="auto" demandPopin="true" minScreenWidth="Small" popinDisplay="Inline">
+										<Label text="{i18n>TaxJurisdiction}" design="Bold" class="RDSLabel"/>
+									</Column>
+									<Column hAlign="Begin" width="auto" demandPopin="true" minScreenWidth="Small" popinDisplay="Inline">
+										<Label text="{i18n>Shipto}" design="Bold" class="RDSLabel"/>
+									</Column>
+									<Column hAlign="Begin" width="auto" demandPopin="true" minScreenWidth="Small" popinDisplay="Inline">
+										<Label text="{i18n>Shipfrom}" design="Bold" class="RDSLabel"/>
+									</Column>
+									<Column hAlign="Begin" width="auto" demandPopin="true" minScreenWidth="Small" popinDisplay="Inline">
+										<Label text="{i18n>TaxableAmount}" design="Bold" class="RDSLabel"/>
+									</Column>
+									<Column hAlign="Begin" width="auto" demandPopin="true" minScreenWidth="Small" popinDisplay="Inline">
+										<Label text="{i18n>TaxAmount}" design="Bold" class="RDSLabel"/>
+									</Column>
+									<Column hAlign="Begin" width="auto" demandPopin="true" minScreenWidth="Small" popinDisplay="Inline">
+										<Label text="{i18n>TaxPercentage}" design="Bold" class="RDSLabel"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<Text text="{mHeaderDetails>taxCode}"/>
+										<Text text="{mHeaderDetails>taxJurisdiction}"/>
+										<Text text="{mHeaderDetails>shipTo}"/>
+										<Text text="{mHeaderDetails>shipFrom}"/>
+										<Text text="{mHeaderDetails>taxableAmount}"/>
+										<Text text="{mHeaderDetails>taxAmount}"/>
+										<Text text="{mHeaderDetails>taxPer}"/>
+									</ColumnListItem>
+								</items>
+							</Table>
+							<Toolbar>
+								<Label text="{i18n>ATTACHMENTS}" design="Bold" class="RDSLabel"/>
+							</Toolbar>
+							<VBox width="100%" items="{mReviewModel>/docManagerDto}">
+								<Toolbar class="atachmentCls sapUiTinyMarginBottom" width="100%">
+									<FeedListItem sender="{mReviewModel>fileName}" iconDensityAware="false" activeIcon="{mReviewModel>folderName}" senderPress="fnUploadDoc"
+										detailPress="fnUploadDoc"></FeedListItem>
+								</Toolbar>
+							</VBox>
+							<Toolbar>
+								<Label text="{i18n>COMMENTS}" design="Bold" class="RDSLabel"/>
+							</Toolbar>
+							<List showSeparators="Inner" growing="true" growingThreshold="4" items="{mReviewModel>/commentDto}">
+								<FeedListItem text="{mReviewModel>comment}" timestamp="{path:'mReviewModel>createdAt'}" sender="{path:'mReviewModel>user'}"
+									iconDensityAware="false"></FeedListItem>
+							</List>
+						</l:content>
+					</l:Grid>
+				</ScrollContainer>
+				<footer>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<Button text="{i18n>DownloadPDF}" press="onDownloadPdf" class="RDSsubmitButton"/>
+						<!--<Button text="{i18n>SignPDF}" press="onSignInvoice" class="RDSsubmitButton"/>-->
+						<Button text="{i18n>SaveAsDraft}" press="onSaveasDraft" class="RDSsubmitButton"/>
+						<Button text="{i18n>Submit}" press="onSubmit" class="RDSsubmitButton"/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

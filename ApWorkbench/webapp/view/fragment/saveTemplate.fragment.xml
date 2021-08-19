@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns="sap.m" class="sapUiSizeCompact" xmlns:core="sap.ui.core">
+	<Dialog titleAlignment="Center" title="Save Template" id="saveTempFragID" draggable="true">
+		<VBox id="newHbox">
+			<RadioButton text="Update" selected="{templateModel>/updateRadioBtn}" select="onSelect"/>
+			<ComboBox change="updateDataChangeInTemplete" class="dropDownCss selectBorder tbCellBorder" width="60%" enabled="false" id="updateInput"
+				items="{templateModel>/aNonPoTemplate}" selectedKey="{templateModel>/sUpdateTemplate}" placeholder="Select">
+				<!--selectionChange="selectedValueTemplate"-->
+				<core:Item key="{templateModel>templateName}" text="{templateModel>templateName}"/>
+			</ComboBox>
+		</VBox>
+		<VBox>
+			<RadioButton selected="{templateModel>/createRadioBtn}" text="Create" select="onSelectRadio"/>
+			<Input class="sapUiSmallLargeLeft tbCellBorder" enabled="false" id="saveInput" value="{templateModel>/sCreatetempid}" />
+			</VBox>
+			<HBox class="hboxPosition">
+				<Button text="Submit" press="onSaveTemp" class="sapUiSizeCompact sapUiTinyMarginEnd" type="Emphasized"/>
+				<Button text="Cancel" class="sapUiSizeCompact" press="onSaveTemp"/>
+			</HBox>
+		</Dialog>
+	</core:FragmentDefinition>

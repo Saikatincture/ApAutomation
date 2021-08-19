@@ -1,0 +1,404 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.uxap" xmlns:m="sap.m" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+	controllerName="com.incture.CreateEInvoice.controller.createEInvoice" xmlns:html="http://www.w3.org/1999/xhtml">
+	<m:App>
+		<m:pages>
+			<m:Page showHeader="true" enableScrolling="false" navButtonPress="onNavBack" showNavButton="false" title="{i18n>CreateEInvoice}"
+				class="sapUiSizeCompact RDSPage RDSTitle">
+				<m:content>
+					<ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="false" enableLazyLoading="false" headerContentPinnable="true"
+						preserveHeaderStateOnScroll="false" showFooter="true" height="100%" showHeaderContent="false" showEditHeaderButton="false"
+						selectedSection="InvoiceInfo">
+						<headerTitle>
+							<ObjectPageDynamicHeaderTitle visible="false">
+								<actions>
+									<m:OverflowToolbarButton icon="sap-icon://edit" text="edit header" type="Emphasized" tooltip="edit"/>
+									<m:OverflowToolbarButton icon="sap-icon://pull-down" text="show section" type="Emphasized" tooltip="pull-down"/>
+									<m:OverflowToolbarButton icon="sap-icon://show" text="show state" tooltip="show"/>
+									<m:Button text="Toggle Footer" press="toggleFooter"/>
+								</actions>
+							</ObjectPageDynamicHeaderTitle>
+						</headerTitle>
+						<headerContent></headerContent>
+						<sections>
+							<ObjectPageSection titleUppercase="false" id="InvoiceInfo" title="{i18n>SUMMARY}">
+								<subSections>
+									<ObjectPageSubSection mode="Expanded">
+										<blocks>
+											<l:Grid defaultSpan="XL6 L6 M6 S12" class="sapUiSizeCompact sapUiSmallMarginBeginEnd sapUiTinyMarginTop">
+												<m:VBox>
+													<m:Label text="{i18n>CompanyCode} :" class="sapUiSizeCompact RDSLabel" design="Bold"/>
+													<m:Text text="{mDraftDetails>/compCode}-{mHeaderDetails>/selectedCompany}"/>
+												</m:VBox>
+												<m:VBox>
+													<m:Label text="{i18n>Subtotal} :" class="RDSLabel" design="Bold"/>
+													<m:Text text="${mReviewModel>/totalAmount}"/></m:VBox>
+												<m:VBox>
+													<m:Label text="{i18n>Invoice} :" class="sapUiSizeCompact RDSLabel" design="Bold"/>
+													<m:Text text="{mHeaderDetails>/invoicetype}"/>
+												</m:VBox>
+												<m:VBox>
+													<m:Label text="{i18n>TotalTax} : " class="RDSLabel" design="Bold"/>
+													<m:Text text="${mReviewModel>/taxAmount}"/>
+												</m:VBox>
+												<m:VBox>
+													<m:Label text="{i18n>Vendor} :" class="sapUiSizeCompact RDSLabel" design="Bold"/>
+													<m:Text text="{mHeaderDetails>/VendorID}-{mHeaderDetails>/SelectedVendorName}"/>
+												</m:VBox>
+												<m:VBox>
+													<m:Label text="{i18n>AmountDue} :" class="RDSLabel" design="Bold"/>
+													<m:Text text="${mReviewModel>/dueAmount}"/>
+												</m:VBox>
+												<m:VBox>
+													<m:Label text="{i18n>Type} :" class="sapUiSizeCompact RDSLabel" design="Bold"/>
+													<m:Text text="{mHeaderDetails>/type}"/>
+												</m:VBox>
+											</l:Grid>
+										</blocks>
+									</ObjectPageSubSection>
+								</subSections>
+							</ObjectPageSection>
+							<ObjectPageSection titleUppercase="false" id="Remittoid" title="{i18n>BILLING}">
+								<subSections>
+									<ObjectPageSubSection id="remitTo" mode="Expanded">
+										<blocks>
+											<l:Grid defaultSpan="L6 M6 S12" class="sapUiSizeCompact">
+												<m:VBox items="{mHeaderDetails>/invoicebp}">
+													<f:SimpleForm id="remitToForm" editable="false" layout="ResponsiveGridLayout" title="{i18n>RemitTo}" labelSpanM="2" labelSpanS="12"
+														adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+														singleContainerFullSize="false">
+														<f:content>
+															<core:Title/>
+															<m:Label/>
+															<m:Text text="{mHeaderDetails>partnerName}"/>
+															<m:Label/>
+															<m:Text text="{mHeaderDetails>street}"/>
+															<m:Label/>
+															<m:Text text="{mHeaderDetails>city} {mHeaderDetails>postalCode} {mHeaderDetails>country}"/>
+															<!--<m:Label text="{i18n>City}" class="RDSLabel"/>
+															<m:Text text="{mHeaderDetails>city}"/>
+															<m:Label text="{i18n>Country}" class="RDSLabel"/>
+															<m:Text text="{mHeaderDetails>country}"/>
+															<m:Label text="{i18n>PostalCode}" class="RDSLabel"/>
+															<m:Text text="{mHeaderDetails>postalCode}"/>
+															<m:Label text="{i18n>Telephone}" class="RDSLabel"/>
+															<m:Text text="{mHeaderDetails>telephone}"/>
+															<m:Label text="{i18n>Street}" class="RDSLabel"/>
+															<m:Text text="{mHeaderDetails>street}"/>-->
+														</f:content>
+													</f:SimpleForm>
+												</m:VBox>
+												<m:VBox items="{mHeaderDetails>/invoicebpBillto}">
+													<f:SimpleForm id="BilltoForm" editable="false" layout="ResponsiveGridLayout" title="{i18n>BillTo}" labelSpanM="2" labelSpanS="12"
+														adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+														singleContainerFullSize="false">
+														<f:content>
+															<core:Title/>
+															<m:Label/>
+															<m:Text text="{mHeaderDetails>partnerName}"/>
+															<m:Label/>
+															<m:Text text="{mHeaderDetails>street}"/>
+															<m:Label/>
+															<m:Text text="{mHeaderDetails>city} {mHeaderDetails>postalCode} {mHeaderDetails>country}"/>
+															<!--	<m:Label text="{i18n>City}" class="RDSLabel"/>
+															<m:Text text="{mHeaderDetails>city}"/>
+															<m:Label text="{i18n>Country}" class="RDSLabel"/>
+															<m:Text text="{mHeaderDetails>country}"/>
+															<m:Label text="{i18n>PostalCode}" class="RDSLabel"/>
+															<m:Text text="{mHeaderDetails>postalCode}"/>
+															<m:Label text="{i18n>Telephone}" class="RDSLabel"/>
+															<m:Text text="{mHeaderDetails>telephone}"/>
+															<m:Label text="{i18n>Street}" class="RDSLabel"/>
+															<m:Text text="{mHeaderDetails>street}"/>-->
+														</f:content>
+													</f:SimpleForm>
+												</m:VBox>
+											</l:Grid>
+										</blocks>
+									</ObjectPageSubSection>
+								</subSections>
+							</ObjectPageSection>
+							<ObjectPageSection titleUppercase="false" id="shipping" title="{i18n>SHIPPING}">
+								<subSections>
+									<ObjectPageSubSection id="shippingto" mode="Expanded">
+										<blocks>
+											<l:Grid defaultSpan="L6 M6 S12" class="sapUiSizeCompact">
+												<m:VBox items="{mHeaderDetails>/invoicebpBillto}">
+													<f:SimpleForm id="shippingToForm" editable="false" layout="ResponsiveGridLayout" title="{i18n>ShipTo}" labelSpanM="2" labelSpanS="12"
+														adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+														singleContainerFullSize="false">
+														<f:content>
+															<core:Title/>
+															<m:Label/>
+															<m:Text text="{mHeaderDetails>partnerName}"/>
+															<m:Label/>
+															<m:Text text="{mHeaderDetails>street}"/>
+															<m:Label/>
+															<m:Text text="{mHeaderDetails>city} {mHeaderDetails>postalCode} {mHeaderDetails>country}"/>
+															<!--	<m:Label text="{i18n>City}" class="RDSLabel"/>
+															<m:Text text="{mHeaderDetails>city}"/>
+															<m:Label text="{i18n>Country}" class="RDSLabel"/>
+															<m:Text text="{mHeaderDetails>country}"/>
+															<m:Label text="{i18n>PostalCode}" class="RDSLabel"/>
+															<m:Text text="{mHeaderDetails>postalCode}"/>
+															<m:Label text="{i18n>Telephone}" class="RDSLabel"/>
+															<m:Text text="{mHeaderDetails>telephone}"/>
+															<m:Label text="{i18n>Street}" class="RDSLabel"/>
+															<m:Text text="{mHeaderDetails>street}"/>-->
+														</f:content>
+													</f:SimpleForm>
+												</m:VBox>
+												<m:VBox items="{mHeaderDetails>/invoicebp}">
+													<f:SimpleForm id="shippingForm" editable="false" layout="ResponsiveGridLayout" title="{i18n>ShipFrom}" labelSpanM="2" labelSpanS="12"
+														adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+														singleContainerFullSize="false">
+														<f:content>
+															<core:Title/>
+															<m:Label/>
+															<m:Text text="{mHeaderDetails>partnerName}"/>
+															<m:Label/>
+															<m:Text text="{mHeaderDetails>street}"/>
+															<m:Label/>
+															<m:Text text="{mHeaderDetails>city} {mHeaderDetails>postalCode} {mHeaderDetails>country}"/>
+															<!--	<m:Label text="{i18n>City}" class="RDSLabel"/>
+															<m:Text text="{mHeaderDetails>city}"/>
+															<m:Label text="{i18n>Country}" class="RDSLabel"/>
+															<m:Text text="{mHeaderDetails>country}"/>
+															<m:Label text="{i18n>PostalCode}" class="RDSLabel"/>
+															<m:Text text="{mHeaderDetails>postalCode}"/>
+															<m:Label text="{i18n>Telephone}" class="RDSLabel"/>
+															<m:Text text="{mHeaderDetails>telephone}"/>
+															<m:Label text="{i18n>Street}" class="RDSLabel"/>
+															<m:Text text="{mHeaderDetails>street}"/>-->
+														</f:content>
+													</f:SimpleForm>
+												</m:VBox>
+											</l:Grid>
+										</blocks>
+									</ObjectPageSubSection>
+								</subSections>
+							</ObjectPageSection>
+							<ObjectPageSection titleUppercase="false" id="AddcommAttach" title="{i18n>AttachmentsandComments}">
+								<subSections>
+									<ObjectPageSubSection mode="Expanded">
+										<blocks>
+											<l:Grid defaultSpan="L12 M6 S12" class="inctureGridClass">
+												<l:content>
+													<m:HBox width="100%" justifyContent="End">
+														<m:SearchField placeholder="{i18n>Search}" liveChange="onSearcAttach" class="sapUiSmallMarginEnd sapUiSizeCompact"></m:SearchField>
+														<u:FileUploader style="Transparent" maximumFileSize="5" fileType="{oPoSuggestionModel>/attachFileType}" icon="sap-icon://add"
+															buttonText="Add" buttonOnly="true" typeMissmatch="handleTypeMisMatch" fileSizeExceed="attachFileSizeExceed" change="onBeforeUploadStarts"
+															tooltip="{i18n>UploadyourfiletotheSharepointserver}"/>
+													</m:HBox>
+													<m:VBox width="100%" items="{mHeaderDetails>/docManagerDto}">
+														<m:Toolbar class="atachmentCls sapUiTinyMarginBottom" width="100%">
+															<m:FeedListItem sender="{mHeaderDetails>fileName}" iconDensityAware="false" activeIcon="{mHeaderDetails>folderName}"
+																senderPress="fnUploadDoc" detailPress="fnUploadDoc"></m:FeedListItem>
+															<m:ToolbarSpacer></m:ToolbarSpacer>
+															<m:Button icon="sap-icon://delete" press="fnDeleteAttachment" visible="{oInvoiceModel>/posted}" width="10%"/>
+														</m:Toolbar>
+													</m:VBox>
+													<m:FeedInput post="onPostComment" showIcon="false" value="{mHeaderDetails>/input}"/>
+													<m:List showSeparators="Inner" id="attachListItems" growing="true" growingThreshold="4" items="{mHeaderDetails>/commentDto}">
+														<m:FeedListItem text="{mHeaderDetails>comment}"
+															timestamp="{path:'mHeaderDetails>createdAt',formatter:'incture.com.APCreateInvoice.util.Formatter.commentDate'}"
+															sender="{path:'mHeaderDetails>user'}" iconDensityAware="false">
+															<m:FeedListItemAction icon="sap-icon://delete" press="fnDeleteComment" text="Delete"></m:FeedListItemAction>
+															<m:FeedListItemAction icon="sap-icon://edit" press="fnEditComment" text="Edit"></m:FeedListItemAction>
+														</m:FeedListItem>
+													</m:List>
+												</l:content>
+											</l:Grid>
+										</blocks>
+									</ObjectPageSubSection>
+								</subSections>
+							</ObjectPageSection>
+							<ObjectPageSection title="{i18n>InvoiceDetails}">
+								<subSections>
+									<ObjectPageSubSection title="{i18n>InvoiceDetails}">
+										<blocks>
+											<l:Grid defaultSpan="L12 M12 S12" class="sapUiSizeCompact ">
+												<l:Grid defaultSpan="L6 M6 S12" class="sapUiSizeCompact ">
+													<m:VBox class="sapUiSizeCompact">
+														<m:Label text="{i18n>PONumber}" design="Bold" class="sapUiSizeCompact RDSLabel"/>
+														<m:Text text="{mHeaderDetails>/Purch_Ord}" class="sapUiSizeCompact"/>
+													</m:VBox>
+													<m:VBox class="sapUiSizeCompact">
+														<m:Label text="{i18n>InvoiceNumber}" design="Bold" required="true" class="sapUiSizeCompact RDSLabel"/>
+														<m:Input value="{poItemSet>/invNo}" class="sapUiSizeCompact RDSinputV1"/>
+													</m:VBox>
+													<m:VBox class="sapUiSizeCompact">
+														<m:Label text="{i18n>Vendor}" design="Bold" class="sapUiSizeCompact RDSLabel"/>
+														<m:Text text="{mHeaderDetails>/vendorID}-{mHeaderDetails>/vendorName}" class="sapUiSizeCompact"/>
+													</m:VBox>
+													<m:VBox class="sapUiSizeCompact">
+														<m:Label text="{i18n>InvoiceDate}" design="Bold" required="true" class="sapUiSizeCompact RDSLabel"/>
+														<m:DatePicker value="{poItemSet>/invDate}" valueFormat="yyyy-MM-dd" displayFormat="yyyy-MM-dd" class="sapUiSizeCompact"/>
+													</m:VBox>
+													<!--<m:VBox class="sapUiSizeCompact">
+														<m:Label text="{i18n>VendorName}" design="Bold" class="sapUiSizeCompact RDSLabel"/>
+														<m:Text text="{mHeaderDetails>/vendorName}" class="sapUiSizeCompact"/>
+													</m:VBox>-->
+													<m:VBox class="sapUiSizeCompact">
+														<m:Label text="{i18n>PaymentTerms}" design="Bold" class="sapUiSizeCompact RDSLabel"/>
+														<m:Text text="{mHeaderDetails>/PaymentTerms}" class="sapUiSizeCompact"/>
+													</m:VBox>
+												</l:Grid>
+												<m:Table id="ID_TBL_PI_INVOICE_SECON" alternateRowColors="true" items="{poItemSet>/results}" class="sapUiSizeCompact RDSMtable"
+													inset="false" fixedLayout="false" mode="MultiSelect" selectionChange="onSelectionChange">
+													<m:columns>
+														<m:Column hAlign="Begin" width="8em">
+															<m:Label text="{i18n>ItemId}" design="Bold" class="RDSLabel"/>
+														</m:Column>
+														<m:Column hAlign="Begin" width="8em">
+															<m:Label text="{i18n>MatCode}" design="Bold" class="RDSLabel"/>
+														</m:Column>
+														<m:Column hAlign="Begin" width="10em">
+															<m:Label text="{i18n>Description}" design="Bold" class="RDSLabel"/>
+														</m:Column>
+														<m:Column hAlign="Begin" width="8em">
+															<m:Label text="{i18n>InvoiceQty}" design="Bold" class="RDSLabel"/>
+														</m:Column>
+														<m:Column hAlign="Begin" width="6em">
+															<m:Label text="{i18n>UOM}" design="Bold" class="RDSLabel"/>
+														</m:Column>
+														<m:Column hAlign="Begin" width="10em">
+															<m:Label text="{i18n>UnitPrice}" design="Bold" class="RDSLabel"/>
+														</m:Column>
+														<m:Column hAlign="Begin" width="6em">
+															<m:Label text="{i18n>TaxCode}" design="Bold" class="RDSLabel"/>
+														</m:Column>
+														<m:Column hAlign="Begin" width="9em">
+															<m:Label text="{i18n>TaxPercentage}" design="Bold" class="RDSLabel"/>
+														</m:Column>
+														<m:Column hAlign="Begin" width="9em">
+															<m:Label text="{i18n>NetPrice}" design="Bold" class="RDSLabel"/>
+														</m:Column>
+														<m:Column hAlign="Begin">
+															<m:Label text="{i18n>TaxAmount}" design="Bold" class="RDSLabel"/>
+														</m:Column>
+													</m:columns>
+													<m:items>
+														<m:ColumnListItem>
+															<m:Text text="{poItemSet>itemId}"/>
+															<m:Text text="{poItemSet>itemCode}"/>
+															<m:Text text="{poItemSet>itemText}"/>
+															<!--<m:Text text="{poItemSet>invQty}"></m:Text>-->
+															<m:Input value="{poItemSet>invQty}" change="onQtyChange" class="RDSinputV1"/>
+															<m:Text text="{poItemSet>qtyUom}" class="RDSinputV1"/>
+															<m:Input value="{poItemSet>price}" change="onUnitPriceChange" class="RDSinputV1"/>
+															<m:Text text="{poItemSet>taxCode}" class="RDSinputV1"/>
+															<m:Input value="{poItemSet>taxPer}" change="onChangeTaxPer" class="RDSinputV1"/>
+															<m:Text text="{poItemSet>poNetPrice}"></m:Text>
+															<m:Text text="{poItemSet>taxAmount}"></m:Text>
+														</m:ColumnListItem>
+													</m:items>
+												</m:Table>
+												<l:Grid defaultSpan="L4 M4 S12" class="sapUiSizeCompact">
+													<m:VBox></m:VBox>
+													<m:VBox></m:VBox>
+													<m:VBox alignItems="End">
+														<m:HBox>
+															<m:Label text="{i18n>Subtotal} :" class="RDSLabel marginLvlsubtotal"/>
+															<m:Text text="${mReviewModel>/totalAmount}" class="sapUiTinyMarginBegin"/>
+														</m:HBox>
+														<m:HBox>
+															<m:Label text="{i18n>TotalTax} : " class="RDSLabel marginLvlTotalTax"/>
+															<m:Text text="${mReviewModel>/taxAmount}" class="sapUiTinyMarginBegin"/>
+														</m:HBox>
+														<m:HBox>
+															<m:Label text="{i18n>TotalAmountwithouttax} :" class="RDSLabel"/>
+															<m:Text text="${mReviewModel>/totalAmount}" class="sapUiTinyMarginBegin"/>
+														</m:HBox>
+														<m:HBox>
+															<m:Label text="{i18n>AmountDiscount} :" class="RDSLabel marginLvlamtDisc"/>
+															<m:Input value="${mReviewModel>/discount}" class="sapUiTinyMarginBegin" change="onChangeDiscount"/>
+														</m:HBox>
+														<m:HBox>
+															<m:Label text="{i18n>AmountDue} :" class="RDSLabel marginLvlAmountDue"/>
+															<m:Text text="${mReviewModel>/dueAmount}" class="sapUiTinyMarginBegin"/>
+														</m:HBox>
+													</m:VBox>
+												</l:Grid>
+											</l:Grid>
+										</blocks>
+									</ObjectPageSubSection>
+								</subSections>
+							</ObjectPageSection>
+							<ObjectPageSection titleUppercase="false" id="taxdetails" title="{i18n>TaxDetails}">
+								<subSections>
+									<ObjectPageSubSection mode="Expanded">
+										<blocks>
+											<m:Table id="Invoice_Tax_Table" class="sapUiSizeCompact RDSMtable" items="{mHeaderDetails>/invoiceTaxDetails}" mode="MultiSelect"
+												width="100%">
+												<m:headerToolbar>
+													<m:OverflowToolbar>
+														<m:content>
+															<m:ToolbarSpacer/>
+															<m:Button icon="sap-icon://add" tooltip="{i18n>Add}" class="RDSgoButton sapUiSizeCompact" press="onAddRowTaxTable"/>
+															<m:Button icon="sap-icon://delete" class="RDSgoButton sapUiSizeCompact" press="onDeleteRow"/>
+														</m:content>
+													</m:OverflowToolbar>
+												</m:headerToolbar>
+												<m:columns>
+													<m:Column hAlign="Begin" width="auto">
+														<m:Label text="{i18n>TaxCode}" design="Bold" class="RDSLabel"/>
+													</m:Column>
+													<m:Column hAlign="Begin" width="auto">
+														<m:Label text="{i18n>TaxJurisdiction}" design="Bold" class="RDSLabel"/>
+													</m:Column>
+													<m:Column hAlign="Begin" width="auto">
+														<m:Label text="{i18n>Shipto}" design="Bold" class="RDSLabel"/>
+													</m:Column>
+													<m:Column hAlign="Begin" width="auto">
+														<m:Label text="{i18n>Shipfrom}" design="Bold" class="RDSLabel"/>
+													</m:Column>
+													<m:Column hAlign="Begin" width="auto">
+														<m:Label text="{i18n>TaxableAmount}" design="Bold" class="RDSLabel"/>
+													</m:Column>
+													<m:Column hAlign="Begin" width="auto">
+														<m:Label text="{i18n>TaxAmount}" design="Bold" class="RDSLabel"/>
+													</m:Column>
+													<m:Column hAlign="Begin" width="auto">
+														<m:Label text="{i18n>TaxPercentage}" design="Bold" class="RDSLabel"/>
+													</m:Column>
+												</m:columns>
+												<m:items>
+													<m:ColumnListItem>
+														<m:ComboBox selectedKey="{mHeaderDetails>taxCode}" change="onTaxcodeChange">
+															<core:Item key="V1" text="V1-Sales Tax"/>
+															<core:Item key="V2" text="V2-Excise Duty"/>
+															<core:Item key="V3" text="V3-Value Added Tax"/>
+														</m:ComboBox>
+														<m:ComboBox selectedKey="{mHeaderDetails>taxJurisdiction}">
+															<core:Item key="PA0000000" text="Pennsylvania - PA0000000"/>
+															<core:Item key="PA0010000" text="Allegheny - PA0010000"/>
+															<core:Item key="PA0010100" text="Pittsburgh - PA0010100"/>
+														</m:ComboBox>
+														<m:Input value="{mHeaderDetails>shipTo}" class="RDSinputV1"/>
+														<m:Input value="{mHeaderDetails>shipFrom}" class="RDSinputV1"/>
+														<m:Text text="{mHeaderDetails>taxableAmount}"/>
+														<m:Input value="{mHeaderDetails>taxAmount}" class="RDSinputV1" editable="false"/>
+														<m:Input value="{mHeaderDetails>taxPer}" class="RDSinputV1" change="onChangeTaxDetailsTaxPer"/>
+													</m:ColumnListItem>
+												</m:items>
+											</m:Table>
+										</blocks>
+									</ObjectPageSubSection>
+								</subSections>
+							</ObjectPageSection>
+						</sections>
+						<footer>
+							<m:OverflowToolbar>
+								<m:ToolbarSpacer/>
+								<m:Button text="{i18n>DownloadPDF}" press="onDownloadPdf" class="RDSgoButton"/>
+								<m:Button text="{i18n>SaveAsDraft}" press="onSaveasDraft" class="RDSgoButton"/>
+								<m:Button text="{i18n>Preview}" press="onPreview" class="RDSgoButton"/>
+							</m:OverflowToolbar>
+						</footer>
+					</ObjectPageLayout>
+				</m:content>
+			</m:Page>
+		</m:pages>
+	</m:App>
+</mvc:View>

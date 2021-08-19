@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>SaveFilter}" class="sapUiSizeCompact" contentWidth="25%">
+		<content>
+			<VBox>
+				<Label text="Do you want to Add this Filter?" class="sapUiLargeMarginBegin sapUiTinyMarginTop"/>
+				<Input value="{mFilterModel>/filterName}" width="65%" class="sapUiTinyMarginTop sapUiLargeMarginBegin sapUiSmallMarginBottom"/>
+			</VBox>
+		</content>
+		<buttons>
+			<Button text="{i18n>Submit}" press="onSubmitcreateFilterVariant" tooltip="{i18n>Submit}"
+				enabled="{endingSavedFiltersModel>/selectVarBtnEnabled}"/>
+			<Button text="{i18n>Cancel}" press="onClosecreateFilter" tooltip="{i18n>Cancel}" visible="{endingSavedFiltersModel>/cancelVarBtnVisible}"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

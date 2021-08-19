@@ -1,0 +1,109 @@
+/* Enter your custom styles here */
+.simpleForm1 {
+    padding-right: 8%;
+    padding-top: 0rem;
+}
+
+.simpleForm1 .sapUiFormResGrid>div {
+    padding: 0 0;
+}
+
+.mainPage.sapMFlexBox {
+    border: 1px solid lightgrey;
+    padding: 1rem 1rem 0 1rem;
+}
+
+.emailConfigSection.sapMFlexBox {
+    margin-bottom: 0.5rem;
+    border: 1px solid lightgrey;
+}
+
+.emailConfigTitle .sapMFlexItemAlignAuto {
+    align-self: center;
+}
+
+.emailConfigTitle {
+    margin: 0.5rem 0 0 1rem;
+}
+
+.durationTitle .sapMFlexItemAlignAuto {
+    align-self: center;
+}
+
+/*.frequencyTitle .sapMFlexItemAlignAuto {*/
+/*	align-self: center;*/
+/*}*/
+
+/*.sapUiRespGrid.sapUiRespGridHSpace1 {*/
+/*	padding-top: 1rem;*/
+/*	margin: 1rem;*/
+/*	background-color: #d8daeb;*/
+/*}*/
+
+.emailConfigBox {
+    padding: 1rem;
+    margin: 1rem;
+    background-color: #d8daeb;
+}
+
+.MailTemplate {
+    padding: 1rem;
+    margin: 0 1rem 1rem 1rem;
+    width: 100%;
+    background-color: #d8daeb;
+}
+
+.ocrRadioBtnClass {
+    margin-left: 8%;
+}
+
+.textAreaBox .sapMFlexItem {
+    width: 100%;
+
+}
+
+.sapMListTbl {
+    border-right: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+}
+
+.sapMPanelWrappingDiv {
+    border: 1px solid lightgray;
+}
+
+.borderlessBox .sapMInputBaseContentWrapper {
+    border: none;
+}
+
+/*.borderlessDropdown.sapMSlt {*/
+/*	border: none;*/
+/*}*/
+
+/*.sapMTextArea .sapMInputBaseContentWrapper{*/
+/*	border:none;*/
+/*}*/
+
+.sapMTableTH {
+    background-color: #d8daeb;
+
+}
+
+.TaskPage.sapMPage .sapMPageHeader {
+    background-color: #0053A7 !important;
+}
+
+.TaskPage .sapMIBar-CTX .sapMTitle {
+    color: #fff;
+    font-size: larger;
+}
+
+/*.sapMListTblHighlightCol+.sapMListTblCell.sapMListTblHeaderCell{*/
+/*	padding-left: 0;*/
+/*}*/
+/*.sapMListTblCell.cellBorderRight {*/
+/*	border-right: 1px solid lightgray;*/
+/*}*/
+
+/*.sapMListTblCell.cellBorderLeft {*/
+/*	border-left: 1px solid lightgray;*/
+/*}*/

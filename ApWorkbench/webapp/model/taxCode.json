@@ -1,0 +1,74 @@
+{
+	"taxCodes" :[{
+		"taxCode": "I0",
+		"conditionType": "MWVS",
+		"taxRate": "0",
+		"taxCodeDescription": "0% Input Tax"
+	},
+	{
+		"taxCode": "I1",
+		"conditionType": "MWVS",
+		"taxRate": "6",
+		"taxCodeDescription": "6% Input Tax"
+	},
+	{
+		"taxCode": "U1",
+		"conditionType": "MWVS",
+		"taxRate": "16",
+		"taxCodeDescription": "16% Import Tax"
+	},
+	{
+		"taxCode": "V0",
+		"conditionType": "MWVS",
+		"taxRate": "0",
+		"taxCodeDescription": "No Tax Procedure"
+	},
+	{
+		"taxCode": "V1",
+		"conditionType": "MWVS",
+		"taxRate": "16",
+		"taxCodeDescription": "16% domestic input tax"
+	},
+	{
+		"taxCode": "V2",
+		"conditionType": "MWVS",
+		"taxRate": "7",
+		"taxCodeDescription": "7% domestic input tax"
+	},
+	{
+		"taxCode": "V4",
+		"conditionType": "MWVS",
+		"taxRate": "5",
+		"taxCodeDescription": "5% domestic input tax"
+	},
+	{
+		"taxCode": "V5",
+		"conditionType": "MWVS",
+		"taxRate": "15",
+		"taxCodeDescription": "15% domestic input tax"
+	},
+	{
+		"taxCode": "V6",
+		"conditionType": "MWVS",
+		"taxRate": "10",
+		"taxCodeDescription": "10% domestic input tax"
+	},
+	{
+		"taxCode": "V7",
+		"conditionType": "MWVS",
+		"taxRate": "3",
+		"taxCodeDescription": "3% domestic input tax"
+	},
+	{
+		"taxCode": "V8",
+		"conditionType": "MWVS",
+		"taxRate": "0",
+		"taxCodeDescription": "Taxable/tax-exempt domestic input tax"
+	},
+	{
+		"taxCode": "V9",
+		"conditionType": "MWVS",
+		"taxRate": "0",
+		"taxCodeDescription": "Taxable/tax-exempt foreign input tax"
+	}]
+}

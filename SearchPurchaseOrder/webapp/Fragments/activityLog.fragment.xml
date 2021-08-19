@@ -1,0 +1,91 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog title="Activity Log" class="sapUiSizeCompact dialogStyle" contentWidth="40%" contentHeight="auto" showHeader="false">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Title text="PO Flow"/>
+				</contentLeft>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="fncloseaddPo"/>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<HBox class="sapUiSizeCompact sapUiSmallMarginBegin sapUiSmallMarginTop">
+				<core:Icon id="OpenCircleIcon" src="sap-icon://order-status" class="toBeDoneProcessCircle"/>
+				<VBox id="OpenDashIcon" class="dashLineToBeDone"></VBox>
+				<VBox id="OpenBox" class="poSearchactivitylogVboxToBeDone sapUiSmallMarginBottom sapUiMediumMarginBegin">
+					<Label text="Open / Blocked" design="Bold" class="statusHeader"/>
+					<HBox>
+						<Label text="Date :" design="Bold"/>
+						<Text text="20.04.2021" class="sapUiSmallMarginBegin"/>
+					</HBox>
+					<HBox>
+						<Label text="PO Status :" design="Bold"/>
+						<Text text="{mHeaderDetails>/Statusdesc}" class="sapUiSmallMarginBegin"/>
+					</HBox>
+				</VBox>
+			</HBox>
+			<HBox class="sapUiSizeCompact ConfirmationLeftMargin">
+				<core:Icon id="ConfirmationCircleIcon" src="sap-icon://cart-approval" class="toBeDoneProcessCircle"/>
+				<VBox id="ConfirmationDashIcon" class="dashLineToBeDone"></VBox>
+				<VBox id="ConfirmationBox" class="poSearchactivitylogVboxToBeDone sapUiSmallMarginBottom sapUiMediumMarginBegin">
+					<Label text="Confirmation" design="Bold"/>
+					<HBox>
+						<Label text="Date :" design="Bold"/>
+						<Text text="21.04.2021" class="sapUiSmallMarginBegin"/>
+					</HBox>
+					<HBox>
+						<Label text="PO Status :" design="Bold"/>
+						<Text text="{mHeaderDetails>/Statusdesc}" class="sapUiSmallMarginBegin"/>
+					</HBox>
+				</VBox>
+			</HBox>
+			<HBox class="sapUiSizeCompact ConfirmationLeftMargin">
+				<core:Icon id="GoodsCircleIcon" src="sap-icon://shipping-status" class="toBeDoneProcessCircle"/>
+				<VBox id="GoodsDashIcon" class="dashLineToBeDone"></VBox>
+				<VBox id="GoodsBox" class=" poSearchactivitylogVboxToBeDone sapUiSmallMarginBottom sapUiMediumMarginBegin">
+					<Label text="Goods Receipt" design="Bold"/>
+					<HBox>
+						<Label text="Date :" design="Bold"/>
+						<Text text="22.04.2021" class="sapUiSmallMarginBegin"/>
+					</HBox>
+					<HBox>
+						<Label text="PO Status :" design="Bold"/>
+						<Text text="{mHeaderDetails>/Statusdesc}" class="sapUiSmallMarginBegin"/>
+					</HBox>
+				</VBox>
+			</HBox>
+			<HBox class="sapUiSizeCompact sapUiSmallMarginBegin">
+				<core:Icon id="InvoiceCircleIcon" src="sap-icon://sales-quote" class="toBeDoneProcessCircle"/>
+				<VBox id="InvoiceDashIcon" class="dashLineToBeDone"></VBox>
+				<VBox id="InvoiceBox" class="poSearchactivitylogVboxToBeDone sapUiSmallMarginBottom sapUiMediumMarginBegin">
+					<Label text="Invoice Receipt" design="Bold"/>
+					<HBox>
+						<Label text="Date :" design="Bold"/>
+						<Text text="22.04.2021" class="sapUiSmallMarginBegin"/>
+					</HBox>
+					<HBox>
+						<Label text="PO Status :" design="Bold"/>
+						<Text text="{mHeaderDetails>/Statusdesc}" class="sapUiSmallMarginBegin"/>
+					</HBox>
+				</VBox>
+			</HBox>
+			<HBox class="sapUiSizeCompact sapUiSmallMarginBegin">
+				<core:Icon id="PaymentCircleIcon" src="sap-icon://payment-approval" class="toBeDoneProcessCircle"/>
+				<VBox class="dummydashLineOnGoing"></VBox>
+				<VBox id="PaymentBox" class="poSearchactivitylogVboxToBeDone sapUiSmallMarginBottom dummyBox">
+					<Label text="Payment" design="Bold"/>
+					<HBox>
+						<Label text="Date :" design="Bold"/>
+						<Text text="23.04.2021" class="sapUiSmallMarginBegin"/>
+					</HBox>
+					<HBox>
+						<Label text="PO Status :" design="Bold"/>
+						<Text text="{mHeaderDetails>/Statusdesc}" class="sapUiSmallMarginBegin"/>
+					</HBox>
+				</VBox>
+			</HBox>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

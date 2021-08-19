@@ -1,0 +1,50 @@
+<core:FragmentDefinition xmlns="sap.m" class="sapUiSizeCompact" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout">
+	<Dialog title="{postDataModel>/viewTemplateName}">
+		<VBox>
+			<Table items="{ path: 'postDataModel>/listNonPoItem'}">
+				<columns>
+					<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+						<Label text="{i18n>accountNum}" design="Bold" required="true"/>
+					</Column>
+					<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+						<Label text="{i18n>GLAccount}" design="Bold" required="true"/>
+					</Column>
+					<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+						<Label text="{i18n>CostCentre}" design="Bold" required="true"/>
+					</Column>
+					<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+						<Label text="{i18n>Description}" design="Bold"/>
+					</Column>
+					<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+						<Label text="{i18n>percentageAllocation}" design="Bold" required="true"/>
+					</Column>
+					<Column minScreenWidth="Medium" demandPopin="true" hAlign="Center">
+						<Label text="{i18n>Text}" design="Bold"/>
+					</Column>
+					<Column minScreenWidth="Medium" demandPopin="true" visible="false" hAlign="Center">
+						<Label text="{i18n>Action}" design="Bold"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem >
+						<cells>
+							<Text class="tbCellBorder glaccount margintopinFld" text="{postDataModel>accNumber}"></Text> 
+							<Text class="tbCellBorder glaccount margintopinFld" text="{postDataModel>glAccount}" tooltip="{postDataModel>glCode}" ></Text>
+							<Text class=" margintopinFld tbCellBorder costcenterstate sapUiTinyMarginEnd" text="{postDataModel>costCenter}"
+								tooltip="{postDataModel>costCenter}"></Text>
+							<Text  class=" margintopinFld tbCellBorder costcenterstate sapUiTinyMarginEnd" text="{postDataModel>materialDescription}"/>
+							<Text  class=" margintopinFld tbCellBorder costcenterstate sapUiTinyMarginEnd" text="{postDataModel>allPer}"></Text>
+							<Text class=" margintopinFld tbCellBorder costcenterstate sapUiTinyMarginEnd" text="{postDataModel>itemText}"></Text>
+							<!--<Button icon="sap-icon://delete" visible="{postDataModel>/update}" class=" margintopinFld tbCellBorder costcenterstate sapUiTinyMarginEnd" press="deleteNonPoData"></Button>-->
+							
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</VBox>
+		<buttons>
+			<Button text="{i18n>updateTemp}" visible="{postDataModel>/update}" press="onUpdateemp"></Button>
+			<Button text="{i18n>back}" type="Reject" press="onCancelViewTemplate"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,26 @@
+{
+  "welcomeFile": "/index.html",
+  "authenticationMethod": "route",
+  "logout": {
+    "logoutEndpoint": "/do/logout"
+  },
+  "routes": [
+  	{
+			"source": "^/DEC_NEW",
+			"target": "/",
+			"destination": "DEC_NEW"
+	},
+	{
+			"source": "^/InctureApDest",
+			"target": "/",
+			"destination": "InctureApDest",
+			"csrfProtection": false
+		},
+    {
+      "source": "^(.*)$",
+      "target": "$1",
+      "service": "html5-apps-repo-rt",
+      "authenticationType": "xsuaa"
+    }
+  ]
+}

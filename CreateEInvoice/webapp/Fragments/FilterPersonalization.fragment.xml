@@ -1,0 +1,42 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>PersonalizationFragTitle}" class="sapUiSizeCompact custBox" contentWidth="30%">
+		<content>
+			<VBox>
+				<!--<headerToolbar>-->
+				<Toolbar>
+					<Label text="{i18n>Variant}" visible="{FilterPersonalization>/results/selectVarVisible}"/>
+					<Select items="{FilterPersonalization>/results/personalizationData/variantName}" selectedKey="{FilterPersonalization>/results/personalizationData/currentVariant}" width="50%" change="onSelectvarian" visible="{FilterPersonalization>/results/selectVarVisible}">
+						<core:Item key="{FilterPersonalization>name}" text="{FilterPersonalization>name}"/>
+					</Select>
+					<Label text="{i18n>VariantName}" required="true" visible="{FilterPersonalization>/results/nameVarVisible}"/>
+					<Input value="{FilterPersonalization>/results/newVariantName}" placeholder="{i18n>VariantName}" valueState="{FilterPersonalization>/results/varinatNameValueState}" visible="{FilterPersonalization>/results/nameVarVisible}" width="50%"/>
+					<ToolbarSpacer></ToolbarSpacer>
+					<Button icon="sap-icon://add-activity" press="onVariantCreate" tooltip="{i18n>Create}" visible="{FilterPersonalization>/results/createPersBtnVisible}"/>
+					<Button icon="sap-icon://edit" press="onVariantEdit" tooltip="{i18n>Edit}" visible="{FilterPersonalization>/results/editPersBtnVisible}"/>
+				</Toolbar>
+				<!--</headerToolbar>-->
+				<Table inset="false" items="{FilterPersonalization>/results/personalizationData/userPersonaDto}" id="personalizationTableId">
+					<columns>
+						<Column></Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells >
+								<HBox>
+									<CheckBox selected="{FilterPersonalization>status}" select="onChangeCheckbox" enabled="{FilterPersonalization>/results/enableCheckBox}"/>
+									<Text text="{FilterPersonalization>enabledKey}" class="sapUiTinyMarginTop"/>
+								</HBox>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</VBox>
+		</content>
+		<buttons>
+			<Button text="{i18n>OK}" press="onVariantOK" tooltip="{i18n>OK}"  visible="{FilterPersonalization>/results/okPersBtnVisible}"/>
+			<Button text="{i18n>Save}" press="onVariantSave" tooltip="{i18n>Save}" visible="{FilterPersonalization>/results/savePersBtnVisible}"/>
+			<Button text="{i18n>Delete}" press="onVariantDelete" tooltip="{i18n>Delete}" visible="{FilterPersonalization>/results/deletePersBtnVisible}"/>
+			<Button text="{i18n>Cancel}" press="onPersonlizationClose" tooltip="{i18n>Cancel}" visible="{FilterPersonalization>/results/cancelPersBtnVisible}"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

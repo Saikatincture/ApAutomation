@@ -1,0 +1,132 @@
+{
+	"CumminsSupplierPortal": [{
+		"heading": "INCTURE Supplier Portal",
+		"desc": "This public site opens the door to what you need to know to do business with INCTURE Inc. Prospective and current suppliers alike will find information and related links covering INCTURE' expectations regarding ethical behavior, sustainability, environmental stewardship, supplier diversity, and more."
+	}],
+	"news": [{
+		"headline": "Update to Seymour Site Pallet Requirements | 27 June 2019",
+		"details": "This Standard highlight unique requirements of INCTURE plants and part distribution centers (PDC) that are not covered in the respective Global Packaging Standards (GPS)."
+	}, {
+		"headline": "New Document: Ergonomics Standard | 18 June 2019",
+		"details": "The purpose of this standard is to provide ergonomic guidelines for the design and renovation of manufacturing and logistics facilities work areas. These ergonomic recommendations focus on work area design in order to fit the job to the worker to prevent injuries and disorders. The goal of ergonomics is to make the work area fit the operator instead of making the operator fit the work area."
+	}, {
+		"headline": "Expectations for Suppliers on Proactive Communication to INCTURE | 18 June 2018",
+		"details": "INCTURE relies on our direct material suppliers in order to achieve our Brand Promise of INNOVATION AND DEPENDABILITY.  Dependability means we strive for perfection, but respond swiftly and appropriately to resolve issues when they arise.  The material from the information sessions can be found here."
+	}, {
+		"headline": "INCTURE Global Payment Terms Move to Net 90 Days | 09 March 2018",
+		"details": "As markets and cash flows continue to improve, we have now implemented a new global payment term standard of Net 90 Days (N90). This change is effective immediately for all new business awards or new contracts, except where differing regional norms or government requirements exist."
+	}],
+
+	"quicklinks": [{
+		"link": "INCTURE Supplier Portal Overview"
+	}, {
+		"link": "About INCTURE and Our Products"
+	}, {
+		"link": "Purchasing Organization"
+	}, {
+		"link": "Supplier Information Management System Registration"
+	}, {
+		"link": "Contact Us"
+	}, {
+		"link": "iSCM- EBU Suppliers"
+	}, {
+		"link": "iSupplier Portal India"
+	}, {
+		"link": "Become a INCTURE Supplier"
+	}, {
+		"link": "ERP Global Sourcing Training Guide and Login"
+	}, {
+		"link": "iSupplier Portal ( For CKV Suppliers)"
+	}],
+	"notices": [{
+		"headline": "(01JAN2021 - UK and European suppliers)",
+		"description": "The purchase order Terms and Conditions have been updated and can be found on this page."
+	}, {
+		"headline": "(09OCT2020 - ALL)",
+		"description": " A list of the revision numbers to the INCTURE Engineering Standards is now available on the Supplier Portal on this page."
+	}],
+	"oldnotices": [{
+		"headline": "(21May2021 - ALL)",
+		"description": "Business resiliency is a term that comprises emergency response, crisis management, business continuity, and recovery. It represents the ability of organizations to plan for, adapt, respond & recover from impactful events – such as natural disasters, serious accidents, supply chain disruptions, more... "
+	}, {
+		"headline": "(01JAN2021 - UK and European suppliers)",
+		"description": "The purchase order Terms and Conditions have been updated and can be found on this page."
+	}, {
+		"headline": "(09OCT2020 - ALL)",
+		"description": " A list of the revision numbers to the INCTURE Engineering Standards is now available on the Supplier Portal on this page."
+	}, {
+		"headline": "(01JUN2020 - ALL)",
+		"description": "SAFE WORK PLAYBOOK FOR EXTERNAL SHARING.  The Safe Work Playbook is now available in an external version.(click here)."
+	}, {
+		"headline": "(30Apr2020 - ALL)",
+		"description": "INCTURE operations re-start examples and State of Indiana information on operational re-start now available on the COVID-19 novel coronavirus page."
+	}],
+	"count": "135",
+	"results": [{
+		"poNumber": "4500001696",
+		"poItem": "0010",
+		"status": "Open",
+		"product": "M1010-Laptop 21*",
+		"TotalQty": "25",
+		"OpenQty": "25",
+		"ReceivedQty": "00",
+		"NetPrice": "665.98",
+		"currency": "$",
+		"date": "2021-03-25"
+	}, {
+		"poNumber": "4500001698",
+		"poItem": "0010",
+		"status": "Completely Delivered",
+		"product": "M1010-Laptop 13*",
+		"TotalQty": "90",
+		"OpenQty": "00",
+		"ReceivedQty": "90",
+		"NetPrice": "1722.99",
+		"currency": "$",
+		"date": "2021-03-25"
+	}, {
+		"poNumber": "4500001698",
+		"poItem": "0020",
+		"status": "Open",
+		"product": "M1020-Dell Mouse",
+		"TotalQty": "25",
+		"OpenQty": "25",
+		"ReceivedQty": "00",
+		"NetPrice": "665.98",
+		"currency": "$",
+		"date": "2021-03-25"
+	}, {
+		"poNumber": "4500001698",
+		"poItem": "0030",
+		"status": "Open",
+		"product": "M1030-Laptop 15*",
+		"TotalQty": "90",
+		"OpenQty": "90",
+		"ReceivedQty": "00",
+		"NetPrice": "1722.99",
+		"currency": "$",
+		"date": "2021-03-25"
+	}, {
+		"poNumber": "4500001698",
+		"poItem": "0040",
+		"status": "Completely Delivered",
+		"product": "M1025-Desktop 15*",
+		"TotalQty": "25",
+		"OpenQty": "00",
+		"ReceivedQty": "25",
+		"NetPrice": "665.98",
+		"currency": "$",
+		"date": "2021-03-25"
+	}, {
+		"poNumber": "4500001698",
+		"poItem": "0050",
+		"status": "Partially Delivered",
+		"product": "M1010-Laptop 21*",
+		"TotalQty": "90",
+		"OpenQty": "10",
+		"ReceivedQty": "80",
+		"NetPrice": "1722.99",
+		"currency": "$",
+		"date": "2021-03-25"
+	}]
+}

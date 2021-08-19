@@ -1,0 +1,36 @@
+/* HOME PAGE CSS START*/
+.homepageTitle {
+    color: #576feb;
+    font-weight: bold;
+}
+
+.homePageIconcolor {
+    color: #0a6ed1;
+}
+
+.homePagesystemStatus {
+    color: #35f067;
+    font-size: 1.5rem;
+}
+
+.homepageGridCss {
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+.homepageLvl {
+    color: #e60f2d;
+}
+
+.homePageVbox {
+    border: 1px solid black;
+    padding: 0.9rem;
+}
+
+.homePageOTLBR {
+    border-top: 1px solid;
+    border-right: 1px solid;
+    border-left: 1px solid;
+    margin-bottom: -1rem;
+}
+
+/* HOME PAGE CSS END*/

@@ -1,0 +1,206 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "incture.com.APCreateInvoice",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "html5moduletemplates.basicSAPUI5ApplicationProjectModule",
+			"version": "1.40.12"
+		},
+		"crossNavigation": {
+			"inbounds": {
+				"intent1": {
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "Action",
+					"action": "Display"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "incture.com.APCreateInvoice.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "App"
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "incture.com.APCreateInvoice.i18n.i18n"
+				}
+			},
+			"mReviewModel": {
+				"type": "sap.ui.model.json.JSONModel"
+			},
+			"mHeaderDetails": {
+				"type": "sap.ui.model.json.JSONModel"
+			},
+			"mCreatePO": {
+				"type": "sap.ui.model.json.JSONModel"
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}],
+			"js": [{
+				"uri": "JS/jspdf.js"
+			}, {
+				"uri": "JS/jspdf.debug.js"
+			}, {
+				"uri": "JS/jspdf.plugin.autotable.js"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "incture.com.APCreateInvoice.view",
+				"controlAggregation": "pages",
+				"controlId": "app",
+				"clearControlAggregation": false
+			},
+			"routes": [{
+				"name": "purchaseOrder",
+				"pattern": "",
+				"target": [
+					"purchaseOrder"
+				]
+			}, {
+				"name": "invoiceCreate",
+				"pattern": "invoiceCreate",
+				"target": [
+					"invoiceCreate"
+				]
+			}, {
+				"name": "previewPage",
+				"pattern": "previewPage",
+				"target": [
+					"previewPage"
+				]
+			}, {
+				"name": "reviewPage",
+				"pattern": "reviewPage",
+				"target": [
+					"reviewPage"
+				]
+			}, {
+				"name": "displayPOdetails",
+				"pattern": "displayPOdetails",
+				"target": [
+					"displayPOdetails"
+				]
+			}, {
+				"name": "singlePOview",
+				"pattern": "singlePOview",
+				"target": [
+					"singlePOview"
+				]
+			}, {
+				"name": "singlePOinvoicecreate",
+				"pattern": "singlePOinvoicecreate",
+				"target": [
+					"singlePOinvoicecreate"
+				]
+			}, {
+				"name": "singlePopreview",
+				"pattern": "singlePopreview",
+				"target": [
+					"singlePopreview"
+				]
+			}, {
+				"name": "createPO",
+				"pattern": "createPO",
+				"target": [
+					"createPO"
+				]
+			}],
+			"targets": {
+				"TargetApp": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewId": "App",
+					"viewName": "App"
+				},
+				"purchaseOrder": {
+					"viewType": "XML",
+					"viewName": "purchaseOrder"
+				},
+				"invoiceCreate": {
+					"viewType": "XML",
+					"viewName": "invoiceCreate"
+				},
+				"previewPage": {
+					"viewType": "XML",
+					"viewName": "previewPage"
+				},
+				"reviewPage": {
+					"viewType": "XML",
+					"viewName": "reviewPage"
+				},
+				"displayPOdetails": {
+					"viewType": "XML",
+					"viewName": "displayPOdetails"
+				},
+				"singlePOview": {
+					"viewType": "XML",
+					"viewName": "singlePOview"
+				},
+				"singlePOinvoicecreate": {
+					"viewType": "XML",
+					"viewName": "singlePOinvoicecreate"
+				},
+				"singlePopreview": {
+					"viewType": "XML",
+					"viewName": "singlePopreview"
+				},
+				"createPO": {
+					"viewType": "XML",
+					"viewName": "createPO"
+				}
+			}
+		}
+	}
+}

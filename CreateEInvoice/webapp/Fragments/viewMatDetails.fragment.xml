@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Popover class="inctureviewGroupFrag" showHeader="false">
+		<VBox items="{matModel>/results}">
+			<f:SimpleForm editable="false" layout="ResponsiveGridLayout" title="{i18n>MaterialDetails}" labelSpanXL="3" labelSpanL="3" labelSpanM="3"
+				labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+				singleContainerFullSize="false">
+				<f:content>
+					<Label text="{i18n>Material}" class="RDSLabel"/>
+					<Text text="{matModel>Material}"/>
+					<Label text="{i18n>MaterialDescription}" class="RDSLabel"/>
+					<Text text="{matModel>MaterialDescription}"/>
+					<Label text="{i18n>MaterialGroup}" class="RDSLabel"/>
+					<Text text="{matModel>MaterialGroup}"/>
+					<Label text="{i18n>MaterialGroupDesc}" class="RDSLabel"/>
+					<Text text="{matModel>MaterialGroupDesc}"/>
+					<Label text="{i18n>VendorMaterial}" class="RDSLabel"/>
+					<Text text="{matModel>VendorMaterial}"/>
+					<Label text="{i18n>PurchaseUom}" class="RDSLabel"/>
+					<Text text="{matModel>PurchaseUom}"/>
+					<Label text="{i18n>UnitPrice}" class="RDSLabel"/>
+					<Text text="{matModel>UnitPrice}"/>
+				</f:content>
+			</f:SimpleForm>
+		</VBox>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button text="{i18n>Close}" press="onCloseviewMatDetails" type="Emphasized"/>
+			</OverflowToolbar>
+		</footer>
+	</Popover>
+</core:FragmentDefinition>

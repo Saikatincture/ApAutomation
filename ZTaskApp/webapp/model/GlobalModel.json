@@ -1,0 +1,48 @@
+{
+	"tasks": [
+		{
+			"taskID": "T1",
+			"taskSubject": "Approve Vendor Returns - RTV-0001",
+			"Status": "Ready",
+			"Date": "2020-12-04",
+			"Priority": "High",
+			"Subject": "RTV-0001",
+			"Owner": "PK",
+			"WfDefinition": "W1"
+		},
+		{
+			"taskID": "T2",
+			"taskSubject": "Approve PO Confirmation - POC-0001",
+			"Status": "Ready",
+			"Date": "2020-12-04",
+			"Priority": "Medium",
+			"Subject": "POC-0001",
+			"Owner": "PK",
+			"WfDefinition": "W2"
+		},
+		{
+			"taskID": "T3",
+			"taskSubject": "Approve Invoice - APA-0001",
+			"Status": "Ready",
+			"Date": "2020-12-04",
+			"Priority": "High",
+			"Subject": "APA-0001",
+			"Owner": "PK",
+			"WfDefinition": "W3"
+		},
+		{
+			"taskID": "T4",
+			"taskSubject": "Approve Vendor Returns - RTV-0001",
+			"Status": "Ready",
+			"Date": "2020-12-04",
+			"Priority": "High",
+			"Subject": "RTV-0001",
+			"Owner": "PK",
+			"WfDefinition": "W4"
+		}
+		],
+		"TaskCountAll": "8",
+		"ReadyTaskCount" :"4",
+		"PendingTaskCount" :"3",
+		"CanceledTaskCount" : "1"
+}

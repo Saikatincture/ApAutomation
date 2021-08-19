@@ -1,0 +1,278 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.uxap" xmlns:m="sap.m" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+	controllerName="com.incture.CreateEInvoice.controller.displayPOdetails" xmlns:html="http://www.w3.org/1999/xhtml">
+	<m:App>
+		<m:pages>
+			<m:Page enableScrolling="false" navButtonPress="onNavBack" showNavButton="false" title="{i18n>PurchaseOrderDetails}"
+				class="sapUiSizeCompact RDSPage RDSTitle">
+				<m:content>
+					<ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true" showEditHeaderButton="true"
+						editHeaderButtonPress="handleEditBtnPress" upperCaseAnchorBar="false" selectedSection="InvoiceInfo">
+						<headerTitle>
+							<ObjectPageDynamicHeaderTitle visible="false">
+								<actions>
+									<m:MenuButton text="{i18n>POConfirmation}" class="RDSsubmitButton RDSTitle">
+										<m:menu>
+											<m:Menu>
+												<m:MenuItem text="{i18n>ConfirmEntireOrder}" icon="sap-icon://accept" press="onPressConfirmOrder" class="RDSsubmitButton RDSTitle"/>
+												<m:MenuItem text="Partial Confirmation" icon="sap-icon://compare" press="onPress" class="RDSsubmitButton RDSTitle"/>
+												<m:MenuItem text="Reject entire Order" icon="sap-icon://decline" press="onPress" class="RDSsubmitButton RDSTitle"/>
+											</m:Menu>
+										</m:menu>
+									</m:MenuButton>
+								</actions>
+							</ObjectPageDynamicHeaderTitle>
+						</headerTitle>
+						<headerContent>
+							<!--	<m:FlexBox wrap="Wrap" class="sapUiSizeCompact">
+								<l:Grid defaultSpan="L2 M2 S12" class="sapUiSizeCompact" width="180%">
+									<l:VerticalLayout class="sapUiLargeMarginEnd">
+										<l:HorizontalLayout class="sapUiSmallMarginBeginEnd">
+											<m:Label text="Vendor Id : " design="Bold" class="sapUiSizeCompact RDSLabel"/>
+											<m:Text text="{mHeaderDetails>/vendorID}" class="sapUiLargeMarginEnd sapUiSizeCompact"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout class="sapUiSmallMarginBeginEnd">
+											<m:Label text="Vendor Name :" design="Bold" class="sapUiSizeCompact RDSLabel "/>
+											<m:Text text="{mHeaderDetails>/vendorName}" class="sapUiLargeMarginEnd sapUiSizeCompact"/>
+										</l:HorizontalLayout>
+									</l:VerticalLayout>
+									<l:VerticalLayout class="sapUiSizeCompact">
+										<l:HorizontalLayout>
+											<m:Label text="PO Number : " design="Bold" class="sapUiSizeCompact RDSLabel"/>
+											<m:Text text="{mHeaderDetails>/Purch_Ord}" class="sapUiSizeCompact"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout>
+											<m:Label text="Purch Org : " design="Bold" class="sapUiSizeCompact RDSLabel"/>
+											<m:Text text="{mHeaderDetails>/Purch_Org}" class=" sapUiSizeCompact"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout>
+											<m:Label text="Purch Org Name :" design="Bold" class="sapUiSizeCompact RDSLabel"/>
+											<m:Text text="{mHeaderDetails>/Purch_OrgName}" class=" sapUiSizeCompact"/>
+										</l:HorizontalLayout>
+									</l:VerticalLayout>
+									<l:VerticalLayout class="sapUiSizeCompact">
+										<l:HorizontalLayout>
+											<l:VerticalLayout class="sapUiSizeCompact">
+												<m:Label text="Status" design="Bold" class="sapUiSizeCompact RDSLabel"/>
+												<m:Text text="{mHeaderDetails>/Statusdesc}"/>
+											</l:VerticalLayout>
+										</l:HorizontalLayout>
+									</l:VerticalLayout>
+									<l:VerticalLayout class="sapUiSizeCompact">
+										<l:HorizontalLayout>
+											<m:Label text="PO Date : " design="Bold" class="sapUiSizeCompact RDSLabel"/>
+											<m:Text text="{mHeaderDetails>/POdate}"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout>
+											<m:Label text="Company Code :" design="Bold" class="sapUiSizeCompact RDSLabel "/>
+											<m:Text text="{mHeaderDetails>/Company_Code}" class="sapUiSizeCompact"/>
+										</l:HorizontalLayout>
+									</l:VerticalLayout>
+								</l:Grid>
+							</m:FlexBox>-->
+						</headerContent>
+						<sections>
+							<ObjectPageSection titleUppercase="false" id="InvoiceInfo" title="{i18n>PurchaseOrderHeader}">
+								<subSections>
+									<ObjectPageSubSection mode="Expanded">
+										<blocks>
+											<l:Grid defaultSpan="L6 M6 S12" class="sapUiSizeCompact ">
+												<m:VBox class="sapUiSizeCompact">
+													<m:Label text="{i18n>PONumber}" design="Bold" class="sapUiSizeCompact RDSLabel"/>
+													<m:Text text="{mHeaderDetails>/Purch_Ord}" class="sapUiSizeCompact"/>
+												</m:VBox>
+												<m:VBox class="sapUiSizeCompact">
+													<m:Label text="{i18n>VendorID}" design="Bold" class="sapUiSizeCompact RDSLabel"/>
+													<m:Text text="{mHeaderDetails>/vendorID}" class="sapUiSizeCompact"/>
+												</m:VBox>
+												<m:VBox class="sapUiSizeCompact">
+													<m:Label text="{i18n>PODate}" design="Bold" class="sapUiSizeCompact RDSLabel"/>
+													<m:Text text="{mHeaderDetails>/POdate}"/>
+												</m:VBox>
+												<m:VBox class="sapUiSizeCompact">
+													<m:Label text="{i18n>VendorName}" design="Bold" class="sapUiSizeCompact RDSLabel"/>
+													<m:Text text="{mHeaderDetails>/vendorName}" class="sapUiSizeCompact"/>
+												</m:VBox>
+												<m:VBox class="sapUiSizeCompact">
+													<m:Label text="{i18n>CompanyCode}" design="Bold" class="sapUiSizeCompact RDSLabel"/>
+													<m:Text text="{mHeaderDetails>/Company_Code}" class="sapUiSizeCompact"/>
+												</m:VBox>
+											</l:Grid>
+										</blocks>
+									</ObjectPageSubSection>
+								</subSections>
+							</ObjectPageSection>
+							<ObjectPageSection title="{i18n>PurchaseOrderItems}" id="poItems">
+								<subSections>
+									<ObjectPageSubSection title="{i18n>ItemDetails}">
+										<blocks>
+											<m:Table alternateRowColors="true" items="{poItemSet>/results}" class="sapUiSizeCompact RDSMtable" inset="false" fixedLayout="false">
+												<m:columns>
+													<m:Column hAlign="Begin" width="8em" minScreenWidth="Small">
+														<m:Label text="{i18n>ItemId}" design="Bold" class="RDSLabel"/>
+													</m:Column>
+													<m:Column hAlign="Begin" width="8em" minScreenWidth="Small">
+														<m:Label text="{i18n>MatCode}" design="Bold" class="RDSLabel"/>
+													</m:Column>
+													<m:Column hAlign="Begin" width="10em" minScreenWidth="Small">
+														<m:Label text="{i18n>Description}" design="Bold" class="RDSLabel"/>
+													</m:Column>
+													<m:Column hAlign="Begin" width="11em" minScreenWidth="Small">
+														<m:Label text="{i18n>DeliveredQty}" design="Bold" class="RDSLabel"/>
+													</m:Column>
+													<m:Column hAlign="Begin" width="8em" minScreenWidth="Small">
+														<m:Label text="{i18n>InvoiceQty}" design="Bold" class="RDSLabel"/>
+													</m:Column>
+													<m:Column hAlign="Begin" width="6em" minScreenWidth="Small">
+														<m:Label text="{i18n>UOM}" design="Bold" class="RDSLabel"/>
+													</m:Column>
+													<m:Column hAlign="Begin" width="10em" minScreenWidth="Small">
+														<m:Label text="{i18n>UnitPrice}" design="Bold" class="RDSLabel"/>
+													</m:Column>
+													<m:Column hAlign="Begin" width="6em" minScreenWidth="Small">
+														<m:Label text="{i18n>TaxCode}" design="Bold" class="RDSLabel"/>
+													</m:Column>
+													<m:Column hAlign="Begin" width="9em" minScreenWidth="Small">
+														<m:Label text="{i18n>TaxPercentage}" design="Bold" class="RDSLabel"/>
+													</m:Column>
+													<m:Column hAlign="Begin" width="9em" minScreenWidth="Small">
+														<m:Label text="{i18n>NetPrice}" design="Bold" class="RDSLabel"/>
+													</m:Column>
+													<m:Column hAlign="Begin" minScreenWidth="Small">
+														<m:Label text="{i18n>TaxAmount}" design="Bold" class="RDSLabel"/>
+													</m:Column>
+												</m:columns>
+												<m:items>
+													<m:ColumnListItem>
+														<m:Text text="{poItemSet>Item}"/>
+														<m:Link text="{poItemSet>Material}" press="onPressMatcode"/>
+														<m:Text text="{poItemSet>Decription}"/>
+														<m:Text text="{poItemSet>Quantity}"></m:Text>
+														<m:Text text="{poItemSet>Quantity}"/>
+														<m:Text text="{poItemSet>Unit}"/>
+														<m:Text text="{poItemSet>Net_Price}"/>
+														<m:Text text="{poItemSet>taxCode}"/>
+														<m:Text text="{poItemSet>taxPer}"/>
+														<m:Text text="{poItemSet>Net_Value}"></m:Text>
+														<m:Text text="{poItemSet>taxAmount}"></m:Text>
+													</m:ColumnListItem>
+												</m:items>
+											</m:Table>
+										</blocks>
+									</ObjectPageSubSection>
+								</subSections>
+							</ObjectPageSection>
+							<ObjectPageSection title="{i18n>POHistory}">
+								<subSections>
+									<ObjectPageSubSection title="{i18n>POHistory}">
+										<blocks>
+											<m:IconTabBar expandable="false" id="ID_TAB_BAR_PROV_APP" expanded="true" select="handleIconTabSelectChangeSelection"
+												selectedKey="{mPropertyModel>/selectedIconTab}">
+												<m:items>
+													<m:IconTabFilter key="summary" text="{i18n>Summary}">
+														<m:Table alternateRowColors="true" items="{mHistoryDetails>/d/results/0/HTHT/results}" class="sapUiSizeCompact RDSMtable" inset="false"
+															fixedLayout="false">
+															<m:columns>
+																<m:Column hAlign="Begin" width="8em" minScreenWidth="Small">
+																	<m:Label text="{i18n>POITEM}" design="Bold" class="RDSLabel"/>
+																</m:Column>
+																<m:Column hAlign="Begin" width="8em" minScreenWidth="Small">
+																	<m:Label text="{i18n>DELIVQTY}" design="Bold" class="RDSLabel"/>
+																</m:Column>
+																<m:Column hAlign="Begin" width="8em" minScreenWidth="Small">
+																	<m:Label text="{i18n>POPRQNT}" design="Bold" class="RDSLabel"/>
+																</m:Column>
+																<m:Column hAlign="Begin" width="8em" minScreenWidth="Small">
+																	<m:Label text="{i18n>VALGRLOC}" design="Bold" class="RDSLabel"/>
+																</m:Column>
+																<m:Column hAlign="Begin" width="10em" minScreenWidth="Small">
+																	<m:Label text="{i18n>INVQTY}" design="Bold" class="RDSLabel"/>
+																</m:Column>
+																<m:Column hAlign="Begin" width="10em" minScreenWidth="Small">
+																	<m:Label text="{i18n>INVQTYPO}" design="Bold" class="RDSLabel"/>
+																</m:Column>
+																<m:Column hAlign="Begin" width="11em" minScreenWidth="Small">
+																	<m:Label text="{i18n>VALIVLOC}" design="Bold" class="RDSLabel"/>
+																</m:Column>
+																<m:Column hAlign="Begin" width="8em" minScreenWidth="Small">
+																	<m:Label text="{i18n>IVVALLOC}" design="Bold" class="RDSLabel"/>
+																</m:Column>
+																<m:Column hAlign="Begin" width="6em" minScreenWidth="Small">
+																	<m:Label text="{i18n>CURRENCY}" design="Bold" class="RDSLabel"/>
+																</m:Column>
+															</m:columns>
+															<m:items>
+																<m:ColumnListItem>
+																	<m:Text text="{mHistoryDetails>PoItem}"/>
+																	<m:Text text="{mHistoryDetails>DelivQty}"/>
+																	<m:Text text="{mHistoryDetails>PoPrQnt}"/>
+																	<m:Text text="{mHistoryDetails>ValGrLoc}"/>
+																	<m:Text text="{mHistoryDetails>IvQty}"/>
+																	<m:Text text="{mHistoryDetails>IvQtyPo}"/>
+																	<m:Text text="{mHistoryDetails>ValIvLoc}"></m:Text>
+																	<m:Text text="{mHistoryDetails>IvvalLoc}"/>
+																	<m:Text text="{mHistoryDetails>Currency}"/>
+																</m:ColumnListItem>
+															</m:items>
+														</m:Table>
+													</m:IconTabFilter>
+													<m:IconTabFilter key="detail" text="{i18n>Detail}" enabled="{mPropertyModel>/POIcontabFilterEnabled}">
+														<m:Table alternateRowColors="true" items="{mHistoryDetails>/d/results/0/HTHIS/results}" class="sapUiSizeCompact RDSMtable" inset="false"
+															fixedLayout="false">
+															<m:columns>
+																<m:Column hAlign="Begin" width="8em" minScreenWidth="Small">
+																	<m:Label text="{i18n>POITEM}" design="Bold" class="RDSLabel"/>
+																</m:Column>
+																<m:Column hAlign="Begin" width="8em" minScreenWidth="Small">
+																	<m:Label text="{i18n>MatCode}" design="Bold" class="RDSLabel"/>
+																</m:Column>
+																<m:Column hAlign="Begin" width="8em" minScreenWidth="Small">
+																	<m:Label text="{i18n>DELIVQTY}" design="Bold" class="RDSLabel"/>
+																</m:Column>
+																<m:Column hAlign="Begin" width="8em" minScreenWidth="Small">
+																	<m:Label text="{i18n>CLVALLOC}" design="Bold" class="RDSLabel"/>
+																</m:Column>
+																<m:Column hAlign="Begin" width="10em" minScreenWidth="Small">
+																	<m:Label text="{i18n>IVVALFOR}" design="Bold" class="RDSLabel"/>
+																</m:Column>
+																<m:Column hAlign="Begin" width="10em" minScreenWidth="Small">
+																	<m:Label text="{i18n>IVVALLOC}" design="Bold" class="RDSLabel"/>
+																</m:Column>
+																<m:Column hAlign="Begin" width="11em" minScreenWidth="Small">
+																	<m:Label text="{i18n>INVQTY}" design="Bold" class="RDSLabel"/>
+																</m:Column>
+																<m:Column hAlign="Begin" width="8em" minScreenWidth="Small">
+																	<m:Label text="{i18n>PLANT}" design="Bold" class="RDSLabel"/>
+																</m:Column>
+																<m:Column hAlign="Begin" width="6em" minScreenWidth="Small">
+																	<m:Label text="{i18n>CURRENCY}" design="Bold" class="RDSLabel"/>
+																</m:Column>
+															</m:columns>
+															<m:items>
+																<m:ColumnListItem>
+																	<m:Text text="{mHistoryDetails>PoItem}"/>
+																	<m:Text text="{mHistoryDetails>Material}"/>
+																	<m:Text text="{mHistoryDetails>DelivQty}"/>
+																	<m:Text text="{mHistoryDetails>ClValLoc}"/>
+																	<m:Text text="{mHistoryDetails>IvvalFor}"/>
+																	<m:Text text="{mHistoryDetails>IvvalLoc}"/>
+																	<m:Text text="{mHistoryDetails>Quantity}"></m:Text>
+																	<m:Text text="{mHistoryDetails>Plant}"/>
+																	<m:Text text="{mHistoryDetails>Currency}"/>
+																</m:ColumnListItem>
+															</m:items>
+														</m:Table>
+													</m:IconTabFilter>
+												</m:items>
+											</m:IconTabBar>
+										</blocks>
+									</ObjectPageSubSection>
+								</subSections>
+							</ObjectPageSection>
+						</sections>
+					</ObjectPageLayout>
+				</m:content>
+			</m:Page>
+		</m:pages>
+	</m:App>
+</mvc:View>

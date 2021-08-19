@@ -1,0 +1,204 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "com.incture.CreateEInvoice",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "html5moduletemplates.basicSAPUI5ApplicationProjectModule",
+			"version": "1.40.12"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "com.incture.CreateEInvoice.view.draftInboxView",
+			"type": "XML",
+			"async": true,
+			"id": "draftInboxView"
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties",
+				"settings": {
+					"bundleName": "com.incture.CreateEInvoice.i18n.i18n"
+				}
+			},
+			"mDraftDetails": {
+				"type": "sap.ui.model.json.JSONModel"
+			},
+			"mHeaderDetails": {
+				"type": "sap.ui.model.json.JSONModel"
+			},
+			"mReviewModel": {
+				"type": "sap.ui.model.json.JSONModel"
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}],
+			"js": [{
+				"uri": "JS/jspdf.js"
+			}, {
+				"uri": "JS/jspdf.debug.js"
+			}, {
+				"uri": "JS/jspdf.plugin.autotable.js"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "com.incture.CreateEInvoice.view",
+				"controlAggregation": "pages",
+				"controlId": "app",
+				"clearControlAggregation": false
+			},
+			"routes": [{
+				"name": "draftInboxView",
+				"pattern": "draftInboxView",
+				"target": [
+					"draftInboxView"
+				]
+			}, {
+				"name": "createEInvoice",
+				"pattern": "createEInvoice",
+				"target": [
+					"createEInvoice"
+				]
+			}, {
+				"name": "reviewPage",
+				"pattern": "reviewPage",
+				"target": [
+					"reviewPage"
+				]
+			}, {
+				"name": "displayPage",
+				"pattern": "displayPage",
+				"target": [
+					"displayPage"
+				]
+			}, {
+				"name": "purchaseOrder",
+				"pattern": "purchaseOrder",
+				"target": [
+					"purchaseOrder"
+				]
+			}, {
+				"name": "invoiceCreate",
+				"pattern": "invoiceCreate",
+				"target": [
+					"invoiceCreate"
+				]
+			}, {
+				"name": "multiPOinvoicecreate",
+				"pattern": "multiPOinvoicecreate",
+				"target": [
+					"multiPOinvoicecreate"
+				]
+			}, {
+				"name": "previewPage",
+				"pattern": "previewPage",
+				"target": [
+					"previewPage"
+				]
+			}, {
+				"name": "displayPOdetails",
+				"pattern": "displayPOdetails",
+				"target": [
+					"displayPOdetails"
+				]
+			}, {
+				"name": "purchaseOrderConfim",
+				"pattern": "purchaseOrderConfim",
+				"target": [
+					"purchaseOrderConfim"
+				]
+			}],
+			"targets": {
+				"draftInboxView": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "draftInboxView"
+				},
+				"createEInvoice": {
+					"viewType": "XML",
+					"viewName": "createEInvoice"
+				},
+				"reviewPage": {
+					"viewType": "XML",
+					"viewName": "reviewPage"
+				},
+				"displayPage": {
+					"viewType": "XML",
+					"viewName": "displayPage"
+				},
+				"purchaseOrder": {
+					"viewType": "XML",
+					"viewName": "purchaseOrder"
+				},
+				"invoiceCreate": {
+					"viewType": "XML",
+					"viewName": "invoiceCreate"
+				},
+				"multiPOinvoicecreate": {
+					"viewType": "XML",
+					"viewName": "multiPOinvoicecreate"
+				},
+				"previewPage": {
+					"viewType": "XML",
+					"viewName": "previewPage"
+				},
+				"displayPOdetails": {
+					"viewType": "XML",
+					"viewName": "displayPOdetails"
+				},
+				"purchaseOrderConfim": {
+					"viewType": "XML",
+					"viewName": "purchaseOrderConfim"
+				},
+				"multiPOinvoicecreate": {
+					"viewType": "XML",
+					"viewName": "multiPOinvoicecreate"
+				}
+			}
+		}
+	}
+}
