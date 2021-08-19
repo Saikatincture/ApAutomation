@@ -19,7 +19,6 @@ sap.ui.define([
 		/* =========================================================== */
 		/* lifecycle methods                                           */
 		/* =========================================================== */
-
 		/**
 		 * Called when the worklist controller is instantiated.
 		 * @public
