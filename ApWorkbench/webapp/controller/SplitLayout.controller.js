@@ -16,13 +16,6 @@ sap.ui.define([
 	"use strict";
 	return BaseController.extend("com.inc.ApWorkbench.controller.SplitLayout", {
 		formatter: formatter,
-		/* =========================================================== */
-		/* lifecycle methods                                           */
-		/* =========================================================== */
-		/**
-		 * Called when the worklist controller is instantiated.
-		 * @public
-		 */
 		onInit: function () {
 			$("#splash-screen").remove();
 			this.oNumberFormatRegEx = /^-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:(\.|,)\d+)?$/;
